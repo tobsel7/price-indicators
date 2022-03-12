@@ -91,7 +91,6 @@ ENV/
 ### VirtualEnv template
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-.Python
 [Bb]in
 [Ii]nclude
 [Ll]ib
@@ -151,3 +150,6 @@ fabric.properties
 
 # Hide api key
 api_key.py
+
+# Ignore persisted chart data
+/persisted_data/*.json
