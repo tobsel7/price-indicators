@@ -11,7 +11,7 @@ from charts.data_handler.errors import DelistedError, APILimitError
 # default storage path
 STORAGE_PATH = "./persisted_data/{}.json"
 ASSET_LIST_PATH = "./persisted_data/asset_lists/{}.csv"
-ASSET_LISTS = ["sp500"]
+ASSET_LISTS = ["sp500", "nasdaq"]
 
 
 # internal function for persisting a chart charts dictionary
@@ -25,7 +25,7 @@ def _persist_data(chart, meta):
         json.dump(json_data, outfile)
 
 
-# internal function to retrieve persisted chart charts
+# internal function to retrieve persisted chart
 def _get_persisted_data(symbol):
     # define file name
     file_name = STORAGE_PATH.format(symbol)
@@ -34,6 +34,17 @@ def _get_persisted_data(symbol):
         data = json.loads(json.load(json_file))
         # return new ChartData using loaded charts
         return chart_data.ChartData(data["chart"], data["meta"])
+
+
+# internal function to normalize a ticker symbol
+def _normalize_symbol(symbol):
+    # those characters should be changed
+    characters_to_change = "/^."
+    # this is the character they will be changed to
+    share_type_delimiter = "-"
+    for character in characters_to_change:
+        symbol = symbol.replace(character, share_type_delimiter)
+    return symbol
 
 
 # help function checking chart data has been downloaded already
@@ -55,7 +66,7 @@ def get_chart_data(symbol, auto_persist_on_load=True):
         return chart_data.ChartData(chart, meta)
 
 
-# download and persist chart charts for a list of assets defined in the asset_list csv files
+# download and persist charts for a list of assets defined in the asset_list csv files
 def download_and_persist_chart_data(asset_lists=ASSET_LISTS):
     # go through all asset lists
     for asset_list in asset_lists:
@@ -63,6 +74,9 @@ def download_and_persist_chart_data(asset_lists=ASSET_LISTS):
         asset_names = pd.read_csv(ASSET_LIST_PATH.format(asset_list), usecols=["Symbol", "Name"])
         # go through all symbols
         for asset_symbol in asset_names["Symbol"]:
+            # the lists contain different types of delimiters
+            # for example BRK.A shares are listed as BRK.A, BRK-A and BRK/A and should be BRK-A
+            asset_symbol = _normalize_symbol(asset_symbol)
             try:
                 # download and persist the charts for one symbl
                 get_chart_data(asset_symbol, True)
@@ -109,3 +123,8 @@ def generate_samples(asset_lists=ASSET_LISTS, samples_per_chart=20, normalize=Fa
 
     return samples
 
+
+# generate a random sample for some stored chart data
+def generate_sample(symbol, normalize=False, prediction_interval=365):
+    chart = get_chart_data(symbol)
+    return chart.get_random_sample(normalize, prediction_interval)

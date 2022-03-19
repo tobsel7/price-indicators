@@ -54,11 +54,11 @@ def ma_trend_crossing(closes, index, short_ma_length=50, long_ma_length=200, int
         ma_short = sum_short / short_ma_length
         ma_long = sum_long / long_ma_length
 
-        # check if the short ma was lower than the long ma at the last index or a crossing has happened previously
-        if ma_diff < 0 > ma_long - ma_short:
+        # check if the short ma was lower than the long ma at the last index
+        if ma_diff > 0 > ma_long - ma_short:
             # the shorter ma is now above the longer ma
             crossing = 1
-        if ma_diff > 0 < ma_long - ma_short:
+        if ma_diff < 0 < ma_long - ma_short:
             # the shorter ma is now below the longer ma
             crossing = -1
 
@@ -73,17 +73,18 @@ def calculate_all_indicators(chart_data, index, normalized=False):
     if normalized:
         closes = closes / closes[index]
 
+    ma10 = moving_average(closes, index, normalized=True, interval=10)
     ma20 = moving_average(closes, index, normalized=True, interval=20)
     ma50 = moving_average(closes, index, normalized=True, interval=50)
     ma100 = moving_average(closes, index, normalized=True, interval=100)
     ma200 = moving_average(closes, index, normalized=True, interval=200)
-    # map boolean of crossing to 0 or 1
-    cross = int(ma_trend_crossing(closes, index, short_ma_length=50, long_ma_length=200, interval=50))
+    cross = ma_trend_crossing(closes, index, short_ma_length=50, long_ma_length=200, interval=50)
     trend = ma_trend(closes, index, short_ma_length=50, long_ma_length=200)
     rsi = relative_strength(closes, index, normalized=True, interval=50)
 
     # return all indicators as dictionary
     return {
+        "ma10": ma10,
         "ma20": ma20,
         "ma50": ma50,
         "ma100": ma100,

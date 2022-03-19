@@ -92,7 +92,7 @@ class ChartData:
     # generate a random sample by selecting an index and calculating all the features for the position
     def get_random_sample(self, normalized=False, prediction_interval=DEFAULT_PREDICATION_INTERVAL):
         # only allow creation of samples for large enough time series
-        if not self.can_create_samples():
+        if not self.can_create_samples(prediction_interval):
             raise Exception("Can not create a sample, because the size of the charts is too small.")
 
         # get a random position in the time series respecting the space left for the calculation of the indicators
