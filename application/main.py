@@ -7,7 +7,7 @@ from analysis import analysis, data_set_modifier
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 from analysis import distribution_plotter
-DOWNLOAD = True
+DOWNLOAD = False
 
 
 # main program
@@ -17,8 +17,9 @@ def main():
     #analysis.analyze_indicator_correlation(100, 10, 365, 30)
     #test2()
     #samples = data_handler.generate_samples(samples_per_chart=10, normalize=True, prediction_interval=30)
+    #print(len(samples))
     #distribution_plotter.plot_distribution(samples["future_price"])
-    #data_set_modifier.move_dataset_to_mean(samples)
+    #print(len(data_set_modifier.move_dataset_to_mean(samples)))
 
 
 def test2():

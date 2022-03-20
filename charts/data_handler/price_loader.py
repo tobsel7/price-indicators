@@ -2,7 +2,7 @@
 import requests
 
 # import custom error classes
-from charts.data_handler.errors import DelistedError, APILimitError
+from charts.data_handler.errors import DelistedError, APILimitError, MalformedResponseError
 
 # static variables necessary for the api
 from .api_key import API_KEY
@@ -22,7 +22,6 @@ def get_price(symbol):
     }
     # call api and retrieve response
     response = requests.request("GET", url, headers=headers, params=params)
-
     # check response
     if not response.ok:
         if response.status_code == 429:
@@ -36,13 +35,18 @@ def get_price(symbol):
     response_json = response.json()
 
     # react to error messages from the api
-    if "error" in response_json["chart"] and response_json["chart"]["error"] is not None:
+    if response_json["chart"]["error"] is not None:
+        print("hi")
         if "delisted" in response_json["chart"]["error"]["description"]:
             # the asset has been delisted, so no recent chart charts exists
             raise DelistedError(response_json["chart"]["error"]["description"])
         else:
             # unknown error
             raise Exception(response_json["chart"]["error"]["description"])
+
+    # react to malformed responses
+    if len(response_json["chart"]["result"][0]["indicators"]["quote"]) <= 1:
+        raise MalformedResponseError()
 
     # retrieve relevant charts
     data = response_json["chart"]["result"][0]

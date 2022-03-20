@@ -9,7 +9,13 @@ class DelistedError(Exception):
         super().__init__(error_message)
 
 
-# customer error used to notify that no calls can be made to the api due to rate limiting
+# custom error used to notify that no calls can be made to the api due to rate limiting
 class APILimitError(Exception):
     def __init__(self, message="The api limit of allowed calls for today has been reached."):
+        super().__init__(message)
+
+
+# custom error signaling some response from the api which can not be processed
+class MalformedResponseError(Exception):
+    def __init__(self, message="The api response can not be processed, because some fields are missing."):
         super().__init__(message)
