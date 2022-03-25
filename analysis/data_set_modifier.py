@@ -3,16 +3,23 @@ import numpy as np
 
 # the mean of a feature is usually not 1
 # with this function the distribution of a value in a set of samples can be shifted, by removing some samples
-def move_dataset_to_mean(samples, mean=1, feature="future_price"):
-    # calculate the variables of the normal distribution
-    mean = samples[feature].mean()
-    std = samples[feature].std()
-    # define the factor, such that keep_probability(0) is 1
-    factor = np.exp(-(np.power(mean, 2) - 1) / (2 * np.power(std, 2)))
-    # define the probability distribution
-    keep_probability = lambda x: factor * np.exp((np.power(x - mean, 2) - np.power(x - 1, 2)) / (2 * np.power(std, 2)))
+def move_dataset_to_mean(samples, desired_mean=1, feature="future_price"):
+    # we want to shift a log normal distribution
+    # to simplify this process we take the logarithm and treat the distribution as a normal distribution from now on
+    y_log = np.log(samples[feature])
+
+    # calculate the characteristic values of the normal distribution
+    mean = np.mean(y_log)
+    std = np.mean(y_log)
+
+    # define the probability distribution which is used to shift the sample distribution
+    keep_probability = lambda x: np.exp((np.power(np.log(x) - mean, 2) - np.power(np.log(x) - np.log(desired_mean), 2)) / (2 * np.power(std, 2)))
+
     # create a set of random numbers between 0 and 1
     random_sample = np.random.random_sample(len(samples))
     # define which samples will be kept
     keep = random_sample < keep_probability(samples[feature])
+
     return samples[keep]
+
+

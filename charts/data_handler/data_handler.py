@@ -69,22 +69,26 @@ def get_chart_data(symbol, auto_persist_on_load=True):
 def download_and_persist_chart_data(asset_list=ASSET_LIST):
     # get all names and symbols from the list
     asset_names = pd.read_csv(ASSET_LIST_PATH.format(asset_list), usecols=["Ticker", "Name"])
+    list_changed = False
     # go through all symbols
     for asset_symbol in asset_names["Ticker"]:
-        # the lists contain different types of delimiters
-        # for example BRK.A shares are listed as BRK.A, BRK-A and BRK/A and should be BRK-A
-        asset_symbol = _normalize_symbol(asset_symbol)
         try:
             # download and persist the charts for one symbl
             get_chart_data(asset_symbol, True)
         except MalformedResponseError:
             # no correct data could be retrieved from the api
+            asset_names.drop(asset_names.index[(asset_names["Ticker"] == asset_symbol)], inplace=True)
+            list_changed = True
             continue
         except DelistedError:
             # the asset has been delisted, continue with the next item of the list
+            asset_names.drop(asset_names.index[(asset_names["Ticker"] == asset_symbol)], inplace=True)
+            list_changed = True
             continue
         except APILimitError:
             # the api limit has been reached, stop downloading
+            if list_changed:
+                asset_names.to_csv()
             return
         except Exception as error:
             # an unknown error has occured
@@ -99,7 +103,7 @@ def generate_samples(asset_list=ASSET_LIST, samples_per_chart=20, normalize=Fals
     samples = pd.DataFrame()
 
     # get all names and symbols from the list
-    asset_symbols = list(pd.read_csv(ASSET_LIST_PATH.format(asset_list), usecols=["Ticker"])["Name"])
+    asset_symbols = list(pd.read_csv(ASSET_LIST_PATH.format(asset_list), usecols=["Ticker"])["Ticker"])
 
     # go through all symbols
     for symbol in asset_symbols:

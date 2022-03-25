@@ -29,14 +29,13 @@ def get_price(symbol):
             raise APILimitError(symbol)
         else:
             # unknown error
-            raise Exception("Could not load the charts from the api")
+            raise Exception("Could not load the charts from the api.")
 
     # get json
     response_json = response.json()
 
     # react to error messages from the api
     if response_json["chart"]["error"] is not None:
-        print("hi")
         if "delisted" in response_json["chart"]["error"]["description"]:
             # the asset has been delisted, so no recent chart charts exists
             raise DelistedError(response_json["chart"]["error"]["description"])
