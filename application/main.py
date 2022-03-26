@@ -1,22 +1,39 @@
 # import the charts handler
-import random
-
 from charts.data_handler import data_handler
 import numpy as np
-from analysis import analysis, data_set_modifier
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 from analysis import math_demos
-DOWNLOAD = True
+from charts.indicators import indicator_calculator
+
+DOWNLOAD = False
 
 
 # main program
 def main():
     if DOWNLOAD:
         data_handler.download_and_persist_chart_data()
+    math_demos.show_demos()
+    #test3()
 
 
 def test3():
+    sample = data_handler.get_chart_data("AAPL")
+    pos = 1300
+    interval = 100
+    regression = indicator_calculator._regression_line(sample.get_closes(), pos, interval)
+    x = np.arange(pos - interval, pos, 1)
+    applx = np.arange(pos - interval, pos, 1)
+    y_regr = regression[0] + regression[1] * x
+    plt.plot(applx, sample.get_closes()[pos-interval:pos])
+    plt.plot(x, y_regr)
+    plt.show()
+    print(regression[0] + regression[1] * pos)
+    print(sample.get_closes()[pos])
+    print(indicator_calculator.trend_channel_position(sample.get_closes(), pos, interval, standardize=True))
+
+
+def test2():
     samples = data_handler.generate_samples(samples_per_chart=10, normalize=True, prediction_interval=30)
     samples = samples.sort_values(by='future_price')
     mean = np.log(samples["future_price"]).mean()
@@ -33,22 +50,8 @@ def test3():
     plt.show()
 
 
-def test2():
-    #analysis.analyze_indicator_correlation(100, 10, 365, 30)
-    #test2()
-    samples = data_handler.generate_samples(samples_per_chart=10, normalize=True, prediction_interval=365)
-    #function_fitter.fit_normal_distribution(samples["future_price"], plot=True)
-    #print(len(samples))
-    #print(samples.mean())
-    print(np.mean(np.log(samples["future_price"])))
-    math_demos.plot_distribution(samples["future_price"])
-    modified = data_set_modifier.move_dataset_to_mean(samples, 1)
-    print(np.mean(np.log(modified["future_price"])))
-    math_demos.plot_distribution(modified["future_price"])
-
-# current test code
-def test():
-    samples = data_handler.generate_samples(samples_per_chart=100, normalize=True, prediction_interval=30)
+def test1():
+    samples = data_handler.generate_samples(samples_per_chart=50, normalize=True, prediction_interval=30)
     samples = samples.sort_values(by='future_price')
     samples = samples[samples.future_price < 2]
     ma_positive = samples[samples.ma50 > 0]
@@ -56,8 +59,8 @@ def test():
     print(np.average(ma_positive["future_price"]))
     print(np.average(ma_negative["future_price"]))
     math_demos.plot_distribution(samples["future_price"])
-    for indicator in ["rsi", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing"]:
-        correlation = samples[indicator].corr(samples['future_price'] - 1)
+    for indicator in ["rsi", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing50", "horizontal_trend_pos100", "trend_channel_pos100"]:
+        correlation = samples[indicator].corr(samples["future_price"] - 1)
         print((indicator + " correlation: {}").format(correlation))
 
 

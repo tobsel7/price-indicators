@@ -1,4 +1,5 @@
 import numpy as np
+
 from charts.data_handler import data_handler
 import matplotlib.pyplot as plt
 
@@ -27,4 +28,6 @@ def analyze_indicator_correlation(samples_per_chart=10, prediction_interval_min=
             correlation = samples[feature].corr(samples['future_price'] - 1)
             correlations[feature] = np.append(correlations[feature], correlation)
     _plot_correlations(intervals, correlations)
+
+
 

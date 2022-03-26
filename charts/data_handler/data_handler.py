@@ -88,7 +88,7 @@ def download_and_persist_chart_data(asset_list=ASSET_LIST):
         except APILimitError:
             # the api limit has been reached, stop downloading
             if list_changed:
-                asset_names.to_csv()
+                asset_names.to_csv(ASSET_LIST_PATH.format(asset_list))
             return
         except Exception as error:
             # an unknown error has occured
@@ -97,7 +97,6 @@ def download_and_persist_chart_data(asset_list=ASSET_LIST):
             return
 
 
-# generate a specific number of samples for all persisted data
 def generate_samples(asset_list=ASSET_LIST, samples_per_chart=20, normalize=False, prediction_interval=365):
     # initialize an empty array where all samples will be stored
     samples = pd.DataFrame()
