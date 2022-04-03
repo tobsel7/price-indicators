@@ -5,7 +5,7 @@ import numpy as np
 
 # the mean of a feature is usually not 1
 # with this function the distribution of a value in a set of samples can be shifted, by removing some samples
-def move_dataset_to_mean(samples, desired_mean=1, feature="future_price", start_of_deletions=lambda x: np.std(x)):
+def move_dataset_to_mean(samples, desired_mean=1, feature="future_price", start_of_deletions=lambda x: 0):
     # we want to shift a log normal distribution
     # to simplify this process we take the logarithm and treat the distribution as a normal distribution from now on
     y_log = np.log(samples[feature])

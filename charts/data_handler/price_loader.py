@@ -4,9 +4,64 @@ import requests
 # import custom error classes
 from charts.data_handler.errors import DelistedError, APILimitError, MalformedResponseError
 
+# import functionalities to store and process the loaded data
+import json
+import os
+from . import chart_data
+
 # static variables necessary for the api
 from .api_key import API_KEY
 CHART_URL = "https://yfapi.net/v8/finance/chart/"
+
+# default storage path
+STORAGE_PATH = "./persisted_data/charts/{}.json"
+
+
+# if a stock has no recent data, none values will occur. they should be deleted before performing any analysis
+def _clean_nones(value):
+    """
+    Taken from answer by user MatanRubin
+    https://stackoverflow.com/questions/4255400/exclude-empty-null-values-from-json-serialization
+    Recursively remove all None values from dictionaries and lists, and returns
+    the result as a new dictionary or list.
+    """
+    if isinstance(value, list):
+        return [_clean_nones(x) for x in value if x is not None]
+    elif isinstance(value, dict):
+        return {
+            key: _clean_nones(val)
+            for key, val in value.items()
+            if val is not None
+        }
+    else:
+        return value
+
+
+# function for persisting a chart charts dictionary
+def persist_data(chart, meta):
+    # define file name
+    file_name = STORAGE_PATH.format(meta["symbol"])
+    # create json charts
+    json_data = json.dumps({"chart": chart, "meta": meta})
+    # save json charts to file
+    with open(file_name, 'w') as outfile:
+        json.dump(json_data, outfile)
+
+
+# function to retrieve persisted chart
+def get_persisted_data(symbol):
+    # define file name
+    file_name = STORAGE_PATH.format(symbol)
+    # get json charts
+    with open(file_name) as json_file:
+        data = json.loads(json.load(json_file))
+        # return new ChartData using loaded charts
+        return chart_data.ChartData(data["chart"], data["meta"])
+
+
+# help function checking chart data has been downloaded already
+def persisted_data_exists(symbol):
+    return os.path.isfile(STORAGE_PATH.format(symbol))
 
 
 # basic function returning the price history of one or multiple symbols
@@ -44,8 +99,12 @@ def get_price(symbol):
             raise Exception(response_json["chart"]["error"]["description"])
 
     # react to malformed responses
-    if len(response_json["chart"]["result"][0]["indicators"]["quote"]) <= 1:
+    if "open" not in response_json["chart"]["result"][0]["indicators"]["quote"][0] \
+            or len(response_json["chart"]["result"][0]["indicators"]["quote"][0]["open"]) <= 1:
         raise MalformedResponseError()
+
+    # delete None values
+    response_json = _clean_nones(response_json)
 
     # retrieve relevant charts
     data = response_json["chart"]["result"][0]

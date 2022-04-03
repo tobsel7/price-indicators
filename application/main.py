@@ -12,9 +12,8 @@ DOWNLOAD = False
 # main program
 def main():
     if DOWNLOAD:
-        data_handler.download_and_persist_chart_data()
+        data_handler.download_and_persist_chart_data(show_downloads=True)
     math_demos.show_demos()
-    #test3()
 
 
 def test3():

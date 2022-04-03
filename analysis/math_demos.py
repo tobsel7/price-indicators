@@ -33,9 +33,9 @@ def plot_distribution(y_values, xlabel="future price in relation to current pric
     plt.show()
 
 
-def show_shift_data_set(samples_per_chart=40, normalize=True, prediction_interval=300):
+def show_shift_data_set(samples_per_year=1, normalize=True, prediction_interval=300):
     # plot the distribution before and after shifting it
-    samples = data_handler.generate_samples(samples_per_chart=samples_per_chart, normalize=normalize, prediction_interval=prediction_interval)
+    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
     samples_mean = np.mean(samples["future_price"])
     samples_std = np.std(samples["future_price"])
     print("original number of samples: {}, average: {}, std: {}".format(len(samples), samples_mean, samples_std))
@@ -46,17 +46,13 @@ def show_shift_data_set(samples_per_chart=40, normalize=True, prediction_interva
     print("modified number of samples: {}, average: {}, std: {}".format(len(modified), modified_mean, modified_std))
     plot_distribution(np.log(modified["future_price"]), "future price in relation to current price on logarithmic scale")
 
-def test():
-    # TODO create a correct function here
-    samples = data_handler.generate_samples(samples_per_chart=100, normalize=True, prediction_interval=30)
+
+def correlation_test(samples_per_year=1, normalize=True, prediction_interval=300):
+    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
     samples = samples.sort_values(by='future_price')
-    samples = samples[samples.future_price < 2]
-    ma_positive = samples[samples.ma50 > 0]
-    ma_negative = samples[samples.ma50 <= 0]
-    print(np.average(ma_positive["future_price"]))
-    print(np.average(ma_negative["future_price"]))
-    plot_distribution(samples["future_price"])
-    for indicator in ["rsi", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing"]:
+    indicators = ["rsi", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing50-200",
+                  "horizontal_trend_pos100", "trend_channel_pos100"]
+    for indicator in indicators:
         correlation = samples[indicator].corr(np.log(samples['future_price']))
         print((indicator + " correlation: {}").format(correlation))
 
@@ -66,6 +62,11 @@ def show_demos():
     shift_normal(1.2, 1)
 
     # show how the data set can be shifted
-    show_shift_data_set(300, True, 100)
+    show_shift_data_set(0.3, True, 100)
+
+    # show the correlation test
+    correlation_test(0.3, True, prediction_interval=365)
+
+
 
 
