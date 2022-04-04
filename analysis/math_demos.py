@@ -57,7 +57,15 @@ def correlation_test(samples_per_year=1, normalize=True, prediction_interval=300
         print((indicator + " correlation: {}").format(correlation))
 
 
+def future_price_log(samples_per_year=1, normalize=True, prediction_interval=300):
+    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
+    plot_distribution(samples["future_price"])
+    plot_distribution(np.log((samples["future_price"])))
+
+
 def show_demos():
+    # show difference in the distribution of future prices with and without taking the log
+    future_price_log(1)
     # show example functions used in the operation
     shift_normal(1.2, 1)
 
