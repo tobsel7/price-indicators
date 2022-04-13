@@ -13,7 +13,8 @@ DOWNLOAD = False
 def main():
     if DOWNLOAD:
         data_handler.download_and_persist_chart_data(show_downloads=True)
-    math_demos.show_demos()
+    #math_demos.show_demos()
+    math_demos.correlation_test(prediction_interval=60)
 
 
 def test3():
@@ -33,7 +34,7 @@ def test3():
 
 
 def test2():
-    samples = data_handler.generate_samples(samples_per_chart=10, normalize=True, prediction_interval=30)
+    samples = data_handler.generate_samples(samples_per_year=10, normalize=True, prediction_interval=30)
     samples = samples.sort_values(by='future_price')
     mean = np.log(samples["future_price"]).mean()
     std = np.log(samples["future_price"]).std()

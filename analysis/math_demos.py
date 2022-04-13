@@ -50,7 +50,7 @@ def show_shift_data_set(samples_per_year=1, normalize=True, prediction_interval=
 def correlation_test(samples_per_year=1, normalize=True, prediction_interval=300):
     samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
     samples = samples.sort_values(by='future_price')
-    indicators = ["rsi", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing50-200",
+    indicators = ["rsi", "rsi_logistic", "rsi_threshold", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing50-200",
                   "horizontal_trend_pos100", "trend_channel_pos100"]
     for indicator in indicators:
         correlation = samples[indicator].corr(np.log(samples['future_price']))
