@@ -1,5 +1,7 @@
-# imports for sample generation
-import random
+# imports for sample generation and faster array processing
+import numpy as np
+import pandas as pd
+# functions for calculating the indicators
 from charts.indicators import indicator_calculator
 
 # set the minimum length of preceding values for the safe calculation of all indicators
@@ -14,11 +16,11 @@ class ChartData:
     # initialize the class with the chart and meta charts
     def __init__(self, chart, meta):
         # safe chart charts
-        self._open = chart["open"]
-        self._close = chart["close"]
-        self._high = chart["high"]
-        self._low = chart["low"]
-        self._volume = chart["volume"]
+        self._open = np.array(chart["open"])
+        self._close = np.array(chart["close"])
+        self._high = np.array(chart["high"])
+        self._low = np.array(chart["low"])
+        self._volume = np.array(chart["volume"])
 
         # safe meta charts
         self._name = meta["symbol"]
@@ -98,6 +100,27 @@ class ChartData:
     def can_create_samples(self, prediction_interval=DEFAULT_PREDICATION_INTERVAL):
         return self._size > MIN_PRECEDING_VALUES + prediction_interval
 
+    def get_random_samples(self, normalize=True, prediction_interval=DEFAULT_PREDICATION_INTERVAL, samples_per_year=10):
+        # only allow creation of samples for large enough time series
+        if not self.can_create_samples(prediction_interval):
+            raise Exception("Can not create a sample, because the size of the charts is too small.")
+
+        # get chart features which are part of the samples
+        volumes = self.get_volumes()
+        # shift the future_price data and append nan values
+        future_prices = self.get_closes()[prediction_interval:]
+        future_prices = np.append(future_prices, np.zeros(prediction_interval) + np.nan)
+
+        # merge the all the columns
+        samples = pd.DataFrame(np.array([volumes, future_prices]), columns=['volumes', 'future_prices'])
+        indicators = indicator_calculator.calculate_all_indicators(self, normalize)
+        samples = pd.concat([samples, indicators])
+
+        # select a few rows and return them
+        number_of_samples = int(len(self) / 365.0 * samples_per_year)
+        choices = np.random.randint(MIN_PRECEDING_VALUES, self._size - prediction_interval - 1, size=number_of_samples)
+        return samples.iloc[choices]
+
     # generate a random sample by selecting an index and calculating all the features for the position
     def get_random_sample(self, normalize=True, prediction_interval=DEFAULT_PREDICATION_INTERVAL):
         # only allow creation of samples for large enough time series
@@ -105,7 +128,7 @@ class ChartData:
             raise Exception("Can not create a sample, because the size of the charts is too small.")
 
         # get a random position in the time series respecting the space left for the calculation of the indicators
-        position = random.randint(MIN_PRECEDING_VALUES, self._size - prediction_interval - 1)
+        position = np.random.randint(MIN_PRECEDING_VALUES, self._size - prediction_interval - 1)
 
         # get the future price
         future_price = self.get_close(position + prediction_interval) / self.get_close(position) if normalize \
