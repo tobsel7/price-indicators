@@ -78,7 +78,8 @@ def generate_samples(asset_list=ASSET_LIST, samples_per_year=20, normalize=True,
             chart = get_chart_data(symbol, False)
             # take only long enough charts to prevent errors
             if chart.can_create_samples(prediction_interval):
-                number_of_samples_gatherable = int(len(chart) / 365.0 * samples_per_year)
+                new_samples = chart.get_random_samples(normalize=True, prediction_interval=prediction_interval, samples_per_year=1)
+                """number_of_samples_gatherable = int(len(chart) / 365.0 * samples_per_year)
                 # take some samples defined by samples_per_chart
                 for i in range(number_of_samples_gatherable):
                     # let the chart data object generate a sample
@@ -88,7 +89,8 @@ def generate_samples(asset_list=ASSET_LIST, samples_per_year=20, normalize=True,
                     # add the future price to the dictionary
                     features["future_price"] = sample["future_price"]
                     # store the sample into the data frame
-                    samples = pd.concat([samples, pd.DataFrame([features])], ignore_index=True)
+                    samples = pd.concat([samples, pd.DataFrame([features])], ignore_index=True)"""
+                samples = pd.concat([samples, new_samples])
 
     # return all the gathered samples
     return samples

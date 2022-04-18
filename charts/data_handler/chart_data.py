@@ -106,19 +106,21 @@ class ChartData:
             raise Exception("Can not create a sample, because the size of the charts is too small.")
 
         # get chart features which are part of the samples
-        volumes = self.get_volumes()
+        volumes = np.array(self.get_volumes())
         # shift the future_price data and append nan values
-        future_prices = self.get_closes()[prediction_interval:]
+        future_prices = np.array(self.get_closes()[prediction_interval:])
         future_prices = np.append(future_prices, np.zeros(prediction_interval) + np.nan)
 
         # merge the all the columns
-        samples = pd.DataFrame(np.array([volumes, future_prices]), columns=['volumes', 'future_prices'])
+        samples = pd.DataFrame({"volume": volumes, "future_price": future_prices})
         indicators = indicator_calculator.calculate_all_indicators(self, normalize)
-        samples = pd.concat([samples, indicators])
-
+        samples = pd.concat([samples, indicators], axis=1)
+        #print(samples)
         # select a few rows and return them
         number_of_samples = int(len(self) / 365.0 * samples_per_year)
         choices = np.random.randint(MIN_PRECEDING_VALUES, self._size - prediction_interval - 1, size=number_of_samples)
+        #print(choices)
+        #print(samples.iloc[choices])
         return samples.iloc[choices]
 
     # generate a random sample by selecting an index and calculating all the features for the position

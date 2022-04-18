@@ -50,6 +50,7 @@ def show_shift_data_set(samples_per_year=1, normalize=True, prediction_interval=
 def correlation_test(samples_per_year=1, normalize=True, prediction_interval=100):
     samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
     samples = samples.sort_values(by='future_price')
+    print(samples[["future_price", "sma100"]])
     for indicator in samples:
         correlation = samples[indicator].corr(np.log(samples['future_price']))
         print((indicator + " correlation: {}").format(correlation))
