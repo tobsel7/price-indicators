@@ -47,6 +47,8 @@ def _standardize(indicator, indicator_min=0, indicator_max=100):
 # a help function used to assign a relative position when compared with a range between a low and high
 def _relative_position(closes, lows, highs, standardize=True):
     relative_position = 1 - np.divide(highs - closes, highs - lows, out=np.zeros_like(closes), where=highs - lows != 0)
+    if standardize:
+        relative_position = np.clip(relative_position, 0, 1)
     return _standardize(relative_position, 0, 1) if standardize else relative_position
 
 
@@ -259,6 +261,17 @@ def trend_channel_position(closes, interval=100, standardize=True):
     return np.append(np.zeros(interval) * np.nan, trendline_pos)
 
 
+def bollinger_bands(closes, interval=20, deviations=2, standardize=True):
+    ma = standard_moving_average(closes, interval=interval, standardize=False)
+    diff_sqared = np.power(closes - ma, 2)
+    window = np.ones(interval, dtype=float) / interval
+    std = np.sqrt(np.convolve(diff_sqared[:-1], window, mode="valid"))
+    std = np.append(np.zeros(interval) + np.nan, std)
+    upper_line = ma + deviations * std
+    lower_line = ma - deviations * std
+    return _relative_position(closes, lower_line, upper_line, standardize=standardize)
+
+
 def calculate_all_indicators(chart_data, standardize=True):
     # retrieve data necessary for index calculations
     closes = chart_data.get_closes()
@@ -292,6 +305,7 @@ def calculate_all_indicators(chart_data, standardize=True):
     horizontal_trend_pos100 = horizontal_channel_position(closes, interval=100, standardize=standardize)
     trend_channel_pos100 = trend_channel_position(closes, interval=100, standardize=standardize)
     aaron25 = aaron_oscillator(lows, highs, interval=25, standardize=standardize)
+    bollinger50 = bollinger_bands(closes, interval=50, standardize=standardize)
 
     # rsi
     rsi_standardized = relative_strength(closes, interval=50, standardize=True)
@@ -316,6 +330,7 @@ def calculate_all_indicators(chart_data, standardize=True):
             "ma_trend20_50": trend20_50,
             "ma_trend50_200": trend50_200,
             "aaron25": aaron25,
+            "bollinger50": bollinger50,
             #"adm": adm,
             "rsi": rsi,
             "rsi_logistic": rsi_logistic,

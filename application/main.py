@@ -14,8 +14,8 @@ def main():
     if DOWNLOAD:
         data_handler.download_and_persist_chart_data(show_downloads=True)
     #math_demos.show_demos()
-    #test()
-    math_demos.correlation_test("nasdaq", future_price_interval=60)
+    test()
+    #math_demos.correlation_test("nasdaq", future_price_interval=60)
 
 
 def test():
