@@ -1,4 +1,4 @@
-# import the charts handler
+# import the data handler
 from charts.data_handler import data_handler
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,14 +14,21 @@ def main():
     if DOWNLOAD:
         data_handler.download_and_persist_chart_data(show_downloads=True)
     #math_demos.show_demos()
-    math_demos.correlation_test(prediction_interval=60)
+    #test()
+    math_demos.correlation_test("nasdaq", future_price_interval=60)
+
+
+def test():
+    data = data_handler.get_chart_data("AAPL")
+    full_data = data.get_full_data(normalize=True)
+    full_data.to_csv("test.csv")
 
 
 def test3():
     sample = data_handler.get_chart_data("AAPL")
     pos = 1300
     interval = 100
-    regression = indicator_calculator._regression_line(sample.get_closes(), pos, interval)
+    regression = indicator_calculator._regression_lines(sample.get_closes(), pos, interval)
     x = np.arange(pos - interval, pos, 1)
     applx = np.arange(pos - interval, pos, 1)
     y_regr = regression[0] + regression[1] * x
@@ -34,7 +41,7 @@ def test3():
 
 
 def test2():
-    samples = data_handler.generate_samples(samples_per_year=10, normalize=True, prediction_interval=30)
+    samples = data_handler.generate_samples(samples_per_year=10, normalize=True, future_price_interval=30)
     samples = samples.sort_values(by='future_price')
     mean = np.log(samples["future_price"]).mean()
     std = np.log(samples["future_price"]).std()
@@ -51,7 +58,7 @@ def test2():
 
 
 def test1():
-    samples = data_handler.generate_samples(samples_per_chart=50, normalize=True, prediction_interval=30)
+    samples = data_handler.generate_samples(samples_per_chart=50, normalize=True, future_price_interval=30)
     samples = samples.sort_values(by='future_price')
     samples = samples[samples.future_price < 2]
     ma_positive = samples[samples.ma50 > 0]
@@ -67,3 +74,6 @@ def test1():
 # entry point of the program
 if __name__ == '__main__':
     main()
+
+
+

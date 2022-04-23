@@ -23,7 +23,7 @@ def analyze_indicator_correlation(samples_per_chart=10, prediction_interval_min=
     correlations.pop("high")
     correlations.pop("low")
     for interval in intervals:
-        samples = data_handler.generate_samples(samples_per_chart=samples_per_chart, normalize=True, prediction_interval=interval)
+        samples = data_handler.generate_samples(samples_per_chart=samples_per_chart, normalize=True, future_price_interval=interval)
         for feature in correlations.keys():
             correlation = samples[feature].corr(samples['future_price'] - 1)
             correlations[feature] = np.append(correlations[feature], correlation)

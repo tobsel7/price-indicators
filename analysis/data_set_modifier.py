@@ -18,7 +18,8 @@ def move_dataset_to_mean(samples, desired_mean=1, feature="future_price", start_
     start = start_of_deletions(y_log) if isinstance(start_of_deletions, types.LambdaType) else start_of_deletions
 
     # define the probability distribution which is used to shift the sample distribution
-    keep_probability = lambda x: np.exp((np.power(x + start - mean, 2) - np.power(x + start - np.log(desired_mean), 2)) / (2 * np.power(std, 2)))
+    keep_probability = lambda x: np.exp(
+        (np.power(x + start - mean, 2) - np.power(x + start - np.log(desired_mean), 2)) / (2 * np.power(std, 2)))
 
     # create a set of random numbers between 0 and 1
     random_sample = np.random.random_sample(len(samples))
@@ -26,5 +27,3 @@ def move_dataset_to_mean(samples, desired_mean=1, feature="future_price", start_
     keep = random_sample < keep_probability(y_log)
 
     return samples[keep]
-
-

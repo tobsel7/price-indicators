@@ -10,6 +10,7 @@ import os
 from . import chart_data
 
 # static variables necessary for the api
+# API_KEY = "SECRET-API-KEY"
 from .api_key import API_KEY
 CHART_URL = "https://yfapi.net/v8/finance/chart/"
 

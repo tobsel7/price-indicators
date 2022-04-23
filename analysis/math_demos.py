@@ -35,7 +35,7 @@ def plot_distribution(y_values, xlabel="future price in relation to current pric
 
 def show_shift_data_set(samples_per_year=1, normalize=True, prediction_interval=300):
     # plot the distribution before and after shifting it
-    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
+    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, future_price_interval=prediction_interval)
     samples_mean = np.mean(samples["future_price"])
     samples_std = np.std(samples["future_price"])
     print("original number of samples: {}, average: {}, std: {}".format(len(samples), samples_mean, samples_std))
@@ -47,17 +47,16 @@ def show_shift_data_set(samples_per_year=1, normalize=True, prediction_interval=
     plot_distribution(np.log(modified["future_price"]), "future price in relation to current price on logarithmic scale")
 
 
-def correlation_test(samples_per_year=1, normalize=True, prediction_interval=100):
-    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
+def correlation_test(asset_list, samples_per_year=1, future_price_interval=100):
+    samples = data_handler.generate_samples(asset_list=asset_list, samples_per_year=samples_per_year, normalize=True, future_price_interval=future_price_interval)
     samples = samples.sort_values(by='future_price')
-    print(samples[["future_price", "sma100"]])
     for indicator in samples:
         correlation = samples[indicator].corr(np.log(samples['future_price']))
         print((indicator + " correlation: {}").format(correlation))
 
 
 def future_price_log(samples_per_year=1, normalize=True, prediction_interval=300):
-    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, prediction_interval=prediction_interval)
+    samples = data_handler.generate_samples(samples_per_year=samples_per_year, normalize=normalize, future_price_interval=prediction_interval)
     plot_distribution(samples["future_price"])
     plot_distribution(np.log((samples["future_price"])))
 
@@ -72,7 +71,7 @@ def show_demos():
     show_shift_data_set(0.3, True, 100)
 
     # show the correlation test
-    correlation_test(0.3, True, prediction_interval=365)
+    correlation_test(0.3, True, future_price_interval=365)
 
 
 
