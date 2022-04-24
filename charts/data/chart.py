@@ -99,10 +99,9 @@ class Chart:
 
         # randomly select a few rows
         number_of_samples = int(len(self) / 365.0 * samples_per_year)
-        choices = np.random.randint(indicators.MIN_PRECEDING_VALUES,
-                                    len(self) - future_price_interval - 1,
-                                    size=number_of_samples
-                                    )
+        first_valid_index = indicators.MIN_PRECEDING_VALUES
+        last_valid_index = len(self) - future_price_interval - 1
+        choices = np.random.randint(first_valid_index, last_valid_index, size=number_of_samples)
 
         # return the selected samples
         return full_data.iloc[choices]

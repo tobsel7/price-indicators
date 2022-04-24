@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 from analysis import demos
 from charts.indicators import formulas
+from charts.indicators import utilities
 
 
 # main program
@@ -34,7 +35,7 @@ def test3():
     sample = data_handler.get_chart_data("AAPL")
     pos = 800
     interval = 100
-    initial_value, slope = indicator_calculator._regression_lines(sample.get_closes(), interval)
+    initial_value, slope = utilities.regression_lines(sample.get_closes(), interval)
     print(initial_value)
     print(slope)
     x = np.arange(pos - interval, pos, 1)
@@ -69,7 +70,7 @@ def test1():
     ma_negative = samples[samples.ma50 <= 0]
     print(np.average(ma_positive["future_price"]))
     print(np.average(ma_negative["future_price"]))
-    math_demos.plot_distribution(samples["future_price"])
+    demos.plot_distribution(samples["future_price"])
     for indicator in ["rsi", "ma20", "ma50", "ma100", "ma200", "ma_trend", "ma_trend_crossing50", "horizontal_trend_pos100", "trend_channel_pos100"]:
         correlation = samples[indicator].corr(samples["future_price"] - 1)
         print((indicator + " correlation: {}").format(correlation))
