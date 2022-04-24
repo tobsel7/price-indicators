@@ -2,12 +2,12 @@
 import requests
 
 # import custom error classes
-from charts.data_handler.errors import DelistedError, APILimitError, MalformedResponseError
+from charts.data.errors import DelistedError, APILimitError, MalformedResponseError
 
 # import functionalities to store and process the loaded data
 import json
 import os
-from . import chart_data
+from . import chart
 
 # static variables necessary for the api
 # API_KEY = "SECRET-API-KEY"
@@ -57,7 +57,7 @@ def get_persisted_data(symbol):
     with open(file_name) as json_file:
         data = json.loads(json.load(json_file))
         # return new ChartData using loaded charts
-        return chart_data.ChartData(data["chart"], data["meta"])
+        return chart.Chart(data["chart"], data["meta"])
 
 
 # help function checking chart data has been downloaded already

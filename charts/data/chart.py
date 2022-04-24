@@ -1,9 +1,8 @@
 # imports for sample generation and fast array processing
 import numpy as np
-import pandas as pd
 
 # functions for calculating the indicators
-from charts.indicators import indicator_calculator
+from charts.indicators import indicators
 
 # create samples for the price in 1 year per default
 DEFAULT_PREDICATION_INTERVAL = 365
@@ -12,7 +11,7 @@ DEFAULT_PREDICATION_INTERVAL = 365
 # the chart class encapsulates price data for one given stock symbol
 # numpy is used primarily because of numerical performance properties
 # resulting samples are pandas dataframes
-class ChartData:
+class Chart:
     # initialize the class with the chart and meta charts
     def __init__(self, chart, meta):
         # safe price data in numpy arrays
@@ -54,7 +53,7 @@ class ChartData:
 
     # check whether valid samples can be created
     def can_create_samples(self, prediction_interval=DEFAULT_PREDICATION_INTERVAL):
-        return len(self) > indicator_calculator.MIN_PRECEDING_VALUES + prediction_interval
+        return len(self) > indicators.MIN_PRECEDING_VALUES + prediction_interval
 
     # generate a full dataset including indicators
     def get_full_data(self, normalize=True):
@@ -72,7 +71,7 @@ class ChartData:
         volumes = self.get_volumes()
 
         # get all indicators for the dataset
-        full_data = indicator_calculator.calculate_all_indicators(self, normalize)
+        full_data = indicators.all_indicators(self, normalize)
 
         # merge and return the columns
         full_data["volume"] = volumes.tolist()
@@ -100,7 +99,7 @@ class ChartData:
 
         # randomly select a few rows
         number_of_samples = int(len(self) / 365.0 * samples_per_year)
-        choices = np.random.randint(indicator_calculator.MIN_PRECEDING_VALUES,
+        choices = np.random.randint(indicators.MIN_PRECEDING_VALUES,
                                     len(self) - future_price_interval - 1,
                                     size=number_of_samples
                                     )

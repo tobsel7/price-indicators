@@ -1,6 +1,6 @@
 import numpy as np
 
-from charts.data_handler import data_handler
+from charts.data import data_handler
 import matplotlib.pyplot as plt
 
 

@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy import stats
 from analysis import data_set_modifier
-from charts.data_handler import data_handler
+from charts.data import data_handler
 
 
 # this function demonstrates the functionality used in data_set_modifier to change the mean of a normal distribution

@@ -1,43 +1,47 @@
 # import the data handler
-from charts.data_handler import data_handler
+from charts.data import data_handler
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
-from analysis import math_demos
-from charts.indicators import indicator_calculator
-
-DOWNLOAD = False
+from analysis import demos
+from charts.indicators import formulas
 
 
 # main program
 def main():
-    if DOWNLOAD:
-        data_handler.download_and_persist_chart_data(show_downloads=True)
+    #data_handler.download_and_persist_chart_data(show_downloads=True)
     #math_demos.show_demos()
     test()
     #math_demos.correlation_test("nasdaq", future_price_interval=60)
 
 
 def test():
-    data = data_handler.get_chart_data("AAPL")
-    full_data = data.get_full_data(normalize=True)
-    full_data.to_csv("test.csv")
+    from timeit import default_timer as timer
+    from datetime import timedelta
+
+    start = timer()
+
+    for i in range(100):
+        data = data_handler.get_chart_data("IBM")
+        full_data = data.get_full_data(normalize=True)
+    #full_data.to_csv("test.csv")
+
+    end = timer()
+    print(timedelta(seconds=end-start) * 750)
 
 
 def test3():
     sample = data_handler.get_chart_data("AAPL")
-    pos = 1300
+    pos = 800
     interval = 100
-    regression = indicator_calculator._regression_lines(sample.get_closes(), pos, interval)
+    initial_value, slope = indicator_calculator._regression_lines(sample.get_closes(), interval)
+    print(initial_value)
+    print(slope)
     x = np.arange(pos - interval, pos, 1)
-    applx = np.arange(pos - interval, pos, 1)
-    y_regr = regression[0] + regression[1] * x
-    plt.plot(applx, sample.get_closes()[pos-interval:pos])
+    y_regr = initial_value[pos-interval] + slope[pos-interval] * x
+    plt.plot(x, sample.get_closes()[pos-interval:pos])
     plt.plot(x, y_regr)
     plt.show()
-    print(regression[0] + regression[1] * pos)
-    print(sample.get_closes()[pos])
-    print(indicator_calculator.trend_channel_position(sample.get_closes(), pos, interval, standardize=True))
 
 
 def test2():

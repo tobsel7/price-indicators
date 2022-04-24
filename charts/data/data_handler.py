@@ -2,10 +2,10 @@
 import pandas as pd
 
 # import functions for loading data from an external api and storing it in a chart object
-from charts.data_handler import price_loader, chart_data
+from charts.data import price_loader, chart
 
 # import custom errors
-from charts.data_handler.errors import DelistedError, APILimitError, MalformedResponseError
+from charts.data.errors import DelistedError, APILimitError, MalformedResponseError
 
 # a list of asset names is used to gather stock data for many companies
 ASSET_LIST_PATH = "./persisted_data/asset_lists/{}.csv"
@@ -24,7 +24,7 @@ def get_chart_data(symbol, auto_persist_on_load=True):
         if auto_persist_on_load:
             # persist the newly loaded charts
             price_loader.persist_data(chart, meta)
-        return chart_data.ChartData(chart, meta)
+        return chart_data.Chart(chart, meta)
 
 
 # download and persist charts for a list of assets defined in the asset_list csv file
