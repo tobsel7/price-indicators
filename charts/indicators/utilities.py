@@ -28,13 +28,9 @@ def regression_lines(closes, interval):
     return result[:, 0], result[:, 1]
 
 
-def construct_lower_upper_lines(closes, trendlines, distances, standardize=True):
+def construct_lower_upper_lines(trendlines, distances):
     upper_line = trendlines + distances
     lower_line = trendlines - distances
-
-    if standardize:
-        lower_line = lower_line / closes
-        upper_line = upper_line / closes
 
     return lower_line, upper_line
 

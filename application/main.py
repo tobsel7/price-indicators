@@ -11,8 +11,8 @@ from charts.indicators import formulas
 def main():
     #data_handler.download_and_persist_chart_data(show_downloads=True)
     #math_demos.show_demos()
-    test()
-    #math_demos.correlation_test("nasdaq", future_price_interval=60)
+    #test()
+    demos.correlation_test("nasdaq", future_price_interval=60)
 
 
 def test():
@@ -21,10 +21,10 @@ def test():
 
     start = timer()
 
-    for i in range(100):
+    for i in range(1):
         data = data_handler.get_chart_data("IBM")
         full_data = data.get_full_data(normalize=True)
-    #full_data.to_csv("test.csv")
+        full_data.to_csv("test.csv")
 
     end = timer()
     print(timedelta(seconds=end-start) * 750)

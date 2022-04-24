@@ -4,27 +4,41 @@ from . import utilities
 import pandas as pd
 import numpy as np
 
+# default parameters for all indicators
+
+# common moving average intervals
 STANDARD_MOVING_AVERAGE_INTERVALS = [10, 20, 50, 100, 200]
+# moving averages that are compared with each other
 STANDARD_MOVING_AVERAGE_TREND_PARAMETERS = {
     # short_ma: long_ma
     20: 50,
     50: 200
 }
+# the period over which the macd is averaged when looking for significant moves
 MACD_SIGNAL_LINE_SMOOTHING = 9
+# common exponential moving average intervals (usually the same as standard moving average intervals)
 EXPONENTIAL_MOVING_AVERAGE_INTERVALS = [10, 20, 50, 100, 200]
 EXPONENTIAL_MOVING_AVERAGE_SMOOTHING = 2
+
+# common intervals for constructing bollinger bands
 BOLLINGER_BAND_PARAMETERS = {
     # interval: deviations
     20: 2,
     50: 2
 }
+
+# relative strength intervals
 RSI_INTERVALS = [50]
+# custom values for the logistic indicator transformation
 RSI_LOGISTIC_TRANSFORMATION_BASE = 10 ** 6
 RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT = 0.4
+# intervals for the aaron indicators
 AARON_INTERVALS = [25, 50]
+
+# time intervals for constructing linear trend channels
 TREND_CHANNEL_INTERVALS = [100, 200]
 
-# the number of preceding days needed to calculate all the indicators
+# the number of preceding days needed to calculate all the indicators is the maximum of all interval parameters
 MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
                             max(STANDARD_MOVING_AVERAGE_TREND_PARAMETERS.keys()),
                             max(STANDARD_MOVING_AVERAGE_TREND_PARAMETERS.values()),
@@ -39,20 +53,24 @@ MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
 def standard_moving_averages(closes, intervals=STANDARD_MOVING_AVERAGE_INTERVALS, standardize=True):
     smas = {}
     for interval in intervals:
-        sma = formulas.standard_moving_average(closes,
-                                               interval=interval,
-                                               standardize=standardize)
+        sma = formulas.standard_moving_average(closes, interval=interval)
+        if standardize:
+            sma = utilities.standardize_indicator(np.clip(sma / closes, 0, 2), 0, 2)
         smas["sma{}".format(interval)] = sma
+
     return smas
 
 
 def standard_moving_average_trends(closes, parameters=STANDARD_MOVING_AVERAGE_TREND_PARAMETERS, standardize=True):
     summary = {}
     for short, long in parameters.items():
-        macd = formulas.ma_convergence_divergence(closes, short_ma_length=short, long_ma_length=long, standardize=standardize)
+        macd = formulas.ma_convergence_divergence(closes, short_ma_length=short, long_ma_length=long)
         macd_cross = formulas.macd_cross(closes, short_ma_length=short, long_ma_length=long)
         trend = formulas.ma_trend(closes, short_ma_length=short, long_ma_length=long)
         cross = formulas.ma_crossing(closes, short_ma_length=short, long_ma_length=long, interval=short)
+        if standardize:
+            macd = utilities.standardize_indicator(macd, np.nanmax(macd), np.nanmin(macd))
+
         summary["macd{}_{}".format(short, long)] = macd
         summary["macd_cross{}_{}".format(short, long)] = macd_cross
         summary["trend{}_{}".format(short, long)] = trend
@@ -65,11 +83,11 @@ def exponential_moving_averages(closes, intervals=EXPONENTIAL_MOVING_AVERAGE_INT
     smoothing = EXPONENTIAL_MOVING_AVERAGE_SMOOTHING
     emas = {}
     for interval in intervals:
-        ema = formulas.exponential_moving_average(closes,
-                                                  interval=interval,
-                                                  smoothing=smoothing,
-                                                  standardize=standardize)
+        ema = formulas.exponential_moving_average(closes, interval=interval, smoothing=smoothing)
+        if standardize:
+            ema = utilities.standardize_indicator(np.clip(ema / closes, 0, 2), 0, 2)
         emas["ema{}".format(interval)] = ema
+
     return emas
 
 
@@ -82,7 +100,12 @@ def average_directional_movements(closes, lows, highs, standardize=True):
 def aaron(lows, highs, intervals=AARON_INTERVALS, standardize=True):
     summary = {}
     for interval in intervals:
-        down, up, oscillator = formulas.aaron(lows, highs, interval=interval, standardize=standardize)
+        down, up, oscillator = formulas.aaron(lows, highs, interval=interval)
+        if standardize:
+            down /= 100
+            up /= 100
+            oscillator = utilities.standardize_indicator(oscillator, -100, 100)
+
         summary["aaron_down{}".format(interval)] = down
         summary["aaron_up{}".format(interval)] = up
         summary["aaron_oscillator{}".format(interval)] = oscillator
@@ -93,15 +116,11 @@ def aaron(lows, highs, intervals=AARON_INTERVALS, standardize=True):
 def bollinger_bands(closes, parameters=BOLLINGER_BAND_PARAMETERS, standardize=True):
     summary = {}
     for interval, deviations in parameters.items():
-        lower, upper = formulas.bollinger_bands(closes,
-                                                interval=interval,
-                                                deviations=deviations,
-                                                standardize=standardize)
-        position = utilities.relative_position(np.ones_like(closes) if standardize else closes,
-                                               lower,
-                                               upper,
-                                               standardize=standardize)
-
+        lower, upper = formulas.bollinger_bands(closes, interval=interval, deviations=deviations)
+        position = utilities.relative_position(closes, lower, upper, standardize=standardize)
+        if standardize:
+            lower = lower / closes - 1
+            upper = upper / closes - 1
         summary["bollinger_lower{}_{}".format(interval, deviations)] = lower
         summary["bollinger_upper{}_{}".format(interval, deviations)] = upper
         summary["bollinger_position{}_{}".format(interval, deviations)] = position
@@ -117,17 +136,17 @@ def relative_strength_index(closes,
                             ):
     summary = {}
     for interval in intervals:
-        rsi_standardized = formulas.relative_strength(closes, interval=interval, standardize=True)
-        rsi = rsi_standardized
+        rsi = formulas.relative_strength(closes, interval=interval)
+        rsi_standardized = utilities.standardize_indicator(rsi, 0, 100)
         rsi_logistic = utilities.transform_logistic(rsi_standardized,
                                                     inflection_point=logistic_transformation_inflection_point,
                                                     base=logistic_transformation_base)
         rsi_threshold = utilities.transform_threshold(rsi_standardized, threshold=0.4)
 
-        if not standardize:
-            rsi *= 100
+        if standardize:
+            rsi = rsi_standardized
+        else:
             rsi_logistic *= 100
-            rsi_threshold *= 100
 
         summary["rsi{}".format(interval)] = rsi
         summary["rsi_logistic{}".format(interval)] = rsi_logistic
@@ -139,12 +158,14 @@ def relative_strength_index(closes,
 def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, standardize=True):
     summary = {}
     for interval in intervals:
-        horizontal_lower, horizontal_upper = formulas.horizontal_channel_position(closes,
-                                                                                  interval=interval,
-                                                                                  standardize=standardize)
-        regression_lower, regression_upper = formulas.trend_channel_position(closes,
-                                                                             interval=interval,
-                                                                             standardize=standardize)
+        horizontal_lower, horizontal_upper = formulas.horizontal_channel_position(closes, interval=interval)
+        regression_lower, regression_upper = formulas.trend_channel_position(closes, interval=interval)
+        if standardize:
+            horizontal_lower = horizontal_lower / closes - 1
+            horizontal_upper = horizontal_upper / closes - 1
+            regression_lower = regression_lower / closes - 1
+            regression_upper = regression_upper / closes - 1
+
         summary["horizontal_lower{}".format(interval)] = horizontal_lower
         summary["horizontal_upper{}".format(interval)] = horizontal_upper
         summary["regression_lower{}".format(interval)] = regression_lower
@@ -159,7 +180,6 @@ def all_indicators(chart_data, standardize=True):
     lows = chart_data.get_lows()
     highs = chart_data.get_highs()
 
-    # GET A SUMMARY FOR ALL GROUPS OF INDICATORS
     # standard moving averages
     sma = standard_moving_averages(closes, standardize=standardize)
     # standard moving average trends

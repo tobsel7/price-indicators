@@ -63,12 +63,12 @@ class Chart:
 
         # the current closing price is part of the full data
         closes = self.get_closes()
+        # the daily volume is also included
+        volumes = self.get_volumes()
         if normalize:
             # find the first nonzero value and divide all values by this nonzero value
             closes = closes / closes[np.argmax(closes != 0)]
-
-        # the daily volume is also included
-        volumes = self.get_volumes()
+            volumes = volumes / volumes[np.argmax(volumes != 0)]
 
         # get all indicators for the dataset
         full_data = indicators.all_indicators(self, normalize)
