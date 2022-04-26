@@ -181,7 +181,7 @@ def aaron(lows, highs, interval=25):
 
 
 # the highest and lowest close in some time interval define a range containing all recent prices
-def horizontal_channel_position(closes, interval=100,):
+def horizontal_channel_position(closes, interval=100, ):
     # create a window view sliding over the closes
     sliding_window = sliding_window_view(closes, window_shape=interval)
     # calculate the min for each time interval
@@ -216,6 +216,47 @@ def trend_channel_position(closes, interval=100):
     return utilities.construct_lower_upper_lines(trendlines, max_distances)
 
 
+def commodity_channel(lows, highs, closes, interval=20):
+    summed_prices = lows + highs + closes
+    typical_price = standard_moving_average(summed_prices, interval) / 3
+    ma = standard_moving_average(closes, interval=interval)
+
+    # calculate the mean deviation for each time point
+    diff_abs = np.abs(typical_price - ma)
+    window = np.ones(interval, dtype=float) / interval
+    mean_deviation = np.convolve(diff_abs[:-1], window, mode="valid")
+    mean_deviation = np.append(np.zeros(interval) + np.nan, mean_deviation)
+
+    cci = np.divide(typical_price - ma, .015 * mean_deviation,
+                    out=np.zeros_like(closes),
+                    where=mean_deviation != 0)
+
+    return cci
+
+
+def chande_momentum(closes, interval=50):
+    # calculate the daily moves between closing prices
+    moves = np.diff(closes)
+    # define a sliding window
+    sliding_window = sliding_window_view(moves, window_shape=interval)
+
+    # Empty sliding windows will lead to runtime warnings
+    # This is tolerated, because the result of an empty slice is correctly labeled as "not a number"
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=RuntimeWarning)
+        # calculate the average of the upward movements for each time window
+        sum_ups = np.sum(np.where(sliding_window > 0, sliding_window, 0), axis=1)
+        # calculate the average of the downward movements for each time window
+        sum_downs = -np.sum(np.where(sliding_window < 0, sliding_window, 0), axis=1)
+        sum_moves = sum_downs + sum_ups
+
+    # the momentum is based on the difference between the total upward and downward movements
+    momentum = np.divide(sum_ups - sum_downs, sum_moves, out=np.ones_like(sum_moves), where=sum_moves != 0)
+    momentum = np.append(np.zeros(interval) + np.nan, momentum)
+
+    return momentum
+
+
 # lines placed around a moving average using the current standard deviation
 # the lines contract when the standard deviation declines and expand when the standard deviation increases
 def bollinger_bands(closes, interval=20, deviations=2):
@@ -230,6 +271,3 @@ def bollinger_bands(closes, interval=20, deviations=2):
     # place a line above and below the moving average with the distance of a specified number of standard deviations
     distances = deviations * std
     return utilities.construct_lower_upper_lines(ma, distances)
-
-
-

@@ -32,11 +32,17 @@ RSI_INTERVALS = [50]
 # custom values for the logistic indicator transformation
 RSI_LOGISTIC_TRANSFORMATION_BASE = 10 ** 6
 RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT = 0.4
+
 # intervals for the aaron indicators
 AARON_INTERVALS = [25, 50]
 
+# time intervals used when calculating the commodity channel index
+COMMODITY_CHANNEL_INTERVALS = [20, 50]
 # time intervals for constructing linear trend channels
 TREND_CHANNEL_INTERVALS = [100, 200]
+
+# time intervals for chande momentum indicator
+CHANDE_MOMENTUM_INTERVALS = [100, 200]
 
 # the number of preceding days needed to calculate all the indicators is the maximum of all interval parameters
 MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
@@ -46,6 +52,7 @@ MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
                             max(BOLLINGER_BAND_PARAMETERS.keys()),
                             max(RSI_INTERVALS),
                             max(AARON_INTERVALS),
+                            max(COMMODITY_CHANNEL_INTERVALS),
                             max(TREND_CHANNEL_INTERVALS)
                             ])
 
@@ -155,6 +162,33 @@ def relative_strength_index(closes,
     return summary
 
 
+def commodity_channel(lows, highs, closes, intervals=COMMODITY_CHANNEL_INTERVALS, standardize=True):
+    summary = {}
+    for interval in intervals:
+        cci = formulas.commodity_channel(lows, highs, closes, interval=interval)
+        cci_threshold = utilities.transform_threshold(cci, 100)
+        if standardize:
+            cci = utilities.standardize_indicator(np.clip(cci, - 200, 200), -200, 200)
+
+        summary["cci{}".format(interval)] = cci
+        summary["cci_threshold{}".format(interval)] = cci_threshold
+
+    return summary
+
+
+def chande_momentum(closes, intervals=CHANDE_MOMENTUM_INTERVALS, standardize=True):
+    summary = {}
+    for interval in intervals:
+        chande_momentum = formulas.chande_momentum(closes, interval=interval)
+
+        if standardize:
+            chande_momentum = chande_momentum
+
+        summary["chande_momentum{}".format(interval)] = chande_momentum
+
+    return summary
+
+
 def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, standardize=True):
     summary = {}
     for interval in intervals:
@@ -196,9 +230,13 @@ def all_indicators(chart_data, standardize=True):
     rsi = relative_strength_index(closes, standardize=standardize)
     # trend channels
     channels = trend_channels(closes, standardize=standardize)
+    # commodity channel index
+    cci = commodity_channel(lows, highs, closes, standardize=standardize)
+    # chande momemtum
+    chande = chande_momentum(closes, standardize=standardize)
 
     # combine all indicators and return them as a dataframe
-    merged_summaries = {**sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels}
+    merged_summaries = {**sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels, **cci, **chande}
 
     #for name, indicator in merged_summaries.items():
         #print("{} length {}".format(name, len(indicator)))

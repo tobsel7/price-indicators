@@ -24,7 +24,7 @@ def test():
 
     for i in range(1):
         data = data_handler.get_chart_data("IBM")
-        full_data = data.get_full_data(normalize=True)
+        full_data = data.get_full_data(normalize=False)
         full_data.to_csv("test.csv")
 
     end = timer()
