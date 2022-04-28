@@ -16,6 +16,21 @@ def _moving_average(closes, window):
     return np.append(np.zeros(window_size) + np.nan, ma)
 
 
+# calculate the average of the difference between a mean of an indicator and an indicator
+# the square root of _average_deviations represents the l2 norm or standard deviation
+# the _average deviations with the norm function np.abs represents the l1 norm, or manhattan distance
+def _average_deviations(indicator, indicator_means, interval=100, norm_function=np.square):
+    differences_norm = norm_function(indicator - indicator_means)
+    window = np.ones(interval, dtype=float) / interval
+    summed_deviations = np.convolve(differences_norm[:-1], window, mode="valid")
+    summed_deviations = np.append(np.zeros(interval) + np.nan, summed_deviations)
+    return summed_deviations
+
+
+def standard_deviation(indicator, indicator_mean, interval=100):
+    return np.sqrt(_average_deviations(indicator, indicator_mean, interval=interval, norm_function=np.square))
+
+
 # the mean price over a defined interval
 def standard_moving_average(closes, interval=50):
     # the window function is a rectangular, this represents the equal weighted sum
@@ -145,21 +160,28 @@ def _average_true_range(closes, lows, highs, interval=14):
 def average_directional_movement(closes, lows, highs, interval=14):
     # calculate average true range
     average_true_range = _average_true_range(closes, lows, highs, interval=interval)
-
+    # get the upward and downward movements
     ups = np.maximum(np.diff(highs), 0)
     downs = np.minimum(np.diff(lows), 0)
+    # smooth the movements using the exponential moving average
     smoothed_ups = exponential_moving_average(ups, interval=interval)
     smoothed_downs = exponential_moving_average(downs, interval=interval)
-    dm_plus = smoothed_ups / average_true_range
-    dm_minus = smoothed_downs / average_true_range
-    directional_movements = np.divide(
-        dm_plus - dm_minus,
-        dm_plus + dm_minus,
-        out=np.zeros_like(dm_minus),
-        where=dm_plus + dm_minus != 0
-    ) * 100
 
-    return np.append(np.array([np.nan]), directional_movements)
+    # calculate the indicator parameters
+    dm_plus = np.divide(smoothed_ups, average_true_range,
+                        out=np.zeros_like(average_true_range) + np.nan, where=average_true_range != 0)
+    dm_minus = np.divide(smoothed_downs, average_true_range,
+                         out=np.zeros_like(average_true_range) + np.nan, where=average_true_range != 0)
+    # use the directional movement formula
+    directional_movements = np.divide(
+        np.abs(dm_plus - dm_minus),
+        dm_plus + dm_minus,
+        out=np.zeros_like(downs),
+        where=dm_plus + dm_minus != 0
+    )
+    smoothed_directional_movements = exponential_moving_average(directional_movements[interval:], interval=interval)
+    # the first element is not defined
+    return np.append(np.zeros(interval + 1) + np.nan, smoothed_directional_movements)
 
 
 # the aaron indicator is the time passed since the last high/low mapped to a value between 0 and 100
@@ -222,10 +244,7 @@ def commodity_channel(lows, highs, closes, interval=20):
     ma = standard_moving_average(closes, interval=interval)
 
     # calculate the mean deviation for each time point
-    diff_abs = np.abs(typical_price - ma)
-    window = np.ones(interval, dtype=float) / interval
-    mean_deviation = np.convolve(diff_abs[:-1], window, mode="valid")
-    mean_deviation = np.append(np.zeros(interval) + np.nan, mean_deviation)
+    mean_deviation = _average_deviations(typical_price, ma, interval=interval, norm_function=np.abs)
 
     cci = np.divide(typical_price - ma, .015 * mean_deviation,
                     out=np.zeros_like(closes),
@@ -238,23 +257,35 @@ def chande_momentum(closes, interval=50):
     # calculate the daily moves between closing prices
     moves = np.diff(closes)
     # define a sliding window
-    sliding_window = sliding_window_view(moves, window_shape=interval)
+    sliding_window_moves = sliding_window_view(moves, window_shape=interval)
 
     # Empty sliding windows will lead to runtime warnings
     # This is tolerated, because the result of an empty slice is correctly labeled as "not a number"
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", category=RuntimeWarning)
         # calculate the average of the upward movements for each time window
-        sum_ups = np.sum(np.where(sliding_window > 0, sliding_window, 0), axis=1)
+        sum_ups = np.sum(np.where(sliding_window_moves > 0, sliding_window_moves, 0), axis=1)
         # calculate the average of the downward movements for each time window
-        sum_downs = -np.sum(np.where(sliding_window < 0, sliding_window, 0), axis=1)
+        sum_downs = -np.sum(np.where(sliding_window_moves < 0, sliding_window_moves, 0), axis=1)
         sum_moves = sum_downs + sum_ups
 
     # the momentum is based on the difference between the total upward and downward movements
     momentum = np.divide(sum_ups - sum_downs, sum_moves, out=np.ones_like(sum_moves), where=sum_moves != 0)
     momentum = np.append(np.zeros(interval) + np.nan, momentum)
 
-    return momentum
+    return momentum * 100
+
+
+# a simply momentum indicator comparing a past closing price with the current price
+def rate_of_change(closes, interval=100):
+    # for the first elements no past data will exist
+    current = np.append(np.zeros(interval), closes[:-interval])
+    # for the last elements, no future data will exist
+    past = np.append(closes[interval:], np.zeros(interval) + np.nan)
+    # compare the shifted closing prices
+    roc = np.divide(current - past, past, out=np.ones_like(closes), where=past != 0)
+    # the ratio is multiplied by 100 in the indicator formula
+    return 100 * roc
 
 
 # lines placed around a moving average using the current standard deviation
@@ -262,11 +293,7 @@ def chande_momentum(closes, interval=50):
 def bollinger_bands(closes, interval=20, deviations=2):
     # get the moving average
     ma = standard_moving_average(closes, interval=interval)
-    # calculate the standard deviation for each time point
-    diff_sqared = np.power(closes - ma, 2)
-    window = np.ones(interval, dtype=float) / interval
-    std = np.sqrt(np.convolve(diff_sqared[:-1], window, mode="valid"))
-    std = np.append(np.zeros(interval) + np.nan, std)
+    std = standard_deviation(closes, ma, interval=interval)
 
     # place a line above and below the moving average with the distance of a specified number of standard deviations
     distances = deviations * std

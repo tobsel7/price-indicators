@@ -6,6 +6,9 @@ import numpy as np
 
 # default parameters for all indicators
 
+# volatility intervals
+VOLATILITY_INTERVALS = [10, 20, 50, 100, 200]
+
 # common moving average intervals
 STANDARD_MOVING_AVERAGE_INTERVALS = [10, 20, 50, 100, 200]
 # moving averages that are compared with each other
@@ -33,6 +36,9 @@ RSI_INTERVALS = [50]
 RSI_LOGISTIC_TRANSFORMATION_BASE = 10 ** 6
 RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT = 0.4
 
+# average direction movement intervals
+AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS = [14]
+
 # intervals for the aaron indicators
 AARON_INTERVALS = [25, 50]
 
@@ -43,6 +49,9 @@ TREND_CHANNEL_INTERVALS = [100, 200]
 
 # time intervals for chande momentum indicator
 CHANDE_MOMENTUM_INTERVALS = [100, 200]
+
+# time interval for the rate of chance indicator
+RATE_OF_CHANGE_INTERVALS = [50, 100]
 
 # the number of preceding days needed to calculate all the indicators is the maximum of all interval parameters
 MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
@@ -55,6 +64,19 @@ MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
                             max(COMMODITY_CHANNEL_INTERVALS),
                             max(TREND_CHANNEL_INTERVALS)
                             ])
+
+
+# the standard deviation of the stock
+def volatility(closes, intervals=VOLATILITY_INTERVALS, standardize=True):
+    volatility = {}
+    for interval in intervals:
+        ma = formulas.standard_moving_average(closes, interval)
+        std = formulas.standard_deviation(closes, ma, interval=interval)
+        if standardize:
+            std = np.clip(std / closes, 0, 1)
+        volatility["volatility{}".format(interval)] = std
+
+    return volatility
 
 
 def standard_moving_averages(closes, intervals=STANDARD_MOVING_AVERAGE_INTERVALS, standardize=True):
@@ -98,9 +120,16 @@ def exponential_moving_averages(closes, intervals=EXPONENTIAL_MOVING_AVERAGE_INT
     return emas
 
 
-def average_directional_movements(closes, lows, highs, standardize=True):
+def average_directional_movements(closes, lows, highs,
+                                  intervals=AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, standardize=True):
     summary = {}
-    # summary["adm"] = formulas.average_directional_movement(closes, lows, highs, interval=14)
+    for interval in intervals:
+        adx = formulas.average_directional_movement(closes, lows, highs, interval)
+        if standardize:
+            # TODO standardize
+            adx /= 100
+        summary["adm{}".format(interval)] = adx
+
     return summary
 
 
@@ -179,12 +208,27 @@ def commodity_channel(lows, highs, closes, intervals=COMMODITY_CHANNEL_INTERVALS
 def chande_momentum(closes, intervals=CHANDE_MOMENTUM_INTERVALS, standardize=True):
     summary = {}
     for interval in intervals:
-        chande_momentum = formulas.chande_momentum(closes, interval=interval)
+        chande = formulas.chande_momentum(closes, interval=interval)
 
         if standardize:
-            chande_momentum = chande_momentum
+            # TODO standardize
+            chande /= 100
 
-        summary["chande_momentum{}".format(interval)] = chande_momentum
+        summary["chande_momentum{}".format(interval)] = chande
+
+    return summary
+
+
+def rate_of_change(closes, intervals=RATE_OF_CHANGE_INTERVALS, standardize=True):
+    summary = {}
+    for interval in intervals:
+        roc = formulas.chande_momentum(closes, interval=interval)
+
+        if standardize:
+            # TODO standardize
+            roc /= 100
+
+        summary["rate_of_change{}".format(interval)] = roc
 
     return summary
 
@@ -214,6 +258,8 @@ def all_indicators(chart_data, standardize=True):
     lows = chart_data.get_lows()
     highs = chart_data.get_highs()
 
+    # volatility
+    volat = volatility(closes, standardize=standardize)
     # standard moving averages
     sma = standard_moving_averages(closes, standardize=standardize)
     # standard moving average trends
@@ -235,9 +281,12 @@ def all_indicators(chart_data, standardize=True):
     # chande momemtum
     chande = chande_momentum(closes, standardize=standardize)
 
-    # combine all indicators and return them as a dataframe
-    merged_summaries = {**sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels, **cci, **chande}
+    # rate of change momentum
+    roc = rate_of_change(closes, standardize=standardize)
 
-    #for name, indicator in merged_summaries.items():
-        #print("{} length {}".format(name, len(indicator)))
+    # combine all indicators and return them as a dataframe
+    merged_summaries = {**volat, **sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels, **cci, **chande, **roc}
+
+    """for name, indicator in merged_summaries.items():
+        print("{} length {}".format(name, len(indicator)))"""
     return pd.DataFrame(merged_summaries)

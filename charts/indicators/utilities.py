@@ -31,7 +31,6 @@ def regression_lines(closes, interval):
 def construct_lower_upper_lines(trendlines, distances):
     upper_line = trendlines + distances
     lower_line = trendlines - distances
-
     return lower_line, upper_line
 
 
@@ -47,12 +46,8 @@ def standardize_indicator(indicator, indicator_min=0, indicator_max=100):
 
 # a help function used to assign a relative position when compared with a range between a low and high
 def relative_position(indicator, lows, highs, standardize=True):
-    relative_position = 1 - np.divide(highs - indicator,
-                                      highs - lows,
-                                      out=np.zeros_like(indicator),
-                                      where=highs - lows != 0)
-
-    return standardize_indicator(np.clip(relative_position, 0, 1), 0, 1) if standardize else relative_position
+    position = 1 - np.divide(highs - indicator, highs - lows, out=np.zeros_like(indicator), where=highs - lows != 0)
+    return standardize_indicator(np.clip(position, 0, 1), 0, 1) if standardize else position
 
 
 # this transformation amplifies an indicator, if it moves above an inflection point by applying a logistic function

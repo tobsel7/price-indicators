@@ -1,34 +1,29 @@
-# import the data handler
-from charts.data import data_handler
+# import the chart handler
+from charts.api import data_handler
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 from analysis import demos
 from charts.indicators import formulas
 from charts.indicators import utilities
+from charts.data_sets import file_handler
 
 
 # main program
 def main():
     #data_handler.download_and_persist_chart_data(show_downloads=True)
     #math_demos.show_demos()
-    #test()
-    demos.correlation_test("nasdaq", future_price_interval=60)
+    data = data_handler.get_chart_data("JNJ")
+    file_handler.data_set_to_feather(data.get_full_data(), "JNJ_full")
+    #samples = data_handler.generate_samples(asset_list="nasdaq", samples_per_year=1, normalize=True, future_price_interval=100)
+    #file_handler.data_set_to_feather(samples.reset_index(), "nasdaq_samples_normalized")
+    demos.correlation_test("nasdaq", future_price_interval=20)
 
 
-def test():
-    from timeit import default_timer as timer
-    from datetime import timedelta
-
-    start = timer()
-
-    for i in range(1):
-        data = data_handler.get_chart_data("IBM")
-        full_data = data.get_full_data(normalize=False)
-        full_data.to_csv("test.csv")
-
-    end = timer()
-    print(timedelta(seconds=end-start) * 750)
+def generate_csv():
+    symbol = input("Enter the stock ticker:\n")
+    data = data_handler.get_chart_data(symbol)
+    file_handler.chart_to_sheet(data)
 
 
 def test3():

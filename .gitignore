@@ -1,5 +1,5 @@
 ### Python template
-# Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL persist
 __pycache__/
 *.py[cod]
 *$py.class
@@ -26,7 +26,7 @@ var/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
+#  Usually these persist are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
@@ -111,7 +111,7 @@ pip-selfcheck.json
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 
-# Sensitive or high-churn files:
+# Sensitive or high-churn persist:
 .idea/dataSources.ids
 .idea/dataSources.xml
 .idea/dataSources.local.xml
@@ -151,5 +151,5 @@ fabric.properties
 # Hide api key
 api_key.py
 
-# Ignore persisted chart data
-/persisted_data/charts/*.json
+# Ignore persisted chart pre_process
+/persisted_data/api_jsons/*.json

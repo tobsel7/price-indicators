@@ -1,8 +1,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import stats
-from analysis import data_set_modifier
-from charts.data import data_handler
+from charts.data_sets import data_set_modifier
+from charts.api import data_handler
 
 
 # this function demonstrates the functionality used in data_set_modifier to change the mean of a normal distribution
@@ -67,7 +67,7 @@ def show_demos():
     # show example functions used in the operation
     shift_normal(1.2, 1)
 
-    # show how the data set can be shifted
+    # show how the chart set can be shifted
     show_shift_data_set(0.3, True, 100)
 
     # show the correlation test
