@@ -25,5 +25,4 @@ def move_dataset_to_mean(samples, desired_mean=1, feature="future_price", start_
     random_sample = np.random.random_sample(len(samples))
     # define which samples will be kept
     keep = random_sample < keep_probability(y_log)
-
     return samples[keep]

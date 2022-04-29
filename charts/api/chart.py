@@ -4,8 +4,8 @@ import numpy as np
 # functions for calculating the indicators
 from charts.indicators import indicators
 
-# create samples for the price in 1 year per default
-DEFAULT_PREDICATION_INTERVAL = 365
+# when creating the future price in a sample the current price is shifted by this interval
+from charts.config import FUTURE_PRICE_INTERVAL
 
 
 # the chart class encapsulates price data for one given stock symbol
@@ -55,8 +55,8 @@ class Chart:
         return self._volume
 
     # check whether valid samples can be created
-    def can_create_samples(self, prediction_interval=DEFAULT_PREDICATION_INTERVAL):
-        return len(self) > indicators.MIN_PRECEDING_VALUES + prediction_interval
+    def can_create_samples(self, future_price_interval=FUTURE_PRICE_INTERVAL):
+        return len(self) > indicators.MIN_PRECEDING_VALUES + future_price_interval
 
     # generate a full dataset including indicators
     def get_full_data(self, normalize=True):
@@ -82,7 +82,7 @@ class Chart:
         return full_data
 
     # generate a list of samples for analysis/training
-    def get_random_samples(self, future_price_interval=DEFAULT_PREDICATION_INTERVAL, samples_per_year=10,
+    def get_random_samples(self, future_price_interval=FUTURE_PRICE_INTERVAL, samples_per_year=10,
                            normalize=True):
         # only allow creation of samples for large enough time series
         if not self.can_create_samples(future_price_interval):
@@ -91,19 +91,21 @@ class Chart:
         # get all data (price charts and indicators) for this stock symbol
         full_data = self.get_full_data(normalize=normalize)
 
-        # shift the current price according to the future_price interval to get a future price for the data set
-        future_prices = np.zeros(len(self)) + np.nan
-        if normalize:
-            # normalize by dividing the future price by the current price according to the price shift
-            future_prices[:-future_price_interval] = np.divide(self.get_closes()[future_price_interval:],
-                                                               self.get_closes()[:-future_price_interval],
-                                                               out=future_prices[:-future_price_interval],
-                                                               where=self.get_closes()[:-future_price_interval] != 0)
-        else:
-            # just shift the prices
-            future_prices[:-future_price_interval] = self.get_closes()[future_price_interval:]
+        if future_price_interval > 0:
+            # shift the current price according to the future_price interval to get a future price for the data set
+            future_prices = np.zeros(len(self)) + np.nan
 
-        full_data["future_price"] = future_prices.tolist()
+            if normalize:
+                # normalize by dividing the future price by the current price according to the price shift
+                future_prices[:-future_price_interval] = np.divide(self.get_closes()[future_price_interval:],
+                                                                   self.get_closes()[:-future_price_interval],
+                                                                   out=future_prices[:-future_price_interval],
+                                                                   where=self.get_closes()[:-future_price_interval] != 0)
+            else:
+                # just shift the prices
+                future_prices[:-future_price_interval] = self.get_closes()[future_price_interval:]
+
+            full_data["future_price"] = future_prices.tolist()
 
         # define how many samples will be taken
         number_of_samples = int(len(self) / 365.0 * samples_per_year)
