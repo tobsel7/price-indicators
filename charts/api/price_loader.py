@@ -107,7 +107,7 @@ def get_price(symbol):
     # delete None values
     response_json = _clean_nones(response_json)
 
-    # retrieve relevant charts
+    # retrieve relevant data
     data = response_json["chart"]["result"][0]
     chart_data = data["indicators"]["quote"][0]
     meta = data["meta"]

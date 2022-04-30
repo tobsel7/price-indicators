@@ -1,3 +1,4 @@
+# numerical operations
 import numpy as np
 
 
@@ -28,6 +29,7 @@ def regression_lines(closes, interval):
     return result[:, 0], result[:, 1]
 
 
+# constructs two lines below and above a trendline using a distance array
 def construct_lower_upper_lines(trendlines, distances):
     upper_line = trendlines + distances
     lower_line = trendlines - distances
@@ -44,7 +46,7 @@ def standardize_indicator(indicator, indicator_min=0, indicator_max=100):
     return 2 * (indicator - indicator_middle) / indicator_range
 
 
-# a help function used to assign a relative position when compared with a range between a low and high
+# a help function used to assign a relative position when compared with an upper bound and a lower bound
 def relative_position(indicator, lows, highs, standardize=True):
     position = 1 - np.divide(highs - indicator, highs - lows, out=np.zeros_like(indicator), where=highs - lows != 0)
     return standardize_indicator(np.clip(position, 0, 1), 0, 1) if standardize else position
@@ -55,7 +57,7 @@ def transform_logistic(indicator, inflection_point=0.4, base=10**6):
     return np.sign(indicator) / (1 + np.power(base, -np.abs(indicator) + inflection_point))
 
 
-# this transformation tries to extract only extreme values by mapping all a certain value of an indicator to 0, 1 or -1
+# this transformation tries to extract only extreme values
 def transform_threshold(indicator, threshold):
     # find all positions where the threshold is being surpassed
     threshold_surpassed = np.abs(indicator) > threshold

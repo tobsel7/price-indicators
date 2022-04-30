@@ -1,16 +1,17 @@
-# imports for sample generation and fast array processing
+# import numpy for sample generation and fast array processing
 import numpy as np
+
+# custom error class
+from charts.api.errors import PriceDataLengthError
 
 # functions for calculating the indicators
 from charts.indicators import indicators
 
-# when creating the future price in a sample the current price is shifted by this interval
+# the default interval by which the price is shifted
 from charts.config import FUTURE_PRICE_INTERVAL
 
 
 # the chart class encapsulates price data for one given stock symbol
-# numpy is used primarily because of numerical performance properties
-# resulting samples are pandas dataframes
 class Chart:
     # initialize the class with the chart and meta data
     def __init__(self, chart, meta):
@@ -62,7 +63,7 @@ class Chart:
     def get_full_data(self, normalize=True):
         # only allow creation of samples for large enough time series
         if not self.can_create_samples(0):
-            raise Exception("Can not create a sample, because the size of the charts is too small.")
+            raise PriceDataLengthError()
 
         # the current closing price and volume are part of the full data
         closes = self.get_closes()
@@ -86,15 +87,14 @@ class Chart:
                            normalize=True):
         # only allow creation of samples for large enough time series
         if not self.can_create_samples(future_price_interval):
-            raise Exception("Can not create a sample, because the size of the chart is too small.")
+            raise PriceDataLengthError()
 
-        # get all data (price charts and indicators) for this stock symbol
+        # get all data (price data and indicators) for this stock symbol
         full_data = self.get_full_data(normalize=normalize)
 
         if future_price_interval > 0:
             # shift the current price according to the future_price interval to get a future price for the data set
             future_prices = np.zeros(len(self)) + np.nan
-
             if normalize:
                 # normalize by dividing the future price by the current price according to the price shift
                 future_prices[:-future_price_interval] = np.divide(self.get_closes()[future_price_interval:],
@@ -104,7 +104,6 @@ class Chart:
             else:
                 # just shift the prices
                 future_prices[:-future_price_interval] = self.get_closes()[future_price_interval:]
-
             full_data["future_price"] = future_prices.tolist()
 
         # define how many samples will be taken

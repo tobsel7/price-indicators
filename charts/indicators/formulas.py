@@ -1,8 +1,15 @@
+# some operations are numerically unstable, they are accepted because they return nan in this case
 import warnings
 
+# numpy for numerical functions
 import numpy as np
+
+# specifically import a sliding view function, because its often used
+# the sliding view essentially allows convolution-like operations, but with nonlinear functions
 from numpy.lib.stride_tricks import sliding_window_view
-from . import utilities
+
+# indicator utility functions
+from indicators import utilities
 
 
 # general definition of the moving average
@@ -27,6 +34,7 @@ def _average_deviations(indicator, indicator_means, interval=100, norm_function=
     return summed_deviations
 
 
+# the standard deviation or l2 norm using convolution
 def standard_deviation(indicator, indicator_mean, interval=100):
     return np.sqrt(_average_deviations(indicator, indicator_mean, interval=interval, norm_function=np.square))
 
@@ -145,6 +153,7 @@ def ma_crossing(closes, short_ma_length=50, long_ma_length=200, interval=50):
     return np.clip(np.convolve(ma_crossings, window, mode="full"), -1, 1)[:len(closes)]
 
 
+# the average true range is the maximum value between three different ranges
 def _average_true_range(closes, lows, highs, interval=14):
     # initialize the parameters for the true range
     daily_range = highs - lows
@@ -238,21 +247,24 @@ def trend_channel_position(closes, interval=100):
     return utilities.construct_lower_upper_lines(trendlines, max_distances)
 
 
+# the commodity channel index is a momentum indicator measuring deviations of the typical price from mean prices
 def commodity_channel(lows, highs, closes, interval=20):
+    # calculate the typical average price using the standard moving average function and the three prices
     summed_prices = lows + highs + closes
     typical_price = standard_moving_average(summed_prices, interval) / 3
     ma = standard_moving_average(closes, interval=interval)
 
-    # calculate the mean deviation for each time point
+    # calculate the mean deviation of the typical price from the mean price
     mean_deviation = _average_deviations(typical_price, ma, interval=interval, norm_function=np.abs)
 
+    # return a ration of deviations from mean and the standard deviation
     cci = np.divide(typical_price - ma, .015 * mean_deviation,
                     out=np.zeros_like(closes),
                     where=mean_deviation != 0)
-
     return cci
 
 
+# chande momentum compares the sum of upward movements to the sum of downward movements
 def chande_momentum(closes, interval=50):
     # calculate the daily moves between closing prices
     moves = np.diff(closes)
@@ -276,7 +288,7 @@ def chande_momentum(closes, interval=50):
     return momentum * 100
 
 
-# a simply momentum indicator comparing a past closing price with the current price
+# a simple momentum indicator comparing a past closing price with the current price
 def rate_of_change(closes, interval=100):
     # for the first elements no past data will exist
     current = np.append(np.zeros(interval), closes[:-interval])

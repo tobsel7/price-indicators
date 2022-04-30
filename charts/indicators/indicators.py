@@ -1,11 +1,12 @@
-from . import formulas
-from . import utilities
+# get indicator formulas and utilities
+from charts.indicators import formulas
+from charts.indicators import utilities
 
+# libraries for datasets
 import pandas as pd
 import numpy as np
 
 # default parameters for all indicators
-
 # volatility intervals
 VOLATILITY_INTERVALS = [10, 20, 50, 100, 200]
 
@@ -66,7 +67,8 @@ MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
                             ])
 
 
-# the standard deviation of the stock
+# in this section all indicator formulas are called and the results stored in dictionaries with labels
+# for more detailed information about the indicator formulas, consult the formulas.py file
 def volatility(closes, intervals=VOLATILITY_INTERVALS, standardize=True):
     volatility = {}
     for interval in intervals:
@@ -285,8 +287,10 @@ def all_indicators(chart_data, standardize=True):
     roc = rate_of_change(closes, standardize=standardize)
 
     # combine all indicators and return them as a dataframe
-    merged_summaries = {**volat, **sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels, **cci, **chande, **roc}
+    merged_summaries = {**volat, **sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels, **cci,
+                        **chande, **roc}
 
+    # TODO Remove comment when indicators are finished
     """for name, indicator in merged_summaries.items():
         print("{} length {}".format(name, len(indicator)))"""
     return pd.DataFrame(merged_summaries)

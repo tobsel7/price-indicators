@@ -1,7 +1,10 @@
+# data sets are pandas data frames
 import pandas as pd
 
+# the data handler provides price data
 from charts.api import data_handler
-from charts.api import price_loader
+
+# default values for for storage paths and an existing asset_list
 from charts.config import ASSET_LIST, ASSET_LIST_PATH
 
 
@@ -17,7 +20,7 @@ def generate_samples(asset_list=ASSET_LIST, samples_per_year=20, normalize=True,
     # go through all symbols
     for symbol in asset_symbols:
         # take only symbols with persisted data
-        if price_loader.persisted_data_exists(symbol):
+        if data_handler.chart_exists(symbol):
             # gather the chart object
             chart_data = data_handler.get_chart_data(symbol, auto_persist_on_load=False)
             # take only long enough charts to prevent errors

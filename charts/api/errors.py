@@ -19,3 +19,10 @@ class APILimitError(Exception):
 class MalformedResponseError(Exception):
     def __init__(self, message="The api response can not be processed, because some fields are missing."):
         super().__init__(message)
+
+
+# custom error signalling too short price data to create valid samples
+class PriceDataLengthError(Exception):
+    def __init__(self, message="The length of the known price data is not long enough to create valid samples.\n"
+                               "Use a stock ticker with enough price data or decrease the future price interval."):
+        super().__init__(message)

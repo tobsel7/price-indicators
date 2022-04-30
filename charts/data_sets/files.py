@@ -1,25 +1,26 @@
 # storage path
 from charts.config import STORAGE_PATH, ASSET_LIST
+# a generator of samples
 from charts.data_sets import generator
 
 
 # a general function storing a data frame in various data formats
-def persist_data(data, file_name=None, data_format="csv"):
+def persist_data(data, name=None, data_format="csv"):
     data = data.reset_index()
-    if file_name is None:
+    if name is None:
         # set the name of the file to the dataframe name, if no file name is given
-        file_name = data.name
-    # store the data frame in a common data type
+        name = data.name
+    # store the data frame in a common file type
     if data_format == "csv":
-        data.to_csv(STORAGE_PATH.format("sheets/" + file_name + ".csv"))
+        data.to_csv(STORAGE_PATH.format("sheets/" + name + ".csv"))
     elif data_format == "feather":
-        data.to_feather(STORAGE_PATH.format("feather/" + file_name + ".feather"))
+        data.to_feather(STORAGE_PATH.format("feather/" + name + ".feather"))
     elif data_format == "hdf":
-        data_format.to_hdf(STORAGE_PATH.format("hdf/" + file_name + ".hdf"))
+        data_format.to_hdf(STORAGE_PATH.format("hdf/" + name + ".hdf"))
     elif data_format == "gbq":
-        data.to_gbq(STORAGE_PATH.format("gbq/" + file_name + ".gbq"))
+        data.to_gbq(STORAGE_PATH.format("gbq/" + name + ".gbq"))
     elif data_format == "excel":
-        data.to_excel(STORAGE_PATH.format("sheets/" + file_name + ".xls"))
+        data.to_excel(STORAGE_PATH.format("sheets/" + name + ".xls"))
     else:
         raise Exception("The file format {} is unknown.".format(data_format))
 
@@ -32,12 +33,12 @@ def chart_to_sheet(chart, normalize=False):
     # store the data
     name = chart.get_name()
     file_name = name + "_normalized" if normalize else name + "_original"
-    persist_data(full_data, file_name=file_name, data_format="csv")
+    persist_data(full_data, name=file_name, data_format="csv")
 
 
 # any pandas data frame is stored as a feather file per default
 def data_set_to_feather(data, name=None):
-    persist_data(data, file_name=name, data_format="feather")
+    persist_data(data, name=name, data_format="feather")
 
 
 # generate random samples from a list of assets and store them in an efficient format
