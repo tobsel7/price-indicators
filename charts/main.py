@@ -21,7 +21,8 @@ def info(ticker):
 # create data sets from some source defined by its name
 def create(source):
     try:
-        if data_handler.chart_exists(source):
+        if data_handler.chart_exists(source.upper()):
+            source = source.upper()
             normalize = bool(input("Should the data set be normalized?"
                                    "\n[Y(es), N(o)]: ").lower() == "y")
             data = data_handler.get_chart_data(source).get_full_data(normalize=normalize)
@@ -31,17 +32,21 @@ def create(source):
 
             files.persist_data(data, file_name, file_format)
         else:
+            source = source.lower()
             samples_per_year = int(input("Enter the samples per year taking from each chart in this asset list.\n"))
             normalize = bool(input("Should the data set be normalized?"
                                    "\n[Y(es), N(o)]: ").lower() == "y")
             future_price_interval = int(input("Enter the time interval between the current and future price "
                                               "in days.\n"))
             print("Processing...")
-            files.create_random_data_set(source, samples_per_year=samples_per_year,
-                                         normalize=normalize, future_price_interval=future_price_interval)
+            files.create_random_data_set(source, samples_per_year=samples_per_year, normalize=normalize,
+                                         future_price_interval=future_price_interval)
         print("Successfully created a data set using data from {}".format(source))
-    except:
-        print("Something went wrong. Try again!")
+    except Exception as error:
+        # an unknown error has occurred
+        # print the error and stop downloading
+        print(error)
+        return
 
 
 # main cli program used to generate data sets
@@ -49,6 +54,10 @@ def main():
     print("Welcome to this data set tool!\n"
           "List the commands by typing 'help'.\n"
           "Exit by pressing -Enter- without any text.")
+
+    # set up missing folders before creating any data sets
+    files.setup()
+
     # define commands which are not empty
     commands = ["start"]
     while len(commands[0]) > 0:

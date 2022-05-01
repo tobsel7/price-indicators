@@ -128,8 +128,8 @@ def average_directional_movements(closes, lows, highs,
     for interval in intervals:
         adx = formulas.average_directional_movement(closes, lows, highs, interval)
         if standardize:
-            # TODO standardize
-            adx /= 100
+            # set the maximum of the indicator to 200 and the minimum to 200 for the purpose of standardization
+            adx = utilities.standardize_indicator(np.clip(adx, -200, 200), -200, 200)
         summary["adm{}".format(interval)] = adx
 
     return summary
@@ -213,8 +213,7 @@ def chande_momentum(closes, intervals=CHANDE_MOMENTUM_INTERVALS, standardize=Tru
         chande = formulas.chande_momentum(closes, interval=interval)
 
         if standardize:
-            # TODO standardize
-            chande /= 100
+            chande = utilities.standardize_indicator(np.clip(chande, -100, 100), -100, 100)
 
         summary["chande_momentum{}".format(interval)] = chande
 
@@ -227,8 +226,7 @@ def rate_of_change(closes, intervals=RATE_OF_CHANGE_INTERVALS, standardize=True)
         roc = formulas.chande_momentum(closes, interval=interval)
 
         if standardize:
-            # TODO standardize
-            roc /= 100
+            roc = utilities.standardize_indicator(np.clip(roc, -100, 100), -100, 100)
 
         summary["rate_of_change{}".format(interval)] = roc
 

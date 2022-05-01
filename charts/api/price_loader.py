@@ -7,15 +7,14 @@ from charts.api.errors import DelistedError, APILimitError, MalformedResponseErr
 # import functionalities to store and process the loaded data
 import json
 import os
-from . import chart
+from charts.api import chart
 
 # static variables necessary for the api
 # API_KEY = "SECRET-API-KEY"
-from .api_key import API_KEY
-CHART_URL = "https://yfapi.net/v8/finance/chart/"
+from charts.api.api_key import API_KEY
 
-# default storage path
-STORAGE_PATH = "./persisted_data/api_jsons/{}.json"
+# default storage path and api url
+from charts.config import API_JSON_PATH, API_URL
 
 
 # if a stock has no recent data, none values will occur. they should be deleted before performing any analysis
@@ -41,7 +40,7 @@ def _clean_nones(value):
 # function for persisting a chart data dictionary
 def persist_data(chart_data, meta):
     # define file name
-    file_name = STORAGE_PATH.format(meta["symbol"])
+    file_name = API_JSON_PATH.format(meta["symbol"])
     # create json charts
     json_data = json.dumps({"chart": chart_data, "meta": meta})
     # save json charts to file
@@ -52,7 +51,7 @@ def persist_data(chart_data, meta):
 # function to retrieve persisted chart
 def get_persisted_data(symbol):
     # define file name
-    file_name = STORAGE_PATH.format(symbol)
+    file_name = API_JSON_PATH.format(symbol)
     # get json charts
     with open(file_name) as json_file:
         data = json.loads(json.load(json_file))
@@ -62,7 +61,7 @@ def get_persisted_data(symbol):
 
 # help function checking chart data has been downloaded already
 def persisted_data_exists(symbol):
-    return os.path.isfile(STORAGE_PATH.format(symbol))
+    return os.path.isfile(API_JSON_PATH.format(symbol))
 
 
 # basic function returning the price history of one or multiple symbols
@@ -70,7 +69,7 @@ def get_price(symbol):
     # append api key to the headers
     headers = {"x-api-key": API_KEY}
     # create query with the symbols
-    url = CHART_URL + symbol
+    url = API_URL + symbol
     # define params
     params = {
         "range": "10y",

@@ -9,7 +9,7 @@ import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 
 # indicator utility functions
-from indicators import utilities
+from charts.indicators import utilities
 
 
 # general definition of the moving average
