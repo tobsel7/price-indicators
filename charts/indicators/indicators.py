@@ -6,6 +6,9 @@ from charts.indicators import utilities
 import pandas as pd
 import numpy as np
 
+# some warnings are suppressed
+import warnings
+
 # default parameters for all indicators
 # volatility intervals
 VOLATILITY_INTERVALS = [10, 20, 50, 100, 200]
@@ -55,15 +58,19 @@ CHANDE_MOMENTUM_INTERVALS = [100, 200]
 RATE_OF_CHANGE_INTERVALS = [50, 100]
 
 # the number of preceding days needed to calculate all the indicators is the maximum of all interval parameters
-MIN_PRECEDING_VALUES = max([max(STANDARD_MOVING_AVERAGE_INTERVALS),
+MIN_PRECEDING_VALUES = max([max(VOLATILITY_INTERVALS * 2),
+                            max(STANDARD_MOVING_AVERAGE_INTERVALS),
                             max(STANDARD_MOVING_AVERAGE_TREND_PARAMETERS.keys()),
                             max(STANDARD_MOVING_AVERAGE_TREND_PARAMETERS.values()),
                             max(EXPONENTIAL_MOVING_AVERAGE_INTERVALS),
-                            max(BOLLINGER_BAND_PARAMETERS.keys()),
+                            max(np.array(list(BOLLINGER_BAND_PARAMETERS.keys())) * 2),
                             max(RSI_INTERVALS),
+                            max(AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS * 2),
                             max(AARON_INTERVALS),
                             max(COMMODITY_CHANNEL_INTERVALS),
-                            max(TREND_CHANNEL_INTERVALS)
+                            max(TREND_CHANNEL_INTERVALS),
+                            max(CHANDE_MOMENTUM_INTERVALS),
+                            max(RATE_OF_CHANGE_INTERVALS)
                             ])
 
 
@@ -100,7 +107,14 @@ def standard_moving_average_trends(closes, parameters=STANDARD_MOVING_AVERAGE_TR
         trend = formulas.ma_trend(closes, short_ma_length=short, long_ma_length=long)
         cross = formulas.ma_crossing(closes, short_ma_length=short, long_ma_length=long, interval=short)
         if standardize:
-            macd = utilities.standardize_indicator(macd, np.nanmax(macd), np.nanmin(macd))
+            with warnings.catch_warnings():
+                # at the beginning an all-nan slice could be detected and causing a warning
+                # it results in a nan result, which is correct and does not need any special handling
+                warnings.simplefilter("ignore", category=RuntimeWarning)
+                macd_min = np.nanmin(macd)
+                macd_max = np.nanmax(macd)
+                if macd_min != macd_max:
+                    macd = utilities.standardize_indicator(macd, np.nanmin(macd), np.nanmax(macd))
 
         summary["macd{}_{}".format(short, long)] = macd
         summary["macd_cross{}_{}".format(short, long)] = macd_cross
@@ -288,7 +302,4 @@ def all_indicators(chart_data, standardize=True):
     merged_summaries = {**volat, **sma, **sma_trend, **ema, **adm, **aarn, **bollinger, **rsi, **channels, **cci,
                         **chande, **roc}
 
-    # TODO Remove comment when indicators are finished
-    """for name, indicator in merged_summaries.items():
-        print("{} length {}".format(name, len(indicator)))"""
     return pd.DataFrame(merged_summaries)

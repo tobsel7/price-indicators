@@ -25,11 +25,11 @@ def persist_data(data, name=None, data_format="csv"):
     if data_format == "csv":
         data.to_csv(STORAGE_PATH.format("sheets/" + name + ".csv"), index=False)
     elif data_format == "feather":
-        data.to_feather(STORAGE_PATH.format("feather/" + name + ".feather"), index=False)
+        data.to_feather(STORAGE_PATH.format("feather/" + name + ".feather"))
     elif data_format == "hdf":
-        data_format.to_hdf(STORAGE_PATH.format("hdf/" + name + ".hdf"), index=False)
+        data_format.to_hdf(STORAGE_PATH.format("hdf/" + name + ".hdf"))
     elif data_format == "gbq":
-        data.to_gbq(STORAGE_PATH.format("gbq/" + name + ".gbq"), index=False)
+        data.to_gbq(STORAGE_PATH.format("gbq/" + name + ".gbq"))
     elif data_format == "excel":
         data.to_excel(STORAGE_PATH.format("sheets/" + name + ".xls"), index=False)
     else:
@@ -37,9 +37,10 @@ def persist_data(data, name=None, data_format="csv"):
 
 
 # generate random samples from a list of assets and store them in an efficient format
-def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=20, normalize=True, future_price_interval=0):
+def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=20, normalize=True, future_interval=0,
+                           data_format="feather"):
     data = generator.generate_samples(asset_list=asset_list, samples_per_year=samples_per_year,
-                                      normalize=normalize, future_price_interval=future_price_interval)
+                                      normalize=normalize, future_interval=future_interval)
     normalize_string = "normalized" if normalize else "original"
-    name = "{}{}spy_{}shift_{}".format(asset_list, samples_per_year, future_price_interval, normalize_string)
-    persist_data(data, name, data_format="feather")
+    name = "{}{}spy_{}shift_{}".format(asset_list, samples_per_year, future_interval, normalize_string)
+    persist_data(data, name, data_format=data_format)

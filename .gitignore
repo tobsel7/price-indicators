@@ -152,4 +152,4 @@ fabric.properties
 api_key.py
 
 # Ignore persisted chart pre_process
-/persisted_data/api_jsons/*.json
+/persisted_data/

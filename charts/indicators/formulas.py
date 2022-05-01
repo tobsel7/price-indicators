@@ -27,7 +27,9 @@ def _moving_average(closes, window):
 # the square root of _average_deviations represents the l2 norm or standard deviation
 # the _average deviations with the norm function np.abs represents the l1 norm, or manhattan distance
 def _average_deviations(indicator, indicator_means, interval=100, norm_function=np.square):
+    # apply a function to get the l1, l2 norms etc.
     differences_norm = norm_function(indicator - indicator_means)
+    # average the deviations using convolution
     window = np.ones(interval, dtype=float) / interval
     summed_deviations = np.convolve(differences_norm[:-1], window, mode="valid")
     summed_deviations = np.append(np.zeros(interval) + np.nan, summed_deviations)
@@ -118,7 +120,7 @@ def relative_strength(closes, interval=14):
         average_downs = np.nanmean(np.where(sliding_window < 0, sliding_window, np.nan), axis=1)
 
     # the strength is the relation of the two averages, set it to 1 in the case of division by zero
-    strength = np.divide(average_ups, -average_downs, out=np.ones_like(average_ups), where=average_downs != 0)
+    strength = average_ups / -average_downs
 
     # rsi formula, result is between 0 and 100
     rsi = 100 - 100 / (1 + strength)

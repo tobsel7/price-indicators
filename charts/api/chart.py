@@ -8,7 +8,7 @@ from charts.api.errors import PriceDataLengthError
 from charts.indicators import indicators
 
 # the default interval by which the price is shifted
-from charts.config import FUTURE_PRICE_INTERVAL
+from charts.config import FUTURE_INTERVAL
 
 
 # the chart class encapsulates price data for one given stock symbol
@@ -16,11 +16,19 @@ class Chart:
     # initialize the class with the chart and meta data
     def __init__(self, chart, meta):
         # safe price data in numpy arrays
-        self._open = np.array(chart["open"])
-        self._close = np.array(chart["close"])
-        self._high = np.array(chart["high"])
-        self._low = np.array(chart["low"])
-        self._volume = np.array(chart["volume"])
+        self._open = np.array(chart["open"], dtype=float)
+        self._close = np.array(chart["close"], dtype=float)
+        self._low = np.array(chart["low"], dtype=float)
+        self._high = np.array(chart["high"], dtype=float)
+        self._volume = np.array(chart["volume"], dtype=float)
+
+        # some chart data contains 0 values
+        # they are replaced with not a number, because they lead to numerical problems
+        self._open[self._open == 0] = np.nan
+        self._close[self._close == 0] = np.nan
+        self._low[self._low == 0] = np.nan
+        self._high[self._high == 0] = np.nan
+        self._volume[self._volume == 0] = np.nan
 
         # safe metadata about the chart
         self._name = meta["symbol"]
@@ -56,8 +64,8 @@ class Chart:
         return self._volume
 
     # check whether valid samples can be created
-    def can_create_samples(self, future_price_interval=FUTURE_PRICE_INTERVAL):
-        return len(self) > indicators.MIN_PRECEDING_VALUES + future_price_interval
+    def can_create_samples(self, future_interval=FUTURE_INTERVAL):
+        return len(self) > indicators.MIN_PRECEDING_VALUES + future_interval + 1
 
     # generate a full dataset including indicators
     def get_full_data(self, normalize=True):
@@ -70,9 +78,14 @@ class Chart:
         volumes = self.get_volumes()
 
         if normalize:
-            # find the first nonzero value and divide all values by this nonzero value
-            closes = closes / closes[np.argmax(closes != 0)]
-            volumes = volumes / volumes[np.argmax(volumes != 0)]
+            # find the first valid value and divide all values by this price/volume
+            reference_value_closes = closes[np.argmax(closes != np.nan)]
+            reference_value_volumes = volumes[np.argmax(volumes != np.nan)]
+            # some charts do not have valid closes or volumes, no normalization can be done for nan prices/volumes
+            if reference_value_closes != np.nan:
+                closes = closes / reference_value_closes
+            if reference_value_volumes != np.nan:
+                volumes = volumes / reference_value_volumes
 
         # get all indicators for the dataset
         full_data = indicators.all_indicators(self, normalize)
@@ -82,37 +95,41 @@ class Chart:
         full_data["current_price"] = closes.tolist()
         return full_data
 
+    # help function shifting the price and volatility columns and adding the shifted columns as new features
+    def _add_future_to_data(self, data, future_interval, normalize):
+        if future_interval > 0:
+            # shift the current price according to the future_price interval to get a future price for the data set
+            future_prices = np.append(self.get_closes()[future_interval:], np.zeros(future_interval) + np.nan)
+            if normalize:
+                # normalize by dividing the future price by the current price according to the price shift
+                future_prices[:-future_interval] = future_prices[:-future_interval] / self.get_closes()[:-future_interval]
+            # add the future price to the data frame
+            data["future_price"] = future_prices.tolist()
+
+            # find all volatility columns in the data frame
+            current_volatility_columns = [column for column in data if column.startswith("volatility")]
+            future_volatility_columns = ["future_" + column for column in current_volatility_columns]
+            # add a future volatility columns by taking the volatility columns and shifting them by the future interval
+            data[future_volatility_columns] = data[current_volatility_columns].shift(-future_interval)
+        # return the complete data frame
+        return data
+
     # generate a list of samples for analysis/training
-    def get_random_samples(self, future_price_interval=FUTURE_PRICE_INTERVAL, samples_per_year=10,
-                           normalize=True):
+    def get_random_samples(self, future_interval=FUTURE_INTERVAL, samples_per_year=10, normalize=True):
         # only allow creation of samples for large enough time series
-        if not self.can_create_samples(future_price_interval):
+        if not self.can_create_samples(future_interval):
             raise PriceDataLengthError()
 
         # get all data (price data and indicators) for this stock symbol
         full_data = self.get_full_data(normalize=normalize)
 
-        if future_price_interval > 0:
-            # shift the current price according to the future_price interval to get a future price for the data set
-            future_prices = np.zeros(len(self)) + np.nan
-            if normalize:
-                # normalize by dividing the future price by the current price according to the price shift
-                future_prices[:-future_price_interval] = np.divide(self.get_closes()[future_price_interval:],
-                                                                   self.get_closes()[:-future_price_interval],
-                                                                   out=future_prices[:-future_price_interval],
-                                                                   where=self.get_closes()[:-future_price_interval] != 0)
-            else:
-                # just shift the prices
-                future_prices[:-future_price_interval] = self.get_closes()[future_price_interval:]
-            full_data["future_price"] = future_prices.tolist()
+        # add columns for shifted features (future values) to the data frame
+        full_data = self._add_future_to_data(full_data, future_interval, normalize)
 
-        # define how many samples will be taken
-        number_of_samples = int(len(self) / 365.0 * samples_per_year)
-        # randomly select the rows
-        first_valid_index = indicators.MIN_PRECEDING_VALUES
-        last_valid_index = len(self) - future_price_interval - 1
-        choices = np.random.randint(first_valid_index, last_valid_index, size=number_of_samples)
+        # select all potential valid samples
+        potential_samples = full_data[~full_data.isnull().any(axis=1)]
 
-        # return the selected samples
-        return full_data.iloc[choices]
+        # sample using a fraction samples_per_year / 365 days
+        return potential_samples.sample(frac=samples_per_year / 365)
+
 

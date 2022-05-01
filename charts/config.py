@@ -11,5 +11,5 @@ ASSET_LIST_PATH = STORAGE_PATH.format("asset_lists/{}.csv")
 ASSET_LIST = "all_stocks"
 
 # the default future_price interval
-FUTURE_PRICE_INTERVAL = 365
+FUTURE_INTERVAL = 365
 
