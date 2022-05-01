@@ -151,5 +151,5 @@ fabric.properties
 # Hide api key
 api_key.py
 
-# Ignore persisted chart pre_process
+# Ignore persisted chart data
 /persisted_data/
