@@ -23,8 +23,6 @@ def regression_lines(closes, interval):
 
     # evaluate the regression parameters for all time intervals
     result = np.einsum("ijk,ij->ik", np.linalg.inv(covariance_matrices), destination_vectors)
-    # throw away the regression result for the last data point
-    result = result[:-1, :]
     # split ub the two result columns in two variables for better transparency
     return result[:, 0], result[:, 1]
 
@@ -48,7 +46,7 @@ def standardize_indicator(indicator, indicator_min=0, indicator_max=100):
 
 # a help function used to assign a relative position when compared with an upper bound and a lower bound
 def relative_position(indicator, lows, highs, standardize=True):
-    position = 1 - np.divide(highs - indicator, highs - lows, out=np.zeros_like(indicator), where=highs - lows != 0)
+    position = np.divide(indicator - lows, highs - lows, out=np.zeros_like(indicator), where=highs - lows != 0)
     return standardize_indicator(np.clip(position, 0, 1), 0, 1) if standardize else position
 
 

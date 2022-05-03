@@ -51,7 +51,7 @@ def info(ticker):
 
 # create data sets from some source defined by its name
 def create(source):
-    try:
+    #try:
         if source == "default":
             create_default_sets()
         elif data_handler.chart_exists(source.upper()):
@@ -60,11 +60,11 @@ def create(source):
             create_file_from_asset_list(source.lower())
 
         print("Successfully created a data set using data from {}".format(source))
-    except Exception as error:
+    #except Exception as error:
         # an unknown error has occurred
         # print the error and stop downloading
-        print(error)
-        return
+        #print(error)
+        #return
 
 
 # for simplicity this function can be called
