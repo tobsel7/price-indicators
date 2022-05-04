@@ -72,12 +72,13 @@ def exponential_moving_average(closes, interval=50, smoothing=2):
 
 
 # a comparison (difference) between a fast and slow moving average
-def ma_convergence_divergence(closes, short_ma_length=12, long_ma_length=26):
-    # get the tow moving averages
-    short_ma = exponential_moving_average(closes=closes, interval=short_ma_length)
-    long_ma = exponential_moving_average(closes=closes, interval=long_ma_length)
-    # compare the moving averages
-    return short_ma - long_ma
+def ma_convergence_divergence(short_ma, long_ma, long_ma_interval, signal_line_length=9):
+    # compare the exponential moving averages
+    macd = short_ma - long_ma
+    macd_signal = exponential_moving_average(macd[long_ma_interval - 1:], signal_line_length)
+    macd_signal = np.append(np.zeros(long_ma_interval - 1) + np.nan, macd_signal)
+    # return the macd line and the signal line
+    return macd, macd_signal
 
 
 # the indicator compares the average upward daily move with the average downward daily move
@@ -106,32 +107,29 @@ def relative_strength(closes, interval=14):
     return rsi
 
 
-# an indicator trying to identify an upward or downward trend based on the macd indicator
-def ma_trend(closes, short_ma_length=50, long_ma_length=200):
-    macd = ma_convergence_divergence(closes, short_ma_length=short_ma_length, long_ma_length=long_ma_length)
+# an indicator trying to identify an upward or downward trend based two moving averages
+def ma_trend(short_ma, long_ma):
     # the trend is positive, if the short ma is higher than the long ma, else negative
-    return np.sign(macd)
+    return np.sign(short_ma - long_ma)
 
 
 # an indicator identifying changes (crossings) in the moving average trend
-def ma_crossing(closes, short_ma_length=50, long_ma_length=200, interval=50):
-    # calculate the moving average trend
-    trend = ma_trend(closes, short_ma_length=short_ma_length, long_ma_length=long_ma_length)
-
-    # identify ma crossings using the difference of ma trends
-    # is zero everywhere, except the trend flipping from -1 to 1 or vice-versa
-    # note that the ma trend can be 0 (two moving averages having the exact same value)
+def crossing(signal_line, base_line, interval=50):
+    # identify crossings between two lines
+    # the result is zero everywhere, except the one line moves above the other
+    # note that the result can be 0 (baseline and signal line being equal)
     # this implementation would interpret this partly as a crossing, even though it did not really happen
-    ma_crossings = np.diff(trend) / 2
+
+    crossings = np.diff(np.sign(signal_line - base_line)) / 2
     # convolve the crossings with a linearly decreasing window function
     # this way a recent crossing receives a high value, while some past crossing is less relevant
     window = np.arange(interval, 0, -1) / interval
 
     # it is assumed that no crossing has happened in previous, unknown data
     # the difference operation leads to one more missing value for the first element
-    ma_crossings = np.append(np.array([np.nan]), ma_crossings)
+    crossings = np.append(np.array([np.nan]), crossings)
 
-    return np.clip(np.convolve(ma_crossings, window, mode="full"), -1, 1)[:len(closes)]
+    return np.convolve(crossings, window, mode="full")[:len(base_line)]
 
 
 # the average true range is the maximum value between three different ranges
@@ -192,7 +190,7 @@ def aaron(lows, highs, interval=25):
 
 
 # the highest and lowest close in some time interval define a range containing all recent prices
-def horizontal_channel_position(closes, interval=100):
+def horizontal_channel(closes, interval=100):
     # create a window view sliding over the closes
     sliding_window = sliding_window_view(closes, window_shape=interval)
     # calculate the min for each time interval
@@ -209,7 +207,7 @@ def horizontal_channel_position(closes, interval=100):
 
 # a channel constructed using regression
 # the channel lines are defined as regression trend +- the maximal absolute from this line
-def trend_channel_position(closes, interval=100):
+def trend_channel(closes, interval=100):
     # calculate the parameters of the trend line for each time interval
     initial_value, slope = utilities.regression_lines(closes, interval)
     # construct the regression trendline

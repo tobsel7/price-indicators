@@ -6,9 +6,6 @@ from charts.indicators import utilities
 import pandas as pd
 import numpy as np
 
-# some warnings are suppressed
-import warnings
-
 # default parameters for all indicators
 # volatility intervals
 VOLATILITY_INTERVALS = [10, 20, 50, 100, 200]
@@ -21,6 +18,8 @@ MOVING_AVERAGE_TREND_PARAMETERS = {
     20: 50,
     50: 200
 }
+# the macd indicator is smoothed to get its signal line
+MOVING_AVERAGE_SIGNAL_LINE_INTERVAL = 9
 
 # the smoothing parameter used for calculating the weights in the ema function
 EXPONENTIAL_MOVING_AVERAGE_SMOOTHING = 2
@@ -73,19 +72,19 @@ MIN_PRECEDING_VALUES = max([max(VOLATILITY_INTERVALS * 2),
 
 # in this section all indicator formulas are called and the results stored in dictionaries with labels
 # for more detailed information about the indicator formulas, consult the formulas.py file
-def volatility(closes, intervals=VOLATILITY_INTERVALS, standardize=True):
-    volatility = {}
+def volatility(closes, intervals=VOLATILITY_INTERVALS, normalize=True):
+    volat = {}
     for interval in intervals:
         ma = formulas.standard_moving_average(closes, interval)
         std = formulas.standard_deviation(closes, ma, interval=interval)
-        if standardize:
-            std = np.clip(std / closes, 0, 1)
-        volatility["volatility{}".format(interval)] = std
+        if normalize:
+            std = std / closes
+        volat["volatility{}".format(interval)] = std
 
-    return volatility
+    return volat
 
 
-def moving_averages(closes, intervals=MOVING_AVERAGE_INTERVALS, standardize=True):
+def moving_averages(closes, intervals=MOVING_AVERAGE_INTERVALS, normalize=True):
     # use a default value for the exponential smoothing weights
     smoothing = EXPONENTIAL_MOVING_AVERAGE_SMOOTHING
     mas = {}
@@ -93,10 +92,10 @@ def moving_averages(closes, intervals=MOVING_AVERAGE_INTERVALS, standardize=True
         sma = formulas.standard_moving_average(closes, interval=interval)
         lwma = formulas.linear_weighted_moving_average(closes, interval)
         ema = formulas.exponential_moving_average(closes, interval=interval, smoothing=smoothing)
-        if standardize:
-            sma = utilities.standardize_indicator(np.clip(sma / closes, 0, 2), 0, 2)
-            lwma = utilities.standardize_indicator(np.clip(lwma / closes, 0, 2), 0, 2)
-            ema = utilities.standardize_indicator(np.clip(ema / closes, 0, 2), 0, 2)
+        if normalize:
+            sma = utilities.normalize_indicator(sma / closes, 0, 2, clip=False)
+            lwma = utilities.normalize_indicator(lwma / closes, 0, 2, clip=False)
+            ema = utilities.normalize_indicator(ema / closes, 0, 2, clip=False)
 
         mas["sma{}".format(interval)] = sma
         mas["lwma{}".format(interval)] = lwma
@@ -105,50 +104,58 @@ def moving_averages(closes, intervals=MOVING_AVERAGE_INTERVALS, standardize=True
     return mas
 
 
-def moving_average_trends(closes, parameters=MOVING_AVERAGE_TREND_PARAMETERS, standardize=True):
+def moving_average_trends(closes, parameters=MOVING_AVERAGE_TREND_PARAMETERS, normalize=True):
     summary = {}
     for short, long in parameters.items():
-        macd = formulas.ma_convergence_divergence(closes, short_ma_length=short, long_ma_length=long)
-        trend = formulas.ma_trend(closes, short_ma_length=short, long_ma_length=long)
-        cross = formulas.ma_crossing(closes, short_ma_length=short, long_ma_length=long, interval=short)
-        if standardize:
-            with warnings.catch_warnings():
-                # at the beginning an all-nan slice could be detected and causing a warning
-                # it results in a nan result, which is correct and does not need any special handling
-                warnings.simplefilter("ignore", category=RuntimeWarning)
-                macd_min = np.nanmin(macd)
-                macd_max = np.nanmax(macd)
-                if macd_min != macd_max:
-                    macd = utilities.standardize_indicator(macd, np.nanmin(macd), np.nanmax(macd))
+        # calculate the moving averages
+        short_sma = formulas.standard_moving_average(closes=closes, interval=short)
+        long_sma = formulas.standard_moving_average(closes=closes, interval=long)
+        short_ema = formulas.exponential_moving_average(closes=closes, interval=short)
+        long_ema = formulas.exponential_moving_average(closes=closes, interval=long)
 
+        # get the trend and trend crossings
+        ma_trend = formulas.ma_trend(short_sma, long_sma)
+        ma_cross = formulas.crossing(short_sma, long_sma, interval=short)
+
+        # define the macd base and signal line crossings
+        macd, macd_signal = formulas.ma_convergence_divergence(short_ema, long_ema, long,
+                                                               signal_line_length=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
+        macd_cross = formulas.crossing(macd_signal, macd, interval=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
+        if normalize:
+            # the macd base and signal line is normalized using the long moving average
+            macd = utilities.normalize_indicator(macd / long_ema, 0, 1, clip=False)
+            macd_signal = utilities.normalize_indicator(macd_signal / long_ema, 0, 1, clip=False)
+
+        summary["ma_trend{}_{}".format(short, long)] = ma_trend
+        summary["ma_cross{}_{}".format(short, long)] = ma_cross
         summary["macd{}_{}".format(short, long)] = macd
-        summary["ma_trend{}_{}".format(short, long)] = trend
-        summary["ma_cross{}_{}".format(short, long)] = cross
+        summary["macd_signal{}_{}".format(short, long)] = macd_signal
+        summary["macd_cross{}_{}".format(short, long)] = macd_cross
 
     return summary
 
 
 def average_directional_movements(closes, lows, highs,
-                                  intervals=AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, standardize=True):
+                                  intervals=AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, normalize=True):
     summary = {}
     for interval in intervals:
         adx = formulas.average_directional_movement(closes, lows, highs, interval)
-        if standardize:
+        if normalize:
             # set the maximum of the indicator to 200 and the minimum to 200 for the purpose of standardization
-            adx = utilities.standardize_indicator(np.clip(adx, -200, 200), -200, 200)
+            adx = utilities.normalize_indicator(adx, -200, 200, clip=False)
         summary["adm{}".format(interval)] = adx
 
     return summary
 
 
-def aaron(lows, highs, intervals=AARON_INTERVALS, standardize=True):
+def aaron(lows, highs, intervals=AARON_INTERVALS, normalize=True):
     summary = {}
     for interval in intervals:
         down, up, oscillator = formulas.aaron(lows, highs, interval=interval)
-        if standardize:
+        if normalize:
             down /= 100
             up /= 100
-            oscillator = utilities.standardize_indicator(oscillator, -100, 100)
+            oscillator = utilities.normalize_indicator(oscillator, -100, 100, clip=False)
 
         summary["aaron_down{}".format(interval)] = down
         summary["aaron_up{}".format(interval)] = up
@@ -157,38 +164,40 @@ def aaron(lows, highs, intervals=AARON_INTERVALS, standardize=True):
     return summary
 
 
-def bollinger_bands(closes, parameters=BOLLINGER_BAND_PARAMETERS, standardize=True):
+def bollinger_bands(closes, parameters=BOLLINGER_BAND_PARAMETERS, normalize=True):
     summary = {}
     for interval, deviations in parameters.items():
         lower, upper = formulas.bollinger_bands(closes, interval=interval, deviations=deviations)
-        position = utilities.relative_position(closes, lower, upper, standardize=standardize)
-        if standardize:
-            lower = np.clip(lower / closes, 0, 2) - 1
-            upper = np.clip(upper / closes, 0, 2) - 1
+        position = utilities.relative_position(closes, lower, upper, normalize=normalize, clip=False)
+        position_threshold = utilities.transform_threshold(position, 1)
+        if normalize:
+            lower = lower / closes - 1
+            upper = upper / closes - 1
         summary["bollinger_lower{}_{}".format(interval, deviations)] = lower
         summary["bollinger_upper{}_{}".format(interval, deviations)] = upper
         summary["bollinger_position{}_{}".format(interval, deviations)] = position
+        summary["bollinger_position_threshold{}_{}".format(interval, deviations)] = position_threshold
 
     return summary
 
 
 def relative_strength_index(closes,
                             intervals=RSI_INTERVALS,
-                            standardize=True,
+                            normalize=True,
                             logistic_transformation_inflection_point=RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT,
                             logistic_transformation_base=RSI_LOGISTIC_TRANSFORMATION_BASE
                             ):
     summary = {}
     for interval in intervals:
         rsi = formulas.relative_strength(closes, interval=interval)
-        rsi_standardized = utilities.standardize_indicator(rsi, 0, 100)
-        rsi_logistic = utilities.transform_logistic(rsi_standardized,
+        rsi_normalized = utilities.normalize_indicator(rsi, 0, 100, clip=False)
+        rsi_logistic = utilities.transform_logistic(rsi_normalized,
                                                     inflection_point=logistic_transformation_inflection_point,
                                                     base=logistic_transformation_base)
-        rsi_threshold = utilities.transform_threshold(rsi_standardized, threshold=0.4)
+        rsi_threshold = utilities.transform_threshold(rsi_normalized, threshold=0.4)
 
-        if standardize:
-            rsi = rsi_standardized
+        if normalize:
+            rsi = rsi_normalized
         else:
             rsi_logistic *= 100
 
@@ -199,13 +208,13 @@ def relative_strength_index(closes,
     return summary
 
 
-def commodity_channel(lows, highs, closes, intervals=COMMODITY_CHANNEL_INTERVALS, standardize=True):
+def commodity_channel(lows, highs, closes, intervals=COMMODITY_CHANNEL_INTERVALS, normalize=True):
     summary = {}
     for interval in intervals:
         cci = formulas.commodity_channel(lows, highs, closes, interval=interval)
         cci_threshold = utilities.transform_threshold(cci, 100)
-        if standardize:
-            cci = utilities.standardize_indicator(np.clip(cci, - 200, 200), -200, 200)
+        if normalize:
+            cci = utilities.normalize_indicator(cci, -200, 200, clip=False)
 
         summary["cci{}".format(interval)] = cci
         summary["cci_threshold{}".format(interval)] = cci_threshold
@@ -213,38 +222,42 @@ def commodity_channel(lows, highs, closes, intervals=COMMODITY_CHANNEL_INTERVALS
     return summary
 
 
-def chande_momentum(closes, intervals=CHANDE_MOMENTUM_INTERVALS, standardize=True):
+def chande_momentum(closes, intervals=CHANDE_MOMENTUM_INTERVALS, normalize=True):
     summary = {}
     for interval in intervals:
         chande = formulas.chande_momentum(closes, interval=interval)
-
-        if standardize:
-            chande = utilities.standardize_indicator(np.clip(chande, -100, 100), -100, 100)
+        change_threshold = utilities.transform_threshold(chande, 50)
+        if normalize:
+            chande = utilities.normalize_indicator(chande, -100, 100, clip=False)
 
         summary["chande_momentum{}".format(interval)] = chande
 
     return summary
 
 
-def rate_of_change(closes, intervals=RATE_OF_CHANGE_INTERVALS, standardize=True):
+def rate_of_change(closes, intervals=RATE_OF_CHANGE_INTERVALS, normalize=True):
     summary = {}
     for interval in intervals:
         roc = formulas.rate_of_change(closes, interval=interval)
 
-        if standardize:
-            roc = utilities.standardize_indicator(np.clip(roc, -100, 100), -100, 100)
+        if normalize:
+            roc = utilities.normalize_indicator(roc, -100, 100, clip=False)
 
         summary["rate_of_change{}".format(interval)] = roc
 
     return summary
 
 
-def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, standardize=True):
+def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, normalize=True):
     summary = {}
     for interval in intervals:
-        horizontal_lower, horizontal_upper = formulas.horizontal_channel_position(closes, interval=interval)
-        regression_lower, regression_upper = formulas.trend_channel_position(closes, interval=interval)
-        if standardize:
+        horizontal_lower, horizontal_upper = formulas.horizontal_channel(closes, interval=interval)
+        horizontal_position = utilities.relative_position(closes, horizontal_lower, horizontal_upper,
+                                                          normalize=normalize)
+        regression_lower, regression_upper = formulas.trend_channel(closes, interval=interval)
+        regression_position = utilities.relative_position(closes, regression_lower, regression_upper,
+                                                          normalize=normalize)
+        if normalize:
             horizontal_lower = horizontal_lower / closes - 1
             horizontal_upper = horizontal_upper / closes - 1
             regression_lower = regression_lower / closes - 1
@@ -252,41 +265,43 @@ def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, standardize=True):
 
         summary["horizontal_lower{}".format(interval)] = horizontal_lower
         summary["horizontal_upper{}".format(interval)] = horizontal_upper
+        summary["horizontal_position{}".format(interval)] = horizontal_position
         summary["regression_lower{}".format(interval)] = regression_lower
         summary["regression_upper{}".format(interval)] = regression_upper
+        summary["regression_position{}".format(interval)] = regression_position
 
     return summary
 
 
-def all_indicators(chart_data, standardize=True):
+def all_indicators(chart_data, normalize=True):
     # retrieve data necessary for indicator calculations
     closes = chart_data.get_closes()
     lows = chart_data.get_lows()
     highs = chart_data.get_highs()
 
     # volatility
-    volat = volatility(closes, standardize=standardize)
-    # all types of moving averages
-    ma = moving_averages(closes, standardize=standardize)
+    volat = volatility(closes, normalize=normalize)
+    # different types of moving averages
+    ma = moving_averages(closes, normalize=normalize)
     # moving average trends
-    ma_trend = moving_average_trends(closes, standardize=standardize)
-    # average directional movement index
-    adm = average_directional_movements(closes, lows, highs, standardize=standardize)
+    ma_trend = moving_average_trends(closes, normalize=normalize)
+    # average directional movement index6
+    adm = average_directional_movements(closes, lows, highs, normalize=normalize)
     # aaron
-    aarn = aaron(lows, highs, standardize=standardize)
+    aarn = aaron(lows, highs, normalize=normalize)
     # bollinger bands
-    bollinger = bollinger_bands(closes, standardize=standardize)
+    bollinger = bollinger_bands(closes, normalize=normalize)
     # rsi
-    rsi = relative_strength_index(closes, standardize=standardize)
+    rsi = relative_strength_index(closes, normalize=normalize)
     # trend channels
-    channels = trend_channels(closes, standardize=standardize)
+    channels = trend_channels(closes, normalize=normalize)
     # commodity channel index
-    cci = commodity_channel(lows, highs, closes, standardize=standardize)
-    # chande momemtum
-    chande = chande_momentum(closes, standardize=standardize)
+    cci = commodity_channel(lows, highs, closes, normalize=normalize)
+    # chande momentum
+    chande = chande_momentum(closes, normalize=normalize)
 
     # rate of change momentum
-    roc = rate_of_change(closes, standardize=standardize)
+    roc = rate_of_change(closes, normalize=normalize)
 
     # combine all indicators and return them as a dataframe
     merged_summaries = {**volat, **ma, **ma_trend, **adm, **aarn, **bollinger, **rsi, **channels, **cci, **chande,

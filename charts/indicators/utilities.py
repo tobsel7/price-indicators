@@ -35,7 +35,10 @@ def construct_lower_upper_lines(trendlines, distances):
 
 
 # takes an indicator and its range and maps it to a value between -1 and 1
-def standardize_indicator(indicator, indicator_min=0, indicator_max=100):
+def normalize_indicator(indicator, indicator_min=0, indicator_max=100, clip=False):
+    if clip:
+        # if clip is set to true, the ranges of the indicator are enforced
+        indicator = np.clip(indicator, indicator_min, indicator_max)
     # calculate the range of the input indicator
     indicator_range = indicator_max - indicator_min
     # calculate the middle of the input indicator
@@ -45,9 +48,13 @@ def standardize_indicator(indicator, indicator_min=0, indicator_max=100):
 
 
 # a help function used to assign a relative position when compared with an upper bound and a lower bound
-def relative_position(indicator, lows, highs, standardize=True):
+def relative_position(indicator, lows, highs, normalize=True, clip=False):
     position = np.divide(indicator - lows, highs - lows, out=np.zeros_like(indicator), where=highs - lows != 0)
-    return standardize_indicator(np.clip(position, 0, 1), 0, 1) if standardize else position
+    if clip:
+        # if the position shall be clipped,
+        # a move of the indicator outside the range does not increase the position beyond -1 or 1
+        position = np.clip(position, 0, 1)
+    return normalize_indicator(position, 0, 1) if normalize else position
 
 
 # this transformation amplifies an indicator, if it moves above an inflection point by applying a logistic function
