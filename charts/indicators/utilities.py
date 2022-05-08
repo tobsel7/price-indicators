@@ -7,7 +7,7 @@ import numpy as np
 # where A is the regression matrix and b the price data (goal)
 def regression_lines(closes, interval):
     # initialize the regression matrix for the complete price data interval
-    regression_matrix = np.vstack([np.ones_like(closes), np.arange(len(closes))]).T
+    regression_matrix = np.vstack([np.ones_like(closes), np.arange(0, len(closes))]).T
     # move a sliding window over the closes to repeatedly generate vectors holding a range of closing prices
     sliding_window_closes = np.lib.stride_tricks.sliding_window_view(closes, window_shape=interval)
     # move a sliding window over the regression matrix to generate multiple parts of the complete regression matrix

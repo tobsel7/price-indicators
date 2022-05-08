@@ -6,53 +6,13 @@ from charts.indicators import utilities
 import pandas as pd
 import numpy as np
 
-# default parameters for all indicators
-# volatility intervals
-VOLATILITY_INTERVALS = [10, 20, 50, 100, 200]
+# import default parameters
+from charts.config import VOLATILITY_INTERVALS, MOVING_AVERAGE_INTERVALS, \
+    MOVING_AVERAGE_TREND_PARAMETERS, MOVING_AVERAGE_SIGNAL_LINE_INTERVAL, EXPONENTIAL_MOVING_AVERAGE_SMOOTHING,\
+    BOLLINGER_BAND_PARAMETERS, RSI_INTERVALS, RSI_LOGISTIC_TRANSFORMATION_BASE,\
+    RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT, AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, AARON_INTERVALS,\
+    COMMODITY_CHANNEL_INTERVALS, TREND_CHANNEL_INTERVALS, CHANDE_MOMENTUM_INTERVALS, RATE_OF_CHANGE_INTERVALS
 
-# common moving average intervals
-MOVING_AVERAGE_INTERVALS = [10, 20, 50, 100, 200]
-# moving averages that are compared with each other
-MOVING_AVERAGE_TREND_PARAMETERS = {
-    # short_ma: long_ma
-    20: 50,
-    50: 200
-}
-# the macd indicator is smoothed to get its signal line
-MOVING_AVERAGE_SIGNAL_LINE_INTERVAL = 9
-
-# the smoothing parameter used for calculating the weights in the ema function
-EXPONENTIAL_MOVING_AVERAGE_SMOOTHING = 2
-
-# common intervals for constructing bollinger bands
-BOLLINGER_BAND_PARAMETERS = {
-    # interval: deviations
-    20: 2,
-    50: 2
-}
-
-# relative strength intervals
-RSI_INTERVALS = [50]
-# custom values for the logistic indicator transformation
-RSI_LOGISTIC_TRANSFORMATION_BASE = 10 ** 6
-RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT = 0.4
-
-# average direction movement intervals
-AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS = [14]
-
-# intervals for the aaron indicators
-AARON_INTERVALS = [25, 50]
-
-# time intervals used when calculating the commodity channel index
-COMMODITY_CHANNEL_INTERVALS = [20, 50]
-# time intervals for constructing linear trend channels
-TREND_CHANNEL_INTERVALS = [100, 200]
-
-# time intervals for chande momentum indicator
-CHANDE_MOMENTUM_INTERVALS = [100, 200]
-
-# time interval for the rate of chance indicator
-RATE_OF_CHANGE_INTERVALS = [50, 100]
 
 # the number of preceding days needed to calculate all the indicators is the maximum of all interval parameters
 MIN_PRECEDING_VALUES = max([max(VOLATILITY_INTERVALS * 2),
@@ -120,11 +80,11 @@ def moving_average_trends(closes, parameters=MOVING_AVERAGE_TREND_PARAMETERS, no
         # define the macd base and signal line crossings
         macd, macd_signal = formulas.ma_convergence_divergence(short_ema, long_ema, long,
                                                                signal_line_length=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
-        macd_cross = formulas.crossing(macd_signal, macd, interval=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
+        macd_cross = formulas.crossing(macd, macd_signal, interval=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
         if normalize:
             # the macd base and signal line is normalized using the long moving average
-            macd = utilities.normalize_indicator(macd / long_ema, 0, 1, clip=False)
-            macd_signal = utilities.normalize_indicator(macd_signal / long_ema, 0, 1, clip=False)
+            macd = utilities.normalize_indicator(macd / long_ema, -1, 1, clip=False)
+            macd_signal = utilities.normalize_indicator(macd_signal / long_ema, -1, 1, clip=False)
 
         summary["ma_trend{}_{}".format(short, long)] = ma_trend
         summary["ma_cross{}_{}".format(short, long)] = ma_cross
@@ -171,8 +131,8 @@ def bollinger_bands(closes, parameters=BOLLINGER_BAND_PARAMETERS, normalize=True
         position = utilities.relative_position(closes, lower, upper, normalize=normalize, clip=False)
         position_threshold = utilities.transform_threshold(position, 1)
         if normalize:
-            lower = lower / closes - 1
-            upper = upper / closes - 1
+            lower = utilities.normalize_indicator(lower / closes, 0, 2)
+            upper = utilities.normalize_indicator(upper / closes, 0, 2)
         summary["bollinger_lower{}_{}".format(interval, deviations)] = lower
         summary["bollinger_upper{}_{}".format(interval, deviations)] = upper
         summary["bollinger_position{}_{}".format(interval, deviations)] = position
@@ -258,10 +218,10 @@ def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, normalize=True):
         regression_position = utilities.relative_position(closes, regression_lower, regression_upper,
                                                           normalize=normalize)
         if normalize:
-            horizontal_lower = horizontal_lower / closes - 1
-            horizontal_upper = horizontal_upper / closes - 1
-            regression_lower = regression_lower / closes - 1
-            regression_upper = regression_upper / closes - 1
+            horizontal_lower = utilities.normalize_indicator(horizontal_lower / closes, 0, 2, clip=False)
+            horizontal_upper = utilities.normalize_indicator(horizontal_upper / closes, 0, 2, clip=False)
+            regression_lower = utilities.normalize_indicator(regression_lower / closes, 0, 2, clip=False)
+            regression_upper = utilities.normalize_indicator(regression_upper / closes, 0, 2, clip=False)
 
         summary["horizontal_lower{}".format(interval)] = horizontal_lower
         summary["horizontal_upper{}".format(interval)] = horizontal_upper

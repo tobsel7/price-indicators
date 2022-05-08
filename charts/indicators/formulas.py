@@ -114,13 +114,13 @@ def ma_trend(short_ma, long_ma):
 
 
 # an indicator identifying changes (crossings) in the moving average trend
-def crossing(signal_line, base_line, interval=50):
+def crossing(fast_indicator, slow_indicator, interval=50):
     # identify crossings between two lines
     # the result is zero everywhere, except the one line moves above the other
     # note that the result can be 0 (baseline and signal line being equal)
     # this implementation would interpret this partly as a crossing, even though it did not really happen
 
-    crossings = np.diff(np.sign(signal_line - base_line)) / 2
+    crossings = np.diff(np.sign(fast_indicator - slow_indicator)) / 2
     # convolve the crossings with a linearly decreasing window function
     # this way a recent crossing receives a high value, while some past crossing is less relevant
     window = np.arange(interval, 0, -1) / interval
@@ -129,7 +129,7 @@ def crossing(signal_line, base_line, interval=50):
     # the difference operation leads to one more missing value for the first element
     crossings = np.append(np.array([np.nan]), crossings)
 
-    return np.convolve(crossings, window, mode="full")[:len(base_line)]
+    return np.convolve(crossings, window, mode="full")[:len(slow_indicator)]
 
 
 # the average true range is the maximum value between three different ranges
