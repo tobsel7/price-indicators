@@ -128,15 +128,18 @@ def bollinger_bands(closes, parameters=BOLLINGER_BAND_PARAMETERS, normalize=True
     summary = {}
     for interval, deviations in parameters.items():
         lower, upper = formulas.bollinger_bands(closes, interval=interval, deviations=deviations)
-        position = utilities.relative_position(closes, lower, upper, normalize=normalize, clip=False)
+        position = utilities.relative_position(closes, lower, upper, normalize=True, clip=False)
         position_threshold = utilities.transform_threshold(position, 1)
         if normalize:
             lower = utilities.normalize_indicator(lower / closes, 0, 2)
             upper = utilities.normalize_indicator(upper / closes, 0, 2)
+        else:
+            position = (position + 1) / 2
+
         summary["bollinger_lower{}_{}".format(interval, deviations)] = lower
         summary["bollinger_upper{}_{}".format(interval, deviations)] = upper
         summary["bollinger_position{}_{}".format(interval, deviations)] = position
-        summary["bollinger_position_threshold{}_{}".format(interval, deviations)] = position_threshold
+        summary["bollinger_threshold{}_{}".format(interval, deviations)] = position_threshold
 
     return summary
 
@@ -186,11 +189,12 @@ def chande_momentum(closes, intervals=CHANDE_MOMENTUM_INTERVALS, normalize=True)
     summary = {}
     for interval in intervals:
         chande = formulas.chande_momentum(closes, interval=interval)
-        change_threshold = utilities.transform_threshold(chande, 50)
+        chande_threshold = utilities.transform_threshold(chande, 50)
         if normalize:
             chande = utilities.normalize_indicator(chande, -100, 100, clip=False)
 
-        summary["chande_momentum{}".format(interval)] = chande
+        summary["chande{}".format(interval)] = chande
+        summary["chande_threshold{}".format(interval)] = chande_threshold
 
     return summary
 
@@ -213,23 +217,29 @@ def trend_channels(closes, intervals=TREND_CHANNEL_INTERVALS, normalize=True):
     for interval in intervals:
         horizontal_lower, horizontal_upper = formulas.horizontal_channel(closes, interval=interval)
         horizontal_position = utilities.relative_position(closes, horizontal_lower, horizontal_upper,
-                                                          normalize=normalize)
+                                                          normalize=True)
+        horizontal_threshold = utilities.transform_threshold(horizontal_position, 1)
         regression_lower, regression_upper = formulas.trend_channel(closes, interval=interval)
         regression_position = utilities.relative_position(closes, regression_lower, regression_upper,
-                                                          normalize=normalize)
+                                                          normalize=True)
+        regression_threshold = utilities.transform_threshold(regression_position, 1)
         if normalize:
             horizontal_lower = utilities.normalize_indicator(horizontal_lower / closes, 0, 2, clip=False)
             horizontal_upper = utilities.normalize_indicator(horizontal_upper / closes, 0, 2, clip=False)
             regression_lower = utilities.normalize_indicator(regression_lower / closes, 0, 2, clip=False)
             regression_upper = utilities.normalize_indicator(regression_upper / closes, 0, 2, clip=False)
+        else:
+            horizontal_position = (horizontal_position + 1) / 2
+            regression_position = (regression_position + 1) / 2
 
         summary["horizontal_lower{}".format(interval)] = horizontal_lower
         summary["horizontal_upper{}".format(interval)] = horizontal_upper
         summary["horizontal_position{}".format(interval)] = horizontal_position
+        summary["horizontal_threshold{}".format(interval)] = horizontal_threshold
         summary["regression_lower{}".format(interval)] = regression_lower
         summary["regression_upper{}".format(interval)] = regression_upper
         summary["regression_position{}".format(interval)] = regression_position
-
+        summary["regression_threshold{}".format(interval)] = regression_threshold
     return summary
 
 

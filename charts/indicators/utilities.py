@@ -29,8 +29,8 @@ def regression_lines(closes, interval):
 
 # constructs two lines below and above a trendline using a distance array
 def construct_lower_upper_lines(trendlines, distances):
-    upper_line = trendlines + distances
     lower_line = trendlines - distances
+    upper_line = trendlines + distances
     return lower_line, upper_line
 
 
@@ -65,7 +65,7 @@ def transform_logistic(indicator, inflection_point=0.4, base=10**6):
 # this transformation tries to extract only extreme values
 def transform_threshold(indicator, threshold):
     # find all positions where the threshold is being surpassed
-    threshold_surpassed = np.abs(indicator) > threshold
+    threshold_surpassed = np.abs(indicator) >= threshold
     # map the indicator to its sign (-1 or 1), if the threshold is surpassed, else 0
     threshold_indicator = np.where(threshold_surpassed, np.sign(indicator), np.zeros_like(indicator))
     # deal with nan values, they should not be mapped to any number, because of the threshold transformation

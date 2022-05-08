@@ -86,7 +86,10 @@ def create_file_from_ticker(source):
                            "\n[Y(es), N(o)]: ").lower() == "y")
     data = data_handler.get_chart_data(source).get_full_data(normalize=normalize)
     file_format = input("Enter the wanted file format.\n"
-                        "Options: csv, feather, hdf, gbq, excel\n").lower()
+                        "Options: csv, feather, hdf, gbq, excel, (-Enter- for default option)\n").lower()
+    if file_format == "":
+        file_format = "csv"
+
     file_name = source + "_normalized" if normalize else source + "_original"
 
     files.persist_data(data, file_name, file_format)
