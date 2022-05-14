@@ -35,28 +35,30 @@ EXPONENTIAL_MOVING_AVERAGE_SMOOTHING = 2
 BOLLINGER_BAND_PARAMETERS = {
     # interval: deviations
     20: 2,
-    50: 2
+    50: 2,
+    100: 2,
+    200: 2,
 }
 
 # relative strength intervals
-RSI_INTERVALS = [50]
+RSI_INTERVALS = [4, 7, 14, 20]
 # custom values for the logistic indicator transformation
 RSI_LOGISTIC_TRANSFORMATION_BASE = 10 ** 6
 RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT = 0.4
 
 # average direction movement intervals
-AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS = [14]
+AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS = [7, 14, 30]
 
 # intervals for the aaron indicators
-AARON_INTERVALS = [25, 50]
+AARON_INTERVALS = [15, 25, 40]
 
 # time intervals used when calculating the commodity channel index
-COMMODITY_CHANNEL_INTERVALS = [20, 50]
+COMMODITY_CHANNEL_INTERVALS = [20, 50, 100]
 # time intervals for constructing linear trend channels
-TREND_CHANNEL_INTERVALS = [100, 200]
+TREND_CHANNEL_INTERVALS = [20, 50, 100, 200]
 
 # time intervals for chande momentum indicator
-CHANDE_MOMENTUM_INTERVALS = [100, 200]
+CHANDE_MOMENTUM_INTERVALS = [20, 50, 100]
 
 # time interval for the rate of chance indicator
-RATE_OF_CHANGE_INTERVALS = [50, 100]
+RATE_OF_CHANGE_INTERVALS = [20, 50, 100]

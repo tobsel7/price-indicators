@@ -1,7 +1,7 @@
 # subdirectories must be created if they do not exist
 import os
 # storage path
-from charts.config import STORAGE_PATH, ASSET_LIST
+from charts.parameters import STORAGE_PATH, ASSET_LIST
 # a generator of samples
 from charts.data_sets import generator
 

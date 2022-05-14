@@ -20,7 +20,7 @@ def _moving_average(closes, window):
     # moving average is the convolution of a rectangular window with the closing prices
     ma = np.convolve(closes, window, mode="valid")
     # the ma is not well-defined before enough price data exists
-    return np.append(np.zeros(window_size - 1) + np.nan, ma)
+    return np.append(np.zeros(window_size - 1, dtype=np.float64) + np.nan, ma)
 
 
 # calculate the average of the difference between a mean of an indicator and an indicator
@@ -30,7 +30,7 @@ def _average_deviations(indicator, indicator_means, interval=100, norm_function=
     # apply a function to get the l1, l2 norms etc.
     differences_norm = norm_function(indicator - indicator_means)
     # average the deviations using convolution
-    window = np.ones(interval, dtype=float) / interval
+    window = np.ones(interval, dtype=np.float64) / interval
     summed_deviations = np.convolve(differences_norm, window, mode="valid")
     summed_deviations = np.append(np.zeros(interval - 1) + np.nan, summed_deviations)
     return summed_deviations
@@ -44,14 +44,14 @@ def standard_deviation(indicator, indicator_mean, interval=100):
 # the mean price over a defined interval
 def standard_moving_average(closes, interval=50):
     # the window function is a rectangular, this represents the equal weighted sum
-    window = np.ones(interval, dtype=float) / interval
+    window = np.ones(interval, dtype=np.float64) / interval
     return _moving_average(closes, window)
 
 
 # the weighted mean price over a defined interval
 def linear_weighted_moving_average(closes, interval=50):
     # the weights linearly increase, older prices have lower weights than recent prices
-    window = 2 * np.arange(1, interval + 1, dtype=float) / (interval*(interval + 1))
+    window = 2 * np.arange(1, interval + 1, dtype=np.float64) / (interval * (interval + 1))
     return _moving_average(closes, window)
 
 
@@ -76,7 +76,7 @@ def ma_convergence_divergence(short_ma, long_ma, long_ma_interval, signal_line_l
     # compare the exponential moving averages
     macd = short_ma - long_ma
     macd_signal = exponential_moving_average(macd[long_ma_interval - 1:], signal_line_length)
-    macd_signal = np.append(np.zeros(long_ma_interval - 1) + np.nan, macd_signal)
+    macd_signal = np.append(np.zeros(long_ma_interval - 1, dtype=np.float64) + np.nan, macd_signal)
     # return the macd line and the signal line
     return macd, macd_signal
 
@@ -103,7 +103,7 @@ def relative_strength(closes, interval=14):
     # rsi formula, result is between 0 and 100
     rsi = 100 - 100 / (1 + strength)
     # the rsi is not defined for the first closes
-    rsi = np.append(np.zeros(interval) + np.nan, rsi)
+    rsi = np.append(np.zeros(interval, dtype=np.float64) + np.nan, rsi)
     return rsi
 
 
@@ -169,7 +169,7 @@ def average_directional_movement(closes, lows, highs, interval=14):
     )
     smoothed_directional_movements = exponential_moving_average(directional_movements[interval:], interval=interval)
     # the first element is not defined
-    return np.append(np.zeros(interval + 1) + np.nan, smoothed_directional_movements)
+    return np.append(np.zeros(interval + 1, dtype=np.float64) + np.nan, smoothed_directional_movements)
 
 
 # the aaron indicator is the time passed since the last high/low mapped to a value between 0 and 100
@@ -181,8 +181,8 @@ def aaron(lows, highs, interval=25):
     aaron_down = 100 * (np.argmin(window_lows, axis=1)) / interval
     aaron_up = 100 * (np.argmax(window_highs, axis=1)) / interval
     # the indicator is not defined for the first data points
-    aaron_down = np.append(np.zeros(interval) + np.nan, aaron_down)
-    aaron_up = np.append(np.zeros(interval) + np.nan, aaron_up)
+    aaron_down = np.append(np.zeros(interval, dtype=np.float64) + np.nan, aaron_down)
+    aaron_up = np.append(np.zeros(interval, dtype=np.float64) + np.nan, aaron_up)
     # construct an oscillator using the two indicators
     oscillator = aaron_up - aaron_down
     # return all three indicators
@@ -199,8 +199,8 @@ def horizontal_channel(closes, interval=100):
     channel_high = np.max(sliding_window, axis=1)
 
     # the min and max value is only defined if enough previous price exist
-    channel_low = np.append(np.zeros(interval - 1) + np.nan, channel_low)
-    channel_high = np.append(np.zeros(interval - 1) + np.nan, channel_high)
+    channel_low = np.append(np.zeros(interval - 1, dtype=np.float64) + np.nan, channel_low)
+    channel_high = np.append(np.zeros(interval - 1, dtype=np.float64) + np.nan, channel_high)
 
     return channel_low, channel_high
 
@@ -218,8 +218,8 @@ def trend_channel(closes, interval=100):
     max_distances = np.max(np.abs(closes[interval - 1:] - (initial_value + slope * sliding_window_time.T)), axis=0)
 
     # no valid channel can be constructed for the first data points
-    trendlines = np.append(np.zeros(interval - 1) + np.nan, trendlines)
-    max_distances = np.append(np.zeros(interval - 1) + np.nan, max_distances)
+    trendlines = np.append(np.zeros(interval - 1, dtype=np.float64) + np.nan, trendlines)
+    max_distances = np.append(np.zeros(interval - 1, dtype=np.float64) + np.nan, max_distances)
     # construct the lower and upper channel line
     return utilities.construct_lower_upper_lines(trendlines, max_distances)
 
@@ -236,7 +236,7 @@ def commodity_channel(lows, highs, closes, interval=20):
 
     # return a ration of deviations from mean and the standard deviation
     cci = np.divide(typical_price - ma, .015 * mean_deviation,
-                    out=np.zeros_like(closes),
+                    out=np.zeros_like(closes, dtype=np.float64),
                     where=mean_deviation != 0)
     return cci
 
@@ -260,7 +260,7 @@ def chande_momentum(closes, interval=50):
 
     # the momentum is based on the difference between the total upward and downward movements
     momentum = np.divide(sum_ups - sum_downs, sum_moves, out=np.ones_like(sum_moves), where=sum_moves != 0)
-    momentum = np.append(np.zeros(interval) + np.nan, momentum)
+    momentum = np.append(np.zeros(interval, dtype=np.float64) + np.nan, momentum)
 
     return momentum * 100
 

@@ -8,7 +8,7 @@ from charts.api.errors import PriceDataLengthError
 from charts.indicators import indicators
 
 # the default interval by which the price is shifted
-from charts.config import FUTURE_INTERVAL
+from charts.parameters import FUTURE_INTERVAL
 
 
 # the chart class encapsulates price data for one given stock symbol

@@ -8,7 +8,7 @@ from charts.api import price_loader, chart
 from charts.api.errors import DelistedError, APILimitError, MalformedResponseError
 
 # import default variables
-from charts.config import ASSET_LIST, ASSET_LIST_PATH
+from charts.parameters import ASSET_LIST, ASSET_LIST_PATH
 
 
 # function used to check whether some chart data exists locally for a given ticker symbol

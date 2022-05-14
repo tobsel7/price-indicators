@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 # import default parameters
-from charts.config import VOLATILITY_INTERVALS, MOVING_AVERAGE_INTERVALS, \
+from charts.parameters import VOLATILITY_INTERVALS, MOVING_AVERAGE_INTERVALS, \
     MOVING_AVERAGE_TREND_PARAMETERS, MOVING_AVERAGE_SIGNAL_LINE_INTERVAL, EXPONENTIAL_MOVING_AVERAGE_SMOOTHING,\
     BOLLINGER_BAND_PARAMETERS, RSI_INTERVALS, RSI_LOGISTIC_TRANSFORMATION_BASE,\
     RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT, AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, AARON_INTERVALS,\
@@ -32,6 +32,7 @@ MIN_PRECEDING_VALUES = max([max(VOLATILITY_INTERVALS * 2),
 
 # in this section all indicator formulas are called and the results stored in dictionaries with labels
 # for more detailed information about the indicator formulas, consult the formulas.py file
+
 def volatility(closes, intervals=VOLATILITY_INTERVALS, normalize=True):
     volat = {}
     for interval in intervals:

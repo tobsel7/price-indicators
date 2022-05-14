@@ -14,7 +14,7 @@ from charts.api import chart
 from charts.api.api_key import API_KEY
 
 # default storage path and api url
-from charts.config import API_JSON_PATH, API_URL
+from charts.parameters import API_JSON_PATH, API_URL
 
 
 # if a stock has no recent data, none values will occur. they should be deleted before performing any analysis

@@ -62,6 +62,12 @@ def transform_logistic(indicator, inflection_point=0.4, base=10**6):
     return np.sign(indicator) / (1 + np.power(base, -np.abs(indicator) + inflection_point))
 
 
+# simply take the absolute value of an indicator
+# it is not really necessary to implement it, because the absolute value can be taken at any point if needed
+def transform_absolute(indicator):
+    return np.abs(indicator)
+
+
 # this transformation tries to extract only extreme values
 def transform_threshold(indicator, threshold):
     # find all positions where the threshold is being surpassed
