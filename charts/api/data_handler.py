@@ -16,6 +16,11 @@ def chart_exists(symbol):
     return price_loader.persisted_data_exists(symbol)
 
 
+# retrieve the tickers and names from a persisted asset list
+def get_asset_list(asset_list):
+    return pd.read_csv(ASSET_LIST_PATH.format(asset_list), usecols=["Ticker", "Name"])
+
+
 # top level function to get chart dta for any given symbol
 # this function will try to get the data from a locally stored file first and download data if necessary
 def get_chart_data(symbol, auto_persist_on_load=True):

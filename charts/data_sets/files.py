@@ -15,6 +15,18 @@ def setup():
             os.mkdir(path)
 
 
+# retrieve all stored asset lists
+def get_asset_list_names():
+    files = os.listdir(STORAGE_PATH.format("asset_lists"))
+    return [file.split(".")[0] for file in files if file.endswith(".csv")]
+
+
+# retrieve all stored stocks
+def get_persisted_stock_names():
+    files = os.listdir(STORAGE_PATH.format("api_jsons"))
+    return [file.split(".")[0] for file in files if file.endswith(".json")]
+
+
 # a general function storing a data frame in various data formats
 def persist_data(data, name=None, data_format="csv"):
     data = data.reset_index()
@@ -42,5 +54,5 @@ def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=20, normalize
     data = generator.generate_samples(asset_list=asset_list, samples_per_year=samples_per_year,
                                       normalize=normalize, future_interval=future_interval)
     normalize_string = "normalized" if normalize else "original"
-    name = "{}{}spy_{}shift_{}".format(asset_list, samples_per_year, future_interval, normalize_string)
+    name = "{}_{}spy_{}shift_{}".format(asset_list, samples_per_year, future_interval, normalize_string)
     persist_data(data, name, data_format=data_format)

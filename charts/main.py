@@ -23,6 +23,8 @@ def main():
             create(commands[1])
         elif commands[0] == "info" and len(commands) > 1:
             info(commands[1])
+        elif commands[0] == "show" and len(commands) > 1:
+            show(commands[1])
         elif commands[0] == "help":
             # display help
             help_text()
@@ -36,17 +38,40 @@ def main():
 # display the implemented commands
 def help_text():
     print("Commands:\n"
-          "create default -> Creates a few default data sets."
-          "create <asset list> -> Creates a data set from one stock ticker\n"
-          "create <stock ticker> -> Creates a data set using an existing list of stock tickers.\n"
+          "create default -> Creates a few default data sets.\n"
+          "create countries -> Creates a data set with default parameters for some countries with stored stock data."
+          "create <stock ticker> -> Creates a data set from one stock ticker\n"
+          "create <asset list> -> Creates a data set using an existing list of stock tickers.\n"
           "info <stock ticker> -> Displays some basic information about a stock ticker.\n"
+          "info <asset list> -> Displays basic information about an asset list.\n"
           "Storage:\n"
-          "Generated files are stored in the folder persisted_data.")
+          "Generated files are stored in the folder persisted_data split up according to the chosen data type.")
 
 
-# display basic information about some stock data
-def info(ticker):
-    print(data_handler.get_chart_data(ticker))
+# display basic information about some stock data or asset list
+def info(source):
+    if data_handler.chart_exists(source.upper()):
+        print(data_handler.get_chart_data(source))
+    else:
+        asset_list = data_handler.get_asset_list(source)
+        print("Set of assets {}\nNumber of tickers: {}".format(source, len(asset_list)))
+        # optionally search for a stock ticker in the list
+        search = input("Enter the name of an asset, if you want to check whether this list contains the ticker."
+                       "\n Note that the search is case-sensitive."
+                       "\nTo return to creating data sets press -Enter-.\n")
+
+        while len(search) > 0:
+            matches = asset_list[asset_list["Name"].str.contains(search)]
+            print(matches)
+            search = input("Another search? To return press -Enter-.\n")
+
+
+# show all persisted stock tickers or asset lists
+def show(selection):
+    if selection == "tickers":
+        print(*files.get_persisted_stock_names(), sep="\n")
+    else:
+        print(*files.get_asset_list_names(), sep="\n")
 
 
 # create data sets from some source defined by its name
@@ -54,6 +79,8 @@ def create(source):
     try:
         if source == "default":
             create_default_sets()
+        elif source == "countries":
+            create_country_sets()
         elif data_handler.chart_exists(source.upper()):
             create_file_from_ticker(source.upper())
         else:
@@ -70,14 +97,41 @@ def create(source):
 # for simplicity this function can be called
 # it creates a few data sets and does not require any user input/configuration
 def create_default_sets():
-    files.persist_data(data_handler.get_chart_data("IBM").get_full_data(False), name="IBM_original", data_format="csv")
-    files.persist_data(data_handler.get_chart_data("IBM").get_full_data(True), name="IBM_normalized", data_format="csv")
+    # store the IBM data set as a csv and feather
+    print("Creating csv and feather files for the IBM chart data.")
+    ibm_original = data_handler.get_chart_data("IBM").get_full_data(False)
+    ibm_normalized = data_handler.get_chart_data("IBM").get_full_data(True)
+    files.persist_data(ibm_original, name="IBM_original", data_format="csv")
+    files.persist_data(ibm_normalized, name="IBM_normalized", data_format="csv")
+    files.persist_data(ibm_original, name="IBM_original", data_format="feather")
+    files.persist_data(ibm_normalized, name="IBM_normalized", data_format="feather")
     print("Created IBM data sets.")
-    files.persist_data(data_handler.get_chart_data("JNJ").get_full_data(False), name="JNJ_original", data_format="csv")
-    files.persist_data(data_handler.get_chart_data("JNJ").get_full_data(True), name="JNJ_normalized", data_format="csv")
-    print("Created JNJ data sets.")
-    print("Created data set from stocks listed on the NASDAQ exchange. This will take some time...")
-    files.create_random_data_set("nasdaq", 1, True, 50, "feather")
+
+    # store the JNJ data set as a csv and feather
+    print("Creating csv and feather files for the JNJ chart data.")
+    ibm_original = data_handler.get_chart_data("JNJ").get_full_data(False)
+    ibm_normalized = data_handler.get_chart_data("JNJ").get_full_data(True)
+    files.persist_data(ibm_original, name="JNJ_original", data_format="csv")
+    files.persist_data(ibm_normalized, name="JNJ_normalized", data_format="csv")
+    files.persist_data(ibm_original, name="JNJ_original", data_format="feather")
+    files.persist_data(ibm_normalized, name="JNJ_normalized", data_format="feather")
+    print("Created JNJ files.")
+
+
+# create data sets for each country with stored stock data
+def create_country_sets():
+    countries = ["spain", "brazil", "australia", "canada", "ireland", "usa", "germany", "latvia", "france", "denmark",
+                 "isreal", "iceland", "switzerland", "finland", "southkorea", "mexiko", "hongkong", "argentina",
+                 "italy", "russia", "thailand", "china", "lithuania", "turkey", "taiwan", "austria", "portugal",
+                 "india", "greece", "estonia", "singapore", "norway", "newzealand", "belgium", "qatar", "sweden",
+                 "uk", "malaysia", "venezuela", "indonesia", "netherlands"]
+
+    # go through all country
+    for country in countries:
+        print("Creating feather file for the {} data set.".format(country))
+        # create a data set with fixed parameters for simplicity
+        files.create_random_data_set(country, 10, True, 30, "feather")
+        print("Created {} file.".format(country))
 
 
 # lower level function creating a data set from one single price chart
@@ -95,16 +149,21 @@ def create_file_from_ticker(source):
     files.persist_data(data, file_name, file_format)
 
 
-# creates a data set from a list of assets by sampling from all assets and merging all the samples
+# creates a data set from a list of assets by sampling from all assets and merging all the samples'
 # normalization is done per default
 def create_file_from_asset_list(source):
     samples_per_year = int(input("Enter the samples per year taking from each chart in this asset list.\n"))
     future_price_input = input("Enter the time interval between the current and future price in days.\n").split(" ")
     future_price_intervals = list(map(int, future_price_input))
+    file_format = input("Enter the wanted file format.\n"
+                        "Options: csv, feather, hdf, gbq, excel, (-Enter- for default option)\n").lower()
+    if file_format == "":
+        file_format = "feather"
+
     for interval in future_price_intervals:
         print("Creating data set for interval {}.\nPlease Wait...".format(interval))
         files.create_random_data_set(source, samples_per_year=samples_per_year, normalize=True,
-                                     future_interval=interval)
+                                     future_interval=interval, data_format=file_format)
 
 
 # entry point of the program
