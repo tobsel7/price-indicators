@@ -37,14 +37,17 @@ def main():
 
 # display the implemented commands
 def help_text():
-    print("Commands:\n"
+    print("--Commands:\n"
           "create default -> Creates a few default data sets.\n"
           "create countries -> Creates a data set with default parameters for some countries with stored stock data."
           "create <stock ticker> -> Creates a data set from one stock ticker\n"
-          "create <asset list> -> Creates a data set using an existing list of stock tickers.\n"
+          "create sample <asset list> -> Creates samples from a list of assets\n"
+          "create all <asset_list> -> Persists every stock chart with all its indicators.\n"
           "info <stock ticker> -> Displays some basic information about a stock ticker.\n"
           "info <asset list> -> Displays basic information about an asset list.\n"
-          "Storage:\n"
+          "show tickers -> Display all stock tickers which have stored chart data on this machine.\n"
+          "show lists -> Display all the defined asset lists.\n"
+          "\n--Storage:\n"
           "Generated files are stored in the folder persisted_data split up according to the chosen data type.")
 
 
@@ -116,6 +119,11 @@ def create_default_sets():
     files.persist_data(ibm_original, name="JNJ_original", data_format="feather")
     files.persist_data(ibm_normalized, name="JNJ_normalized", data_format="feather")
     print("Created JNJ files.")
+
+    # create a small data set from the nasdaq stock listings
+    print("Creating data set using sampled data from stocks in the nasdaq100 index.")
+    files.create_random_data_set("nasdaq100", 10, normalize=True, future_interval=30, data_format="feather")
+    print("Created nasdaq100 data set.")
 
 
 # create data sets for each country with stored stock data

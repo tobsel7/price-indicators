@@ -13,6 +13,12 @@ ASSET_LIST = "all_stocks"
 # the default future_price interval
 FUTURE_INTERVAL = 365
 
+# the number of days being trading in a year
+TRADING_DAYS_PER_YEAR = 253
+
+# default samples per year taken from some chart data
+SAMPLES_PER_YEAR = 10
+
 # default parameters for all indicators
 # volatility intervals
 VOLATILITY_INTERVALS = [10, 20, 50, 100, 200]

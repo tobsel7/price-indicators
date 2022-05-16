@@ -8,12 +8,12 @@ from charts.api.errors import PriceDataLengthError
 from charts.indicators import indicators
 
 # the default interval by which the price is shifted
-from charts.parameters import FUTURE_INTERVAL
+from charts.parameters import FUTURE_INTERVAL, TRADING_DAYS_PER_YEAR, SAMPLES_PER_YEAR
 
 
 # the chart class encapsulates price data for one given stock symbol
 class Chart:
-    # initialize the class with the chart and meta data
+    # initialize the class with the chart and metadata
     def __init__(self, chart, meta):
         # safe price data in numpy arrays
         self._open = np.array(chart["open"], dtype=float)
@@ -115,7 +115,7 @@ class Chart:
         return data
 
     # generate a list of samples for analysis/training
-    def get_random_samples(self, future_interval=FUTURE_INTERVAL, samples_per_year=10, normalize=True):
+    def get_random_samples(self, future_interval=FUTURE_INTERVAL, samples_per_year=SAMPLES_PER_YEAR, normalize=True):
         # only allow creation of samples for large enough time series
         if not self.can_create_samples(future_interval):
             raise PriceDataLengthError()
@@ -129,7 +129,7 @@ class Chart:
         # select all potential valid samples
         potential_samples = full_data[~full_data.isnull().any(axis=1)]
 
-        # sample using a fraction samples_per_year / 365 days
-        return potential_samples.sample(frac=samples_per_year / 365)
+        # sample using a fraction samples_per_year / trading days per year (253 in the US)
+        return potential_samples.sample(frac=samples_per_year / TRADING_DAYS_PER_YEAR)
 
 

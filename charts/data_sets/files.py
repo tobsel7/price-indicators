@@ -1,7 +1,7 @@
 # subdirectories must be created if they do not exist
 import os
 # storage path
-from charts.parameters import STORAGE_PATH, ASSET_LIST
+from charts.parameters import STORAGE_PATH, ASSET_LIST, SAMPLES_PER_YEAR
 # a generator of samples
 from charts.data_sets import generator
 
@@ -49,7 +49,7 @@ def persist_data(data, name=None, data_format="csv"):
 
 
 # generate random samples from a list of assets and store them in an efficient format
-def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=20, normalize=True, future_interval=0,
+def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=SAMPLES_PER_YEAR, normalize=True, future_interval=0,
                            data_format="feather"):
     data = generator.generate_samples(asset_list=asset_list, samples_per_year=samples_per_year,
                                       normalize=normalize, future_interval=future_interval)

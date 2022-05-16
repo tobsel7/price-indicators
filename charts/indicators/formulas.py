@@ -26,7 +26,7 @@ def _moving_average(closes, window):
 # calculate the average of the difference between a mean of an indicator and an indicator
 # the square root of _average_deviations represents the l2 norm or standard deviation
 # the _average deviations with the norm function np.abs represents the l1 norm, or manhattan distance
-def _average_deviations(indicator, indicator_means, interval=100, norm_function=np.square):
+def _average_deviations(indicator, indicator_means, interval, norm_function=np.square):
     # apply a function to get the l1, l2 norms etc.
     differences_norm = norm_function(indicator - indicator_means)
     # average the deviations using convolution
@@ -37,26 +37,26 @@ def _average_deviations(indicator, indicator_means, interval=100, norm_function=
 
 
 # the standard deviation or l2 norm using convolution
-def standard_deviation(indicator, indicator_mean, interval=100):
+def standard_deviation(indicator, indicator_mean, interval):
     return np.sqrt(_average_deviations(indicator, indicator_mean, interval=interval, norm_function=np.square))
 
 
 # the mean price over a defined interval
-def standard_moving_average(closes, interval=50):
+def standard_moving_average(closes, interval):
     # the window function is a rectangular, this represents the equal weighted sum
     window = np.ones(interval, dtype=np.float64) / interval
     return _moving_average(closes, window)
 
 
 # the weighted mean price over a defined interval
-def linear_weighted_moving_average(closes, interval=50):
+def linear_weighted_moving_average(closes, interval):
     # the weights linearly increase, older prices have lower weights than recent prices
     window = 2 * np.arange(1, interval + 1, dtype=np.float64) / (interval * (interval + 1))
     return _moving_average(closes, window)
 
 
 # a modified type of moving averages reacting quickly to recent price changes
-def exponential_moving_average(closes, interval=50, smoothing=2):
+def exponential_moving_average(closes, interval, smoothing=2):
     # initialize empty array
     ema = np.zeros_like(closes) + np.nan
     # define the weight of the most recent price
@@ -82,7 +82,7 @@ def ma_convergence_divergence(short_ma, long_ma, long_ma_interval, signal_line_l
 
 
 # the indicator compares the average upward daily move with the average downward daily move
-def relative_strength(closes, interval=14):
+def relative_strength(closes, interval):
     # calculate the daily moves between closing prices
     moves = np.diff(closes)
     # define a sliding window
@@ -114,7 +114,7 @@ def ma_trend(short_ma, long_ma):
 
 
 # an indicator identifying changes (crossings) in the moving average trend
-def crossing(fast_indicator, slow_indicator, interval=50):
+def crossing(fast_indicator, slow_indicator, interval):
     # identify crossings between two lines
     # the result is zero everywhere, except the one line moves above the other
     # note that the result can be 0 (baseline and signal line being equal)
@@ -133,7 +133,7 @@ def crossing(fast_indicator, slow_indicator, interval=50):
 
 
 # the average true range is the maximum value between three different ranges
-def _average_true_range(closes, lows, highs, interval=14):
+def _average_true_range(closes, lows, highs, interval):
     # initialize the parameters for the true range
     daily_range = highs - lows
     diff_high_close = np.abs(highs[1:] - closes[:-1])
@@ -145,7 +145,7 @@ def _average_true_range(closes, lows, highs, interval=14):
 
 
 # average directional movement index uses differences between consecutive lows and consecutive highs to define a trend
-def average_directional_movement(closes, lows, highs, interval=14):
+def average_directional_movement(closes, lows, highs, interval):
     # calculate average true range
     average_true_range = _average_true_range(closes, lows, highs, interval=interval)
     # get the upward and downward movements
@@ -173,7 +173,7 @@ def average_directional_movement(closes, lows, highs, interval=14):
 
 
 # the aaron indicator is the time passed since the last high/low mapped to a value between 0 and 100
-def aaron(lows, highs, interval=25):
+def aaron(lows, highs, interval):
     # construct windows for each time interval for the lows and highs
     window_lows = sliding_window_view(lows, window_shape=interval + 1)
     window_highs = sliding_window_view(highs, window_shape=interval + 1)
@@ -190,7 +190,7 @@ def aaron(lows, highs, interval=25):
 
 
 # the highest and lowest close in some time interval define a range containing all recent prices
-def horizontal_channel(closes, interval=100):
+def horizontal_channel(closes, interval):
     # create a window view sliding over the closes
     sliding_window = sliding_window_view(closes, window_shape=interval)
     # calculate the min for each time interval
@@ -207,7 +207,7 @@ def horizontal_channel(closes, interval=100):
 
 # a channel constructed using regression
 # the channel lines are defined as regression trend +- the maximal absolute from this line
-def trend_channel(closes, interval=100):
+def trend_channel(closes, interval):
     # calculate the parameters of the trend line for each time interval
     initial_value, slope = utilities.regression_lines(closes, interval)
     # construct the regression trendline
@@ -225,7 +225,7 @@ def trend_channel(closes, interval=100):
 
 
 # the commodity channel index is a momentum indicator measuring deviations of the typical price from mean prices
-def commodity_channel(lows, highs, closes, interval=20):
+def commodity_channel(lows, highs, closes, interval):
     # calculate the typical average price using the standard moving average function and the three prices
     summed_prices = lows + highs + closes
     typical_price = standard_moving_average(summed_prices, interval) / 3
@@ -242,7 +242,7 @@ def commodity_channel(lows, highs, closes, interval=20):
 
 
 # chande momentum compares the sum of upward movements to the sum of downward movements
-def chande_momentum(closes, interval=50):
+def chande_momentum(closes, interval):
     # calculate the daily moves between closing prices
     moves = np.diff(closes)
     # define a sliding window
@@ -266,7 +266,7 @@ def chande_momentum(closes, interval=50):
 
 
 # a simple momentum indicator comparing a past closing price with the current price
-def rate_of_change(closes, interval=100):
+def rate_of_change(closes, interval):
     # for the last elements, no future data will exist
     past = np.append(np.zeros(interval) + np.nan, closes[:-interval])
     # compare the shifted closing prices
@@ -277,7 +277,7 @@ def rate_of_change(closes, interval=100):
 
 # lines placed around a moving average using the current standard deviation
 # the lines contract when the standard deviation declines and expand when the standard deviation increases
-def bollinger_bands(closes, interval=20, deviations=2):
+def bollinger_bands(closes, interval, deviations=2):
     # get the moving average
     ma = standard_moving_average(closes, interval=interval)
     std = standard_deviation(closes, ma, interval=interval)
