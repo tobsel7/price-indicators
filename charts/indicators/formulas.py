@@ -51,7 +51,7 @@ def standard_moving_average(closes, interval):
 # the weighted mean price over a defined interval
 def linear_weighted_moving_average(closes, interval):
     # the weights linearly increase, older prices have lower weights than recent prices
-    window = 2 * np.arange(1, interval + 1, dtype=np.float64) / (interval * (interval + 1))
+    window = 2 * np.arange(1, interval + 1, dtype=np.float64)[::-1] / (interval * (interval + 1))
     return _moving_average(closes, window)
 
 
