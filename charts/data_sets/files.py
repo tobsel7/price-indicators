@@ -2,6 +2,8 @@
 import os
 # storage path
 from charts.parameters import STORAGE_PATH, ASSET_LIST, SAMPLES_PER_YEAR
+# the data handler for interacting with individual charts
+from charts.api import data_handler
 # a generator of samples
 from charts.data_sets import generator
 
@@ -56,3 +58,14 @@ def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=SAMPLES_PER_Y
     normalize_string = "normalized" if normalize else "original"
     name = "{}_{}spy_{}shift_{}".format(asset_list, samples_per_year, future_interval, normalize_string)
     persist_data(data, name, data_format=data_format)
+
+
+# persist the chart and indicator data from one single price chart
+def create_file_from_ticker(source, normalize=True, data_format="feather"):
+    if data_handler.chart_exists(source):
+        data = data_handler.get_chart_data(source).get_full_data(normalize=normalize)
+        file_name = source + "_normalized" if normalize else source + "_original"
+        persist_data(data, file_name, data_format)
+        return True
+    else:
+        return False
