@@ -7,11 +7,11 @@ import pandas as pd
 import numpy as np
 
 # import default parameters
-from charts.parameters import VOLATILITY_INTERVALS, MOVING_AVERAGE_INTERVALS, \
-    MOVING_AVERAGE_TREND_PARAMETERS, MOVING_AVERAGE_SIGNAL_LINE_INTERVAL, EXPONENTIAL_MOVING_AVERAGE_SMOOTHING,\
-    BOLLINGER_BAND_PARAMETERS, RSI_INTERVALS, RSI_LOGISTIC_TRANSFORMATION_BASE,\
-    RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT, AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, AARON_INTERVALS,\
-    COMMODITY_CHANNEL_INTERVALS, TREND_CHANNEL_INTERVALS, CHANDE_MOMENTUM_INTERVALS, RATE_OF_CHANGE_INTERVALS
+from charts.parameters import VOLATILITY_INTERVALS, MOVING_AVERAGE_INTERVALS, MOVING_AVERAGE_TREND_PARAMETERS, \
+    MACD_PARAMETERS, MACD_SIGNAL_LINE_INTERVAL, EXPONENTIAL_MOVING_AVERAGE_SMOOTHING, BOLLINGER_BAND_PARAMETERS, \
+    RSI_INTERVALS, RSI_LOGISTIC_TRANSFORMATION_BASE, RSI_LOGISTIC_TRANSFORMATION_INFLECTION_POINT, \
+    AVERAGE_DIRECTIONAL_MOVEMENT_INTERVALS, AARON_INTERVALS,COMMODITY_CHANNEL_INTERVALS, TREND_CHANNEL_INTERVALS, \
+    CHANDE_MOMENTUM_INTERVALS, RATE_OF_CHANGE_INTERVALS
 
 
 # the number of preceding days needed to calculate all the indicators is the maximum of all interval parameters
@@ -65,30 +65,39 @@ def moving_averages(closes, intervals=MOVING_AVERAGE_INTERVALS, normalize=True):
     return mas
 
 
-def moving_average_trends(closes, parameters=MOVING_AVERAGE_TREND_PARAMETERS, normalize=True):
+def moving_average_trends(closes, parameters=MOVING_AVERAGE_TREND_PARAMETERS):
     summary = {}
     for short, long in parameters.items():
         # calculate the moving averages
         short_sma = formulas.standard_moving_average(closes=closes, interval=short)
         long_sma = formulas.standard_moving_average(closes=closes, interval=long)
-        short_ema = formulas.exponential_moving_average(closes=closes, interval=short)
-        long_ema = formulas.exponential_moving_average(closes=closes, interval=long)
 
         # get the trend and trend crossings
         ma_trend = formulas.ma_trend(short_sma, long_sma)
         ma_cross = formulas.crossing(short_sma, long_sma, interval=short)
 
+        summary["ma_trend{}_{}".format(short, long)] = ma_trend
+        summary["ma_cross{}_{}".format(short, long)] = ma_cross
+
+    return summary
+
+
+def ma_convergence_divergence(closes, parameters=MACD_PARAMETERS, normalize=True):
+    summary = {}
+    for short, long in parameters.items():
+        # calculate the exponential moving averages
+        short_ema = formulas.exponential_moving_average(closes=closes, interval=short)
+        long_ema = formulas.exponential_moving_average(closes=closes, interval=long)
+
         # define the macd base and signal line crossings
         macd, macd_signal = formulas.ma_convergence_divergence(short_ema, long_ema, long,
-                                                               signal_line_length=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
-        macd_cross = formulas.crossing(macd, macd_signal, interval=MOVING_AVERAGE_SIGNAL_LINE_INTERVAL)
+                                                               signal_line_length=MACD_SIGNAL_LINE_INTERVAL)
+        macd_cross = formulas.crossing(macd, macd_signal, interval=MACD_SIGNAL_LINE_INTERVAL)
         if normalize:
             # the macd base and signal line is normalized using the long moving average
             macd = utilities.normalize_indicator(macd / long_ema, -1, 1, clip=False)
             macd_signal = utilities.normalize_indicator(macd_signal / long_ema, -1, 1, clip=False)
 
-        summary["ma_trend{}_{}".format(short, long)] = ma_trend
-        summary["ma_cross{}_{}".format(short, long)] = ma_cross
         summary["macd{}_{}".format(short, long)] = macd
         summary["macd_signal{}_{}".format(short, long)] = macd_signal
         summary["macd_cross{}_{}".format(short, long)] = macd_cross
@@ -255,7 +264,9 @@ def all_indicators(chart_data, normalize=True):
     # different types of moving averages
     ma = moving_averages(closes, normalize=normalize)
     # moving average trends
-    ma_trend = moving_average_trends(closes, normalize=normalize)
+    ma_trend = moving_average_trends(closes)
+    # macd
+    macd = ma_convergence_divergence(closes, normalize=normalize)
     # average directional movement index6
     adm = average_directional_movements(closes, lows, highs, normalize=normalize)
     # aaron
@@ -275,7 +286,7 @@ def all_indicators(chart_data, normalize=True):
     roc = rate_of_change(closes, normalize=normalize)
 
     # combine all indicators and return them as a dataframe
-    merged_summaries = {**volat, **ma, **ma_trend, **adm, **aarn, **bollinger, **rsi, **channels, **cci, **chande,
-                        **roc}
+    merged_summaries = {**volat, **ma, **ma_trend, **macd, **adm, **aarn, **bollinger, **rsi, **channels, **cci,
+                        **chande, **roc}
 
     return pd.DataFrame(merged_summaries)

@@ -32,8 +32,14 @@ MOVING_AVERAGE_TREND_PARAMETERS = {
     50: 100,
     50: 200
 }
+
+# exponential moving averages that are compared in the macd indicator
+MACD_PARAMETERS = {
+    # short_ma: long_ma
+    12: 26
+}
 # the macd indicator is smoothed to get its signal line
-MOVING_AVERAGE_SIGNAL_LINE_INTERVAL = 9
+MACD_SIGNAL_LINE_INTERVAL = 9
 
 # the smoothing parameter used for calculating the weights in the ema function
 EXPONENTIAL_MOVING_AVERAGE_SMOOTHING = 2
