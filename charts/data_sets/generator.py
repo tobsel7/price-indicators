@@ -1,6 +1,8 @@
 # data sets are pandas data frames
 import pandas as pd
 
+import numpy as np
+
 # the data handler provides price data
 from charts.api import data_handler
 
@@ -33,3 +35,21 @@ def generate_samples(asset_list=ASSET_LIST, samples_per_year=SAMPLES_PER_YEAR, n
 
     # return all the gathered samples
     return samples
+
+
+def get_price_data_from_all(asset_list=ASSET_LIST, chart_value=lambda chart: chart.get_closes()):
+    # get all names and symbols from the list
+    asset_symbols = list(pd.read_csv(ASSET_LIST_PATH.format(asset_list), usecols=["Ticker"])["Ticker"])
+    asset_symbols = filter(data_handler.chart_exists, asset_symbols)
+    all_prices = {}
+    max_size = 0
+
+    for symbol in asset_symbols:
+        prices = chart_value(data_handler.get_chart_data(symbol))
+        max_size = max_size if max_size > len(prices) else len(prices)
+        all_prices[symbol] = prices
+
+    for symbol in all_prices.keys():
+        all_prices[symbol] = np.append(np.zeros(max_size - len(all_prices[symbol])) + np.nan, all_prices[symbol])
+
+    return pd.DataFrame(all_prices)

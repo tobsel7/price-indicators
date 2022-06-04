@@ -101,6 +101,8 @@ def create(source, parameter=None):
         else:
             if parameter == "all":
                 create_all_from_asset_list(source.lower())
+            elif parameter == "prices":
+                create_all_prices_from_asset_list(source.lower())
             else:
                 create_file_from_asset_list(source.lower())
 
@@ -126,6 +128,7 @@ def create_default_sets():
     # create a small data set from the nasdaq stock listings
     print("Creating data set using sampled data from stocks in the nasdaq100 index.")
     files.create_random_data_set("nasdaq100", 10, normalize=True, future_interval=30, data_format="feather")
+    files.create_random_data_set("nasdaq100", 30, normalize=False, future_interval=30, data_format="feather")
     print("Created nasdaq100 data set.")
 
 
@@ -166,6 +169,11 @@ def create_file_from_asset_list(source):
         print("Creating data set for interval {}.\nPlease Wait...".format(interval))
         files.create_random_data_set(source, samples_per_year=samples_per_year, normalize=True,
                                      future_interval=interval, data_format=file_format)
+
+
+# accumulate all prices into one data set
+def create_all_prices_from_asset_list(source):
+    files.create_price_data_from_all(source)
 
 
 # creates a data set from each asset stored in a list of assets

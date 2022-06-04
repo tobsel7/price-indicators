@@ -60,6 +60,13 @@ def create_random_data_set(asset_list=ASSET_LIST, samples_per_year=SAMPLES_PER_Y
     persist_data(data, name, data_format=data_format)
 
 
+# create a data set will all price data from a list of assets
+def create_price_data_from_all(asset_list=ASSET_LIST):
+    data = generator.get_price_data_from_all(asset_list)
+    name = "{}_all_data".format(asset_list)
+    persist_data(data, name, data_format="feather")
+
+
 # persist the chart and indicator data from one single price chart
 def create_file_from_ticker(source, normalize=True, data_format="feather"):
     if data_handler.chart_exists(source):
