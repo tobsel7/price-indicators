@@ -11,7 +11,7 @@ from charts.api import chart
 
 # static variables necessary for the api
 # API_KEY = "SECRET-API-KEY"
-from charts.api.api_key import API_KEY
+import charts.api.api_key as api_key
 
 # default storage path and api url
 from charts.parameters import API_JSON_PATH, API_URL
@@ -67,7 +67,7 @@ def persisted_data_exists(symbol):
 # basic function returning the price history of one or multiple symbols
 def get_price(symbol):
     # append api key to the headers
-    headers = {"x-api-key": API_KEY}
+    headers = {"x-api-key": api_key.API_KEY}
     # create query with the symbols
     url = API_URL + symbol
     # define params

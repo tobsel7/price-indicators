@@ -2,15 +2,11 @@
 from charts.api import data_handler
 from charts.data_sets import files
 
-# countries with existing asset lists
-COUNTRIES = ["spain", "brazil", "australia", "canada", "ireland", "usa", "germany", "latvia", "france", "denmark",
-             "isreal", "iceland", "switzerland", "finland", "southkorea", "mexiko", "hongkong", "argentina",
-             "italy", "russia", "thailand", "china", "lithuania", "turkey", "taiwan", "austria", "portugal",
-             "india", "greece", "estonia", "singapore", "norway", "newzealand", "belgium", "qatar", "sweden",
-             "uk", "malaysia", "venezuela", "indonesia", "netherlands"]
+# import the api key file in order to change it on demand
+import charts.api.api_key as api_key
 
-# some default tickers
-DEFAULT_TICKERS = ["IBM", "AAPL", "VOE.VI"]
+# countries with existing asset lists and some default ticker symbols for demonstrations
+from charts.parameters import COUNTRIES, DEFAULT_TICKERS
 
 
 # main cli program used to generate data sets
@@ -28,7 +24,11 @@ def main():
         # get the commands separated by a space
         commands = input().split(" ")
         # filter the commands using the first word
-        if commands[0] == "create" and len(commands) > 1:
+        if commands[0] == "download" and len(commands) > 1:
+            download(commands[1])
+        elif commands[0] == "set" and len(commands) > 2 and commands[1] == "key":
+            set_api_key(commands[2])
+        elif commands[0] == "create" and len(commands) > 1:
             source = commands[1]
             parameter = commands[2] if len(commands) > 2 else ""
             # create data sets
@@ -50,8 +50,11 @@ def main():
 # display the implemented commands
 def help_text():
     print("--Commands:\n"
+          "set key <API key> -> Change the used API key by providing a new one.\n"
+          "download <stock ticker> -> Download and persist price data for one ticker symbol from yahoo finance.\n"
+          "download <asset list> -> Download and persist price data from multiple assets from yahoo finance.\n"
           "create default -> Creates a few default data sets.\n"
-          "create countries -> Creates a data set with default parameters for some countries with stored stock data."
+          "create countries -> Creates a data set with default parameters for some countries with stored stock data.\n"
           "create <stock ticker> -> Creates a data set from one stock ticker\n"
           "create <asset list> -> Creates samples from a list of assets\n"
           "create <asset_list> all -> Persists every stock chart with all its indicators found in a list of assets.\n"
@@ -59,6 +62,7 @@ def help_text():
           "info <asset list> -> Displays basic information about an asset list.\n"
           "show tickers -> Display all stock tickers which have stored chart data on this machine.\n"
           "show lists -> Display all the defined asset lists.\n"
+          "show key -> Display the currently used API key.\n"
           "\n--Storage:\n"
           "Generated files are stored in the folder persisted_data split up according to the chosen data type.")
 
@@ -85,8 +89,27 @@ def info(source):
 def show(selection):
     if selection == "tickers":
         print(*files.get_persisted_stock_names(), sep="\n")
-    else:
+    elif selection == "lists":
         print(*files.get_asset_list_names(), sep="\n")
+    elif selection == "key":
+        print("API key: {}".format(api_key.API_KEY))
+
+
+# download price data
+def download(source):
+    if source in files.get_asset_list_names():
+        print("Downloading data for all tickers from found in the list {}.".format(source))
+        data_handler.download_and_persist_chart_data(source, show_downloads=True)
+    else:
+        print("Downloading price data from ticker {}.".format(source))
+        data_handler.get_chart_data(source, auto_persist_on_load=True)
+        print("Successfully downloaded {} price data.".format(source))
+
+
+# change the used api key
+def set_api_key(key):
+    api_key.API_KEY = key
+    print("API key set to {}.".format(api_key.API_KEY))
 
 
 # create data sets from some source defined by its name

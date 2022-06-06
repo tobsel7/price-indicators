@@ -6,9 +6,20 @@ API_JSON_PATH = STORAGE_PATH.format("api_jsons/{}.json")
 
 # API URL
 API_URL = "https://yfapi.net/v8/finance/chart/"
+
 # a list of asset names is used to gather stock data for many companies
 ASSET_LIST_PATH = STORAGE_PATH.format("asset_lists/{}.csv")
 ASSET_LIST = "all_stocks"
+
+# a list of country names
+COUNTRIES = ["spain", "brazil", "australia", "canada", "ireland", "usa", "germany", "latvia", "france", "denmark",
+             "isreal", "iceland", "switzerland", "finland", "southkorea", "mexiko", "hongkong", "argentina",
+             "italy", "russia", "thailand", "china", "lithuania", "turkey", "taiwan", "austria", "portugal",
+             "india", "greece", "estonia", "singapore", "norway", "newzealand", "belgium", "qatar", "sweden",
+             "uk", "malaysia", "venezuela", "indonesia", "netherlands"]
+
+# some tickers used for demonstrations
+DEFAULT_TICKERS = ["IBM", "AAPL", "VOE.VI"]
 
 # the default future_price interval
 FUTURE_INTERVAL = 365
@@ -67,6 +78,7 @@ AARON_INTERVALS = [15, 25, 40]
 
 # time intervals used when calculating the commodity channel index
 COMMODITY_CHANNEL_INTERVALS = [20, 50, 100]
+
 # time intervals for constructing linear trend channels
 TREND_CHANNEL_INTERVALS = [20, 50, 100, 200]
 

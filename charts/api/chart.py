@@ -100,17 +100,27 @@ class Chart:
         if future_interval > 0:
             # shift the current price according to the future_price interval to get a future price for the data set
             future_prices = np.append(self.get_closes()[future_interval:], np.zeros(future_interval) + np.nan)
-            if normalize:
-                # normalize by dividing the future price by the current price according to the price shift
-                future_prices[:-future_interval] = future_prices[:-future_interval] / self.get_closes()[:-future_interval]
-            # add the future price to the data frame
-            data["future_price"] = future_prices.tolist()
 
             # find all volatility columns in the data frame
             current_volatility_columns = [column for column in data if column.startswith("volatility")]
             future_volatility_columns = ["future_" + column for column in current_volatility_columns]
             # add a future volatility columns by taking the volatility columns and shifting them by the future interval
             data[future_volatility_columns] = data[current_volatility_columns].shift(-future_interval)
+
+            if normalize:
+                # normalize by dividing the future price and volatility
+                # by the current price according to the price shift
+                future_prices[:-future_interval] = future_prices[:-future_interval] / self.get_closes()[:-future_interval]
+
+                data[future_volatility_columns] = data[future_volatility_columns].div(
+                    data[current_volatility_columns].values
+                )
+                # replace invalid divisions by 1 (no change in volatility)
+                data[future_volatility_columns] = data[future_volatility_columns].replace([np.inf, -np.inf], 1)
+
+            # add the future price to the data frame
+            data["future_price"] = future_prices.tolist()
+
         # return the complete data frame
         return data
 
