@@ -3,7 +3,7 @@
 # packaging library
 from setuptools import setup, find_packages
 
-setup(name="chart-indicators",
+setup(name="price-indicators",
       version="1.0",
       description="A python tool downloading data from the yahoo finance api and calculating price indicators.",
       author="Tobias Haider",
