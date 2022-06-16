@@ -70,9 +70,10 @@ def create_price_data_from_all(asset_list=ASSET_LIST):
 # persist the chart and indicator data from one single price chart
 def create_file_from_ticker(source, normalize=True, data_format="feather"):
     if data_handler.chart_exists(source):
-        data = data_handler.get_chart_data(source).get_full_data(normalize=normalize)
-        file_name = source + "_normalized" if normalize else source + "_original"
-        persist_data(data, file_name, data_format)
-        return True
-    else:
-        return False
+        data = data_handler.get_chart_data(source)
+        if data.can_create_samples():
+            data = data.get_full_data(normalize=normalize)
+            file_name = source + "_normalized" if normalize else source + "_original"
+            persist_data(data, file_name, data_format)
+            return True
+    return False

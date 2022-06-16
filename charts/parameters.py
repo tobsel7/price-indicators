@@ -40,7 +40,6 @@ MOVING_AVERAGE_INTERVALS = [10, 20, 50, 100, 200]
 MOVING_AVERAGE_TREND_PARAMETERS = {
     # short_ma: long_ma
     20: 50,
-    50: 100,
     50: 200
 }
 

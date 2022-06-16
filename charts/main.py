@@ -157,11 +157,12 @@ def create_default_sets():
 
 # create data sets for each country with stored stock data
 def create_country_sets():
+    future_price_input = int(input("Enter the time interval between the current and future price in days.\n"))
     # go through all country
     for country in COUNTRIES:
         print("Creating feather file for the {} data set.".format(country))
         # create a data set with fixed parameters for simplicity
-        files.create_random_data_set(country, 10, True, 30, "feather")
+        files.create_random_data_set(country, 10, True, future_price_input, "feather")
         print("Created {} file.".format(country))
 
 
@@ -211,7 +212,7 @@ def create_all_from_asset_list(source):
         file_format = "feather"
 
     for ticker in data_handler.get_asset_list(source)["Ticker"]:
-        print("Creating data set from {}.\nPlease Wait...".format(ticker))
+        print("Creating data set from {}.".format(ticker))
         files.create_file_from_ticker(ticker, normalize, data_format=file_format)
 
 
