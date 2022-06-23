@@ -7,6 +7,9 @@ This project is split up into two, in principal, separate applications:
 # Storage:
 All data is persisted in the folder *persisted_data*. It is split up into file formats, although for the purpose of this project, mainly the *.feather* type is used to minimize the needed storage. Files of the type *.csv* and *.xls* files are stored in *persisted_data/sheets*.
 
+Some data sets can be downloaded using this link:
+https://u.pcloud.link/publink/show?code=kZDdJLVZP91Xe0vdAI5AtxQB69I4whcdBUL7
+
 ## charts
 The charts application is used to **download, process and store price chart data**. With the implemented command line interface, various data sets are generated.
 
