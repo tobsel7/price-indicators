@@ -86,7 +86,7 @@ pip install pandas
 
 ...
 
-In case of missing data sets, generate them using the **create** command in the cli application (*charts/main.py*)
+In case of missing data sets, generate them using the **create** command when running the cli application (*charts/main.py*)
 
 If a program is crashing, it is most likely due to incorrect configurations, current working directory or unset yahoo finance api key.
 
