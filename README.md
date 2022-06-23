@@ -73,8 +73,26 @@ Exiting program.
 The analysis folder is a **collections of interactive python worksheets**. Using the previously generated, they create visualizations of various aspects from the datasets.
 
 ## How to run:
-Open the worksheets using jupyter notebook. If errors arise, it is most likely due to missing libraries (numpy, pandas, PyTorch, sklearn, seaborn, matplotlib, sci-kit etc.) or data sets.
+Open the worksheets using jupyter notebook. 
 
+# Error Handling
+If errors arise, it is most likely due to missing libraries (numpy, pandas, PyTorch, sklearn, seaborn, matplotlib, sci-kit etc.) or data sets.
+
+In case of missing libraries, install the respective libaries using commans like:
+
+pip install numpy 
+
+pip install pandas 
+
+...
+
+In case of missing data sets, generate them using the **create** command in the cli application (*charts/main.py*)
+
+If a program is crashing, it is most likely due to incorrect configurations, current working directory or unset yahoo finance api key.
+
+When running the python tool the current working directory must be **price-indicators/charts**.
+
+The api key can be set dynamically in the cli session using the command **set key SECRET-YAHOO-API-KEY** or by writing it down in the file price-indicators/charts/api/api_key.py
 
 
 
