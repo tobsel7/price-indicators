@@ -23,7 +23,9 @@ The application is started by running the file *charts/main.py* using a **Python
 The **PYTHONPATH is configured** to be the project directory. This way, the program can be start using the folling commands. Note that here my real path is used. Change it to the location of the project on your machine.
 
 export PYTHONPATH=/home/tobias/PycharmProjects/price-indicators
+
 cd price-indicators/charts
+
 python3 main.py
 
 ### CLI interaction:
