@@ -25,8 +25,9 @@ python3 main.py
 
 ### CLI interaction:
 Using keybord inputs, data sets can then be generated interactively. Enter help first, to see the list of available commands.
-### Here an example cli interaction:
------------------------------------------------------------------------------
+
+Here an example cli interaction:
+
 Welcome to this data set tool!
 List the commands by typing 'help'.
 Exit by pressing -Enter- without any text.
@@ -48,7 +49,7 @@ csv
 Successfully created a data set using data from aapl
 
 Exiting program.
------------------------------------------------------------------------------
+
 
 ## analysis
 The analysis folder is a collections of interactive python worksheets. Using the previously generated, they create visualizations of various aspects from the datasets.
