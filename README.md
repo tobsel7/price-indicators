@@ -29,23 +29,41 @@ Using keybord inputs, data sets can then be generated interactively. Enter help 
 Here an example cli interaction:
 
 Welcome to this data set tool!
+
 List the commands by typing 'help'.
+
 Exit by pressing -Enter- without any text.
+
 set key SECRET-YAHOO-API-KEY
+
 API key set to SECRET-YAHOO-API-KEY.
+
 download aapl
+
 Downloading price data from ticker aapl.
+
 Successfully downloaded aapl price data.
+
 info aapl
+
 Price data for the asset AAPL
+
 Last price 138.27000427246094
+
 Number of data points 2516
+
 create aapl
+
 Should the data set be normalized?
+
 [Y(es), N(o)]: N
+
 Enter the wanted file format.
+
 Options: csv, feather, hdf, gbq, excel, (-Enter- for default option)
+
 csv
+
 Successfully created a data set using data from aapl
 
 Exiting program.
