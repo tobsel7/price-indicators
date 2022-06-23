@@ -10,7 +10,7 @@ from charts.data_sets import generator
 
 # this setup must be called once to ensure all directories exist before creating datasets
 def setup():
-    for directory in ["sheets", "feather", "hdf", "gbq"]:
+    for directory in ["", "sheets", "feather", "hdf", "gbq"]:
         path = STORAGE_PATH.format(directory)
         # create an empty folder if it does not exist
         if not os.path.exists(path):

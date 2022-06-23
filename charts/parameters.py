@@ -1,5 +1,5 @@
 # abstract path for all persisted data
-STORAGE_PATH = "./persisted_data/{}"
+STORAGE_PATH = "../persisted_data/{}"
 
 # persisted api jsons
 API_JSON_PATH = STORAGE_PATH.format("api_jsons/{}.json")
