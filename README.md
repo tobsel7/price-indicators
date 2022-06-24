@@ -11,7 +11,7 @@ A few preprocesed data sets are available via this link:
 https://u.pcloud.link/publink/show?code=kZDdJLVZP91Xe0vdAI5AtxQB69I4whcdBUL7
 
 ## charts
-The charts application is used to **download, process and store price chart data**. With the implemented command line interface, various data sets are generated.
+The charts application is used to **download, process, store price chart data and calculate technical indicators**. With the implemented command line interface, various data sets are generated.
 
 ## How to run:
 ### Option 1 (recommended):
@@ -75,7 +75,7 @@ Exiting program.
 
 
 ## analysis
-The analysis folder is a **collections of interactive python worksheets**. Using the previously generated, they create visualizations of various aspects from the datasets.
+The analysis folder is a **collections of interactive python worksheets**. Using the previously generated data sets, they create visualizations of various aspects from the datasets.
 
 ## How to run:
 Open the worksheets using jupyter notebook. 
