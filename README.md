@@ -83,13 +83,13 @@ Open the worksheets using jupyter notebook.
 # Error Handling
 If errors arise, it is most likely due to missing libraries (numpy, pandas, PyTorch, sklearn, seaborn, matplotlib, sci-kit etc.) or data sets.
 
-In case of missing libraries, install the respective libaries using commans like:
+In case of missing libraries, install the respective libaries using commands like:
 
 pip install numpy 
 
 pip install pandas 
 
-...
+etc.
 
 In case of missing data sets, generate them using the **create** command when running the cli application (*charts/main.py*)
 
