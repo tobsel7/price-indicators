@@ -1,0 +1,522 @@
+Ticker,Name
+AZM.MI,Azimut Holding S.p.A.
+AST.MI,Astaldi S.p.A.
+AE.MI,Aedes SIIQ S.p.A.
+A2A.MI,A2A S.p.A.
+BMPS.MI,Banca Monte dei Paschi di Siena S.p.A.
+UBI.MI,Unione di Banche Italiane S.p.A.
+PMI.MI,Banca Popolare di Milano Scarl
+BZU.MI,Buzzi Unicem SpA
+EOAN.MI,E.ON SE
+DNN.MI,Danone
+DMN.MI,Damiani S.p.A.
+DAL.MI,Datalogic S.p.A.
+SPO.MI,BCA POP DI SPOLETO
+SIE.MI,Siemens Aktiengesellschaft
+SAP.MI,SAP SE
+DBK.MI,Deutsche Bank Aktiengesellschaft
+DAI.MI,Daimler AG
+CPR.MI,Davide Campari-Milano S.p.A.
+BPSO.MI,Banca Popolare di Sondrio S.C.p.A.
+BIM.MI,Banca Intermobiliare di Investimenti e Gestioni SpA
+ALV.MI,Allianz SE
+TKAG-U.TI,THYSSENKRUPP
+TAS.MI,TAS Tecnologia Avanzata dei Sistemi S.p.A.
+PEL.MI,Banca Popolare dell'Etruria e del Lazio - SocietÃ Cooperativa
+MUV2.MI,Münchener Rückversicherungs-Gesellschaft Aktiengesellschaft
+MEOG-U.TI,CECONOMY
+LD.MI,La Doria SpA
+ENEL.MI,Enel SpA
+MN.MI,Arnoldo Mondadori Editore S.p.A.
+EXO.MI,Exor N.V.
+CED.MI,Caltagirone Editore SpA
+BPE.MI,BPER Banca S.p.A.
+PRT.MI,Esprinet S.p.A.
+FILA.MI,F.I.L.A. - Fabbrica Italiana Lapis ed Affini S.p.A.
+FDE.MI,Frendy Energy S.p.A.
+EUK.MI,EuKedos S.p.A.
+ERG.MI,ERG S.p.A.
+ENI.MI,Eni S.p.A.
+EGPW.MI,Enel Green Power S.p.A.
+VITA.MI,Vita Società Editoriale S.p.A.
+TOT.MI,TOTAL S.A.
+FNC.MI,Leonardo - Finmeccanica S.p.a.
+VIV.MI,Vivendi SA
+MTF.MI,Mondo Tv France Société Anonyme
+JUVE.MI,Juventus Football Club S.p.A.
+FDA.MI,Fidia S.p.A.
+ALU.MI,Alcatel-Lucent
+G.MI,Assicurazioni Generali S.p.A.
+LUX.MI,Luxottica Group S.p.A.
+GSP.MI,Gas Plus S.p.A.
+NRST.MI,Neurosoft Software Production S.A.
+HER.MI,Hera S.p.A.
+CEM.MI,Cementir Holding S.p.A.
+ANIM.MI,Anima Holding S.p.A
+JNPR-U.TI,JUNIPER NETWORKS
+KI.MI,Ki Group S.p.A.
+MSK.MI,Moleskine SpA
+MB.MI,Mediobanca Banca di Credito Finanziario S.p.A.
+RCS.MI,RCS MediaGroup S.p.A.
+MT.MI,Maire Tecnimont S.p.A.
+MARR.MI,MARR S.p.A.
+MONC.MI,Moncler S.p.A.
+MOL.MI,Gruppo MutuiOnline S.p.A
+M7IT.MI,MP7 Italia S.p.A.
+CNHI.MI,CNH Industrial N.V.
+NICE.MI,Nice S.p.A.
+STM.MI,STMicroelectronics N.V.
+PHIA.MI,Koninklijke Philips N.V.
+NET.MI,Net Insurance S.p.A.
+NESN-U.TI,NESTLE
+RACE.MI,Ferrari N.V.
+NR.MI,Nova Re SIIQ S.p.A.
+NOK1V.TI,NOKIA
+S24.MI,Il Sole 24 ORE S.p.A.
+ORA.MI,Orange S.A.
+ORA-U.TI,ORACLE
+ON.MI,Bio-on S.p.A.
+DANR.MI,Danieli & C. Officine Meccaniche S.p.A.
+OSR-U.TI,OSRAM LICHT
+PRY.MI,Prysmian S.p.A.
+POPR.MI,Poligrafici Printing S.p.A.
+PLT.MI,Parmalat S.p.A.
+PC.MI,PIRELLI & C. SocietÃ per Azioni
+QC-U.TI,QUALCOMM
+REY.MI,Reply S.p.A.
+TITR.MI,Telecom Italia S.p.A.
+REC.MI,Recordati S.p.A.
+LR.MI,Landi Renzo S.p.A.
+BSRP.MI,Banco di Sardegna S.p.A.
+STEFR.MI,Stefanel S.p.A.
+UCG.MI,UniCredit S.p.A.
+YSFT.MI,Softec S.p.A.
+SRS.MI,Saras S.p.A.
+TOD.MI,TOD'S S.p.A.
+BZUR.MI,Buzzi Unicem SpA
+USRA.MI,UnipolSai Assicurazioni S.p.A.
+UNI.MI,Unipol Gruppo Finanziario S.p.A.
+UCGR.MI,UniCredit S.p.A.
+TWTR-U.TI,TWITTER
+MD-U.TI,MCDONALD'S
+CTIC.MI,CTI BioPharma Corp.
+AP-U.TI,APPLE
+AMD-U.TI,ADVANCED MICRO DEVICES
+AMA-U.TI,AMAZON.COM
+ZV.MI,Zignago Vetro S.p.A.
+VOWG-U.TI,VOLKSWAGEN
+VAS.MI,Vittoria Assicurazioni S.p.A.
+SGEF-U.TI,VINCI
+TV.MI,Tech-Value S.p.A.
+YVI.MI,Valore Italia Holding di Partecipazioni S.p.A.
+VZ.TI,VERIZON COMMUNICATIONS
+VIV.TI,VIVENDI
+VE.MI,Visibilia Editore S.p.a.
+WMC.MI,WM Capital S.p.A.
+INW.MI,Infrastrutture Wireless Italiane S.p.A.
+BMW.MI,Bayerische Motoren Werke Aktiengesellschaft
+AOL-U.TI,TIME WARNER
+WMT-U.TI,WAL-MART STORES
+WD-U.TI,THE WALT DISNEY
+XOM-U.TI,EXXON MOBIL
+XLNX-U.TI,XILINX
+XPR.MI,Exprivia S.p.A.
+YNAP.MI,YOOX Net-A-Porter Group S.p.A.
+YIV.MI,Imvest S.p.A.
+YA-U.TI,YAHOO
+YRM.MI,Rosetti Marino SpA
+YSF.MI,Soft Strategy S.p.A.
+ZUC.MI,Vincenzo Zucchi S.p.A.
+ESCO.MI,Zephyro S.p.A.
+MZB.MI,Massimo Zanetti Beverage Group S.p.A.
+ZURN-U.TI,ZURICH INSURANCE GROUP
+ZUCR.MI,Vincenzo Zucchi S.p.A.
+AA-U.TI,ALCOA
+ABBN-U.TI,ABB
+ABI-U.TI,ANHEUSER-BUSCH INBEV
+ACE.MI,ACEA S.p.A.
+ACS.MI,Acsm-Agam S.p.A.
+ACO.MI,Acotel Group SpA
+ACA.TI,CREDIT AGRICOLE
+ACC-U.TI,ACCOR
+ACA.MI,Credit Agricole S.A.
+CDR.MI,Cdr Advance Capital S.p.A.
+ADB.MI,Aeroporto Guglielmo Marconi di Bologna S.p.A.
+ADS-U.TI,ADOBE SYSTEMS
+ADSG-U.TI,ADIDAS
+BABA-U.TI,ALIBABA GROUP HOLDING
+AEF.MI,Aeffe S.p.A.
+AGN.MI,AEGON N.V.
+TYA.MI,Toscana Aeroporti S.p.A.
+AGN.TI,AEGON
+AGL.MI,Autogrill S.p.A.
+A.MI,Agronomia S.p.A.
+AGS.MI,ageas SA/NV
+ARE.MI,ARE.MI
+MASI.MI,Masi Agricola S.p.A.
+DTE.MI,Deutsche Telekom AG
+FORA.TI,AGEAS
+BB.MI,BB Biotech AG
+RWE.MI,RWE Aktiengesellschaft
+OJM.MI,Openjobmetis S.p.A.
+AH.TI,KONINKLIJKE AHOLD
+AHO.MI,Ahold Delhaize
+AIRF-U.TI,AIR FRANCE KLM
+AIRP-U.TI,L'AIR LIQUIDE
+EAD-U.TI,AIRBUS
+AKZO-U.TI,AKZO NOBEL
+ARN.MI,Alerion Clean Power S.p.A.
+APE.MI,Alba S.p.A.
+GOOGL.TI,AZIONE ALPHABET - CLASS A
+CGE.TI,ALCATEL-LUCENT
+ALBA.MI,Alba S.p.A.
+ALSO.TI,ALSTOM
+PM-U.TI,ALTRIA GROUP
+ALV.TI,ALLIANZ
+AMP.MI,Amplifon SpA
+AMB.MI,Ambromobiliare S.p.A.
+BAC.TI,BANK OF AMERICA
+AXP.TI,AMERICAN EXPRESS
+ATH.MI,Ambienthesis S.p.A.
+AMG-U.TI,AMGEN
+STS.MI,Ansaldo STS S.p.A.
+ISPA-U.TI,ARCELORMITTAL
+ASSI.MI,Assiteca S.p.A.
+CASS.MI,Società Cattolica di Assicurazione - Società Cooperativa
+ASR.MI,A.S. Roma S.P.A.
+AT.MI,ASTM S.p.A.
+ASC.MI,Ascopiave S.p.A.
+ATL.MI,Atlantia S.p.A.
+T.TI,AT&T
+SIS.MI,Società Iniziative Autostradali e Servizi S.p.A.
+FCA.MI,Fiat Chrysler Automobiles N.V.
+AXEL.MI,axélero S.p.A.
+AXA.MI,AXA SA
+AXA.TI,AXA
+BOE.MI,Boero Bartolomeo SpA
+BMED.MI,Banca Mediolanum S.p.A.
+BANZ.MI,ePRICE S.p.A.
+PRO.MI,Banca Profilo S.p.A.
+CRG.MI,Banca Carige S.p.A. - Cassa di Risparmio di Genova e Imperia
+BP.MI,Banco Popolare Societa Cooperativa Scarl
+BGN.MI,Banca Generali S.p.A.
+BASF.MI,BASF SE
+BAN.MI,BasicNet S.p.A.
+B.MI,Bastogi S.p.A.
+IF.MI,Banca IFIS S.p.A.
+DBK.TI,DEUTSCHE BANK
+BASF.TI,BASF
+BBVA-U.TI,BBVA
+BDBR.MI,Banco di Desio e della Brianza S.p.A.
+BDB.MI,Banco di Desio e della Brianza S.p.A.
+BCM.MI,Biancamano S.p.A.
+BC.MI,BRUNELLO CUCINELLI S.p.A.
+BNS.MI,Beni Stabili SIIQ S.p.A.
+BET.MI,"Be Think, Solve, Execute S.p.A."
+BEC.MI,B&C Speakers S.p.A.
+BE.MI,Beghelli S.p.A.
+DEXB-U.TI,DEXIA
+BEST.MI,Best Union Company S.p.A.
+BFE.MI,Banca Finnat Euramerica S.p.A.
+BF.MI,Bonifiche Ferraresi S.p.A. Società Agricola
+BSS.MI,Biesse S.p.A.
+BIE.MI,Bioera S.p.A.
+BIA.MI,Bialetti Industrie S.p.A
+BIIB-U.TI,BIOGEN
+BIO2.MI,BioDue S.p.A.
+BLUE.MI,Blue Financial Communication S.p.A.
+BLU.MI,Blue Note S.p.A.
+BLZ.MI,Bolzoni SpA
+BM.MI,Bridge Management S.p.A.
+BMW.TI,BMW
+BNP.MI,BNP Paribas SA
+BNP.TI,BNP PARIBAS
+BO.MI,Borgosesia S.p.A.
+BOMI.MI,Bomi Italia S.p.A.
+DB1GN.TI,DEUTSCHE BOERSE
+BOE-U.TI,BOEING
+BOR.MI,Borgosesia S.p.A.
+BRI.MI,Brioschi Sviluppo Immobiliare spa
+IB.MI,Iniziative Bresciane S.p.A.
+DIB.MI,Digital Bros S.p.A.
+BRE.MI,Brembo S.p.A.
+BST.MI,Banca Sistema S.p.A.
+CARR.MI,Carraro SpA
+MIC.MI,Mid Industry Capital SpA
+CB-U.TI,COMMERZBANK
+CC.MI,Ciccolella SpA
+RIC.MI,Gruppo Ceramiche Ricchetti SpA
+CMB.MI,Cembre S.p.A.
+PAN.MI,Panariagroup Industrie Ceramiche S.p.A.
+CE.MI,Credito Emiliano S.p.A.
+UNA.TI,UNILEVER
+CLT.MI,Centrale del Latte di Torino & C. S.p.A.
+CERV.MI,Cerved Information Solutions S.p.A.
+CFP.MI,Capital for Progress 1 S.p.A.
+MSU.MI,Mondo TV (Suisse) SA
+CHL.MI,Centro HL Distribuzione S.p.A.
+ROC-U.TI,ROCHE HOLDING
+UBSG-U.TI,UBS GROUP
+JPM.TI,J.P. MORGAN CHASE & CO.
+CIT-U.TI,CITIGROUP
+CIS-U.TI,CISCO SYSTEMS
+CIA.MI,Compagnia Immobiliare Azionaria S.p.A.
+CIE-U.TI,CIENA
+CIR.MI,Compagnie Industriali Riunite S.p.A.
+CLF.MI,Caleffi S.p.A.
+CLG.MI,Caleido Group S.p.A.
+CLA.MI,Clabo S.p.A.
+CLE.MI,Class Editori S.p.A.
+CMCS-U.TI,COMCAST
+CNP.MI,Conafi Prestitò S.p.A.
+CRGR.MI,Banca Carige S.p.A. - Cassa di Risparmio di Genova e Imperia
+CRR.MI,Carrefour SA
+CVAL.MI,Credito Valtellinese Società Cooperativa
+CSP.MI,CSP International Fashion Group S.p.A.
+CSG-U.TI,CREDIT SUISSE
+CVX-U.TI,CHEVRON
+DCX.TI,DAIMLER
+DAN-U.TI,DANONE
+DA.MI,Dada S.p.A.
+DAN.MI,Danieli & C. Officine Meccaniche S.p.A.
+DD.TI,E. I. DU PONT DE NEMOURS & CO
+CONG-U.TI,CONTINENTAL
+DGT.MI,DigiTouch S.p.A.
+DIS.MI,D'Amico International Shipping S.A.
+DIA.MI,DiaSorin S.p.A.
+DM.MI,Digital Magics S.p.A.
+DLC.MI,DeLclima S.p.A.
+DLG.MI,De'Longhi S.p.A.
+DMA.MI,DMAIL GROUP S.p.A.
+DP-U.TI,DEUTSCHE POST
+LF-U.TI,DEUTSCHE LUFTHANSA
+DTE.TI,DEUTSCHE TELEKOM
+EBAY-U.TI,EBAY
+ECK.MI,Ecosuntek S.p.A.
+ECA.MI,ErgyCapital S.p.A.
+ES.MI,Gruppo Editoriale L'Espresso S.p.A.
+EDNR.MI,Edison S.p.A.
+POL.MI,Poligrafici Editoriale S.p.A.
+EDF-U.TI,EDF
+EEMS.MI,EEMS Italia SpA
+EIT.MI,EI Towers S.p.A
+ELC.MI,Elica S.p.A.
+ELN.MI,EL.EN. S.p.A.
+SCHN.TI,SCHNEIDER ELECTRIC
+ELE-U.TI,ENDESA
+ELIN.MI,Elettra Investimenti SpA
+ELAB.MI,Energy Lab S.p.A.
+GEL-U.TI,GE SCF
+EM.MI,Emak S.p.A.
+EMC.MI,Energica Motor Company S.p.A.
+FTL.MI,Fintel Energia Group S.p.A.
+ENV.MI,Enervit S.p.A.
+EOA.TI,E.ON
+ENT.MI,Enertronica S.p.A.
+GAS-U.TI,GAS NATURAL SDG
+REP-U.TI,REPSOL
+TEF.MI,"Telefónica, S.A."
+SANT.MI,"Banco Santander, S.A."
+SANT.TI,BANCO SANTANDER
+TEF.TI,TELEFONICA
+IBE-U.TI,IBERDROLA
+ETH.MI,Eurotech SpA
+EXSY.MI,Expert System S.p.A.
+FARM.MI,H-Farm S.p.A.
+FKR.MI,Falck Renewables S.p.A.
+FB-U.TI,FACEBOOK
+PSF.MI,Poligrafica S. Faustino S.p.A.
+FBK.MI,FinecoBank Banca Fineco S.p.A.
+FCT.MI,Fincantieri S.p.A.
+SFER.MI,Salvatore Ferragamo S.p.A.
+FED.MI,Giorgio Fedon & Figli Spa
+TFI.MI,TREVI - Finanziaria Industriale S.p.A.
+LFG.MI,Leone Film Group S.p.A.
+FIC.MI,First Capital S.p.A.
+FM.MI,Fiera Milano SpA
+FNM.MI,FNM S.p.A.
+GLF.MI,Glenalta Food S.p.A.
+SANF.MI,Sanofi
+GLE.MI,Societe Generale Group
+RNO.MI,Renault SA
+GAZ-U.TI,ENGIE
+MICP-U.TI,MICHELIN
+GLE.TI,SOCIETE GENERALE
+CAPP-U.TI,CAPGEMINI
+FTE.TI,ORANGE
+FUL.MI,FullSix S.p.A.
+GAB.MI,Gabetti Property Solutions S.p.A.
+GAMB.MI,Gambero Rosso SpA
+GALA.MI,Gala S.p.A.
+GEO.MI,Geox S.p.A.
+GE.MI,Gefran S.p.A.
+SGR.MI,SAES Getters S.p.A.
+SG.MI,SAES Getters S.p.A.
+GGP.MI,Gruppo Green Power S.p.A.
+GGTV.MI,Giglio Group S.p.A.
+PGR.MI,Italiaonline S.p.A.
+GLW-U.TI,CORNING
+GO.MI,GO internet S.p.A.
+GS-U.TI,GOLDMAN SACHS GROUP
+SGOB-U.TI,SAINT-GOBAIN
+LMG.MI,Lucisano Media Group S.p.A.
+IKGR.MI,Intek Group S.p.A.
+IIG.MI,Italia Independent Group S.p.A.
+HD-U.TI,HOME DEPOT
+LVMH.MI,LVMH Moët Hennessy Louis Vuitton S.E.
+KHC-U.TI,THE KRAFT HEINZ
+LITE-U.TI,LUMENTUM HOLDINGS
+PYPL-U.TI,PAYPAL
+HPQ-U.TI,HP
+IBM-U.TI,IBM
+IES.MI,Investimenti e Sviluppo SpA
+IGD.MI,Immobiliare Grande Distribuzione Società di Investimento Immobiliare Quotata S.p.A.
+IGV.MI,iGrandiViaggi S.p.A.
+IIN.MI,Industria e Innovazione S.p.A.
+IKF.MI,IKF Spa
+IKG.MI,Intek Group S.p.A.
+IMA.MI,I.M.A. Industria Macchine Automatiche S.p.A.
+SAL.MI,Salini Impregilo S.p.A.
+SALR.MI,Salini Impregilo S.p.A.
+IMS.MI,Immsi S.p.A.
+IP.MI,Interpump Group S.p.A.
+IRE.MI,Iren SpA
+IRC.MI,IRCE S.p.A.
+ISPR.MI,Intesa Sanpaolo S.p.A.
+ISP.MI,Intesa Sanpaolo S.p.A.
+ISG.MI,Isagro S.p.A.
+ISGS.MI,Isagro S.p.A.
+SRN.MI,Sorin SpA
+STEF.MI,Stefanel S.p.A.
+SRG.MI,Snam S.p.A.
+SO.MI,Sogefi S.p.A.
+PR.MI,Premuda SpA
+PINF.MI,Pininfarina S.p.A.
+PIA.MI,Piaggio & C. SpA
+IT.MI,Italcementi SpA
+COF.MI,COFIDE - Gruppo De Benedetti S.p.A.
+TME.MI,Telecom Italia Media SpA
+TXT.MI,TXT e-solutions S.p.A.
+TRN.MI,TERNA - Rete Elettrica Nazionale Società per Azioni
+TIT.MI,Telecom Italia S.p.A.
+TIS.MI,Tiscali S.p.A.
+TIP.MI,Tamburi Investment Partners S.p.A.
+SSL.MI,S.S. Lazio S.p.A.
+SPMR.MI,Saipem S.p.A.
+SPM.MI,Saipem S.p.A.
+SES.MI,SeSa S.p.A.
+SAVE.MI,SAVE S.p.A.
+SAB.MI,Sabaf S.p.A.
+RN.MI,Risanamento SpA
+PRL.MI,Pierrel S.p.A.
+MS.MI,Mediaset S.p.A.
+MON.MI,Monrif S.p.A.
+MLM.MI,MolMed S.p.A.
+MCH.MI,Mediacontech S.p.A.
+ITM.MI,Italmobiliare S.p.A.
+IND.MI,IND.MI
+INC.MI,Innovatec S.p.A.
+COV.MI,COVER 50 S.p.A.
+LIT.MI,Retelit S.p.A.
+PLTE.MI,PLT energia S.p.A.
+RAT.MI,Ratti S.p.A.
+MEC.MI,M&C S.p.A.
+SPA2.MI,Space2 S.p.A.
+ITMR.MI,Italmobiliare SpA
+SII.MI,Sintesi Società di Investimenti e Partecipazioni S.p.A.
+USRB.MI,UnipolSai Assicurazioni S.p.A.
+CAD.MI,CAD IT S.p.A.
+ENG.MI,Engineering Ingegneria Informatica S.p.A.
+NOE.MI,NOEMALIFE S.p.A
+MTV.MI,MONDO TV S.p.A.
+MIT.MI,Mittel S.p.A
+SITI.MI,SITI - B&T Group S.p.A.
+DEA.MI,DeA Capital S.p.A.
+MBY.MI,Mobyt S.p.A.
+PRI.MI,Prima Industrie S.p.A.
+CALT.MI,Caltagirone SpA
+PITE.MI,PITECO S.p.A.
+PQ.MI,Piquadro S.p.A.
+AUTME.MI,Autostrade Meridionali S.p.A.
+ROS.MI,Rosss S.p.A.
+TBM.MI,Triboo Media S.p.A.
+UNIP.MI,Unipol Gruppo Finanziario S.p.A.
+SFL.MI,Safilo Group S.p.A.
+MAIL.MI,MailUp S.p.A.
+TBS.MI,TBS Group S.p.A.
+SNA.MI,Snaitech S.p.A.
+MTH.MI,Methorios Capital S.p.A.
+PRS.MI,Prelios S.p.A.
+PST.MI,Poste Italiane SpA
+TES.MI,Tesmec S.p.A.
+CAI.MI,Cairo Communication S.p.A.
+SB.MI,Safe Bag S.p.A
+VLA.MI,Vianini Lavori SpA
+RWAY.MI,Rai Way S.p.A.
+TER.MI,TerniEnergia S.p.A.
+MBR.MI,Modelleria Brambilla S.p.A.
+LVEN.MI,LVenture Group S.p.A.
+KRE.MI,K.R.Energy S.p.A.
+MCK.MI,MC-link S.p.A.
+ME.MI,Meridie S.p.A.
+MSP.MI,MSP.MI
+LUVE.MI,LU-VE S.p.A.
+PCP.MI,PIRELLI & C. SocietÃ per Azioni
+SRI.MI,Servizi Italia S.p.A.
+TECN.MI,Tecnoinvestimenti S.p.A.
+RM.MI,Reno De Medici S.p.A.
+VLS.MI,Valsoia SpA
+SOL.MI,Sol SpA
+US.MI,UnipolSai Assicurazioni S.p.A.
+IWB.MI,Italian Wine Brands S.p.A.
+WIG.MI,Gruppo Waste Italia S.p.A.
+VIN.MI,Vianini S.p.A.
+PRM.MI,Primi sui Motori S.p.A
+NPI.MI,Notorious Pictures S.p.A.
+ITW.MI,Itway S.p.A.
+OVS.MI,OVS S.p.A.
+SSB.MI,SSB.MI
+OLI.MI,Olidata SpA
+IVS.MI,IVS Group S.A.
+JNJ-U.TI,JOHNSON & JOHNSON
+KER.MI,Kering S.A.
+KPN-U.TI,KONINKLIJKE KPN
+TEN.MI,Tenaris S.A.
+TEW.MI,Te Wind S.R.L.
+LVMH.TI,LVMH
+MANG-U.TI,MAN
+MMM.TI,3M
+TSLA-U.TI,TESLA
+MOT-U.TI,MOTOROLA SOLUTIONS
+MST-U.TI,MORGAN STANLEY
+PHMO-U.TI,PHILIP MORRIS INTERNATIONAL
+MRK-U.TI,MERCK & CO.
+MS-U.TI,MICROSOFT
+MUV2.TI,MUNICH REINSURANCE
+INGA.MI,ING Groep N.V.
+UNA.MI,Unilever N.V.
+PHIA.TI,PHILIPS
+INGA.TI,ING GROEP
+NVR-U.TI,NOVARTIS
+NOKIA.MI,Nokia Corporation
+NVDA-U.TI,NVIDIA
+OR.MI,L'Oréal S.A.
+PEUP-U.TI,PEUGEOT
+PF-U.TI,PFIZER
+PG-U.TI,PROCTER & GAMBLE
+RWE.TI,RWE
+SIE.TI,SIEMENS
+SYMC-U.TI,SYMANTEC
+TOT.TI,TOTAL
+TXN-U.TI,TEXAS INSTRUMENTS
+BAY.TI,BAYER
+BAY.MI,Bayer Aktiengesellschaft
+CAT-U.TI,CATERPILLAR
+COK-U.TI,THE COCA-COLA COMPANY
+ENGI.MI,ENGIE SA
+INF-U.TI,INFINEON TECHNOLOGIES
+RENA-U.TI,RENAULT
+SANF.TI,SANOFI
+SAP.TI,SAP
+S.TI,SPRINT
+INT-U.TI,INTEL

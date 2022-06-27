@@ -1,0 +1,899 @@
+Ticker,Name
+WIHL.ST,Wihlborgs Fastigheter AB (publ)
+VOLV-B.ST,AB Volvo (publ)
+SCA-A.ST,Svenska Cellulosa Aktiebolaget SCA (publ)
+SAS.ST,SAS AB (publ)
+REZT.ST,Rezidor Hotel Group AB (publ)
+PACT.ST,Proact IT Group AB (publ)
+LUND-B.ST,L E Lundbergföretagen AB (publ)
+HLDX.ST,Haldex AB (publ)
+ECEX.ST,East Capital Explorer AB (publ)
+CLAS-B.ST,Clas Ohlson AB (publ)
+BILL.ST,BillerudKorsnäs AB (publ)
+BBTO-B.ST,B&B Tools AB (publ)
+AXFO.ST,Axfood AB
+XANO-B.ST,XANO Industri AB (publ)
+SAND.ST,Sandvik AB
+MQ.ST,MQ Holding AB
+LUPE.ST,Lundin Petroleum AB (publ)
+KINV-B.ST,Kinnevik AB
+DUNI.ST,Duni AB (publ)
+BEIJ-B.ST,Beijer Ref AB (publ)
+VBG-B.ST,VBG Group AB (publ)
+SKA-B.ST,Skanska AB (publ)
+SAAB-B.ST,Saab AB (publ)
+RUSF.ST,RusForest AB (publ)
+NOTE.ST,NOTE AB
+NOMI.ST,Nordic Mines AB (publ)
+NIBE-B.ST,NIBE Industrier AB (publ)
+LIAB.ST,Lindab International AB
+JM.ST,JM AB (publ)
+ITAB-B.ST,Itab Shop Concept AB
+HUSQ-B.ST,Husqvarna AB (publ)
+HEXA-B.ST,Hexagon AB
+FEEL.ST,Feelgood Svenska AB (publ)
+COIC.ST,Concentric AB (publ)
+BMAX.ST,Byggmax Group AB (publ)
+BEIA-B.ST,Beijer Alma AB (publ)
+ASSA-B.ST,ASSA ABLOY AB (publ)
+AF-B.ST,ÅF AB (publ)
+ZZ-B.ST,Zinzino AB
+SVED-B.ST,Svedbergs i Dalstorp AB
+SEAM.ST,Seamless Distribution AB (publ)
+ODLO.ST,Odfjell Drilling Ltd.
+MEDF.ST,Medfield Diagnostics AB
+KDEV.ST,Karolinska Development AB (publ)
+ETX.ST,Etrion Corporation
+ERICB.ST,Telefonaktiebolaget LM Ericsson (publ)
+ERIC-B.ST,Telefonaktiebolaget LM Ericsson (publ)
+EPIS-B.ST,Episurf Medical AB
+ENRO.ST,Eniro AB
+ELAN-B.ST,Elanders AB (publ)
+BELE.ST,Beijer Electronics Group AB (publ)
+FPIP.ST,Formpipe Software AB
+FIRE.ST,Firefly AB (publ)
+FING-B.ST,Fingerprint Cards AB (publ)
+BALD-B.ST,Fastighets AB Balder (publ)
+SENS.ST,Sensys Gatso Group AB (publ)
+HM-B.ST,H & M Hennes & Mauritz AB (publ)
+RECY-B.ST,Recyctec Holding AB (publ)
+NMAN.ST,Nederman Holding AB (publ)
+AZA.ST,Avanza Bank Holding AB (publ)
+SIVE.ST,Sivers IMA Holding AB (publ)
+IJ.ST,Intrum Justitia AB
+KNOW.ST,Knowit Aktiebolag (publ)
+KARO.ST,Karo Pharma AB (publ)
+KOPY.ST,Kopy Goldfields AB
+KAMBI.ST,Kambi Group plc
+KAHL.ST,KappAhl AB (publ)
+KLIC-B.ST,Klick Data AB (publ.)
+KLOV-PREF.ST,Klövern AB (publ)
+MOB.ST,Moberg Pharma AB (publ)
+MEDA-A.ST,Meda AB
+QFRO.ST,Q-Free ASA
+NOLA-B.ST,Nolato AB (publ)
+NCC-B.ST,NCC AB
+AKSOO.ST,Aker Solutions
+WWASAO.ST,Wilh. Wilhelmsen ASA
+WEIFAO.ST,Weifa ASA
+SSOO.ST,Scatec Solar ASA
+SKBNO.ST,Skandiabanken ASA
+ORI.ST,Oriflame Holding AG
+NSP-B.ST,Nordic Service Partners Holding AB
+NRSO.ST,Norway Royal Salmon AS
+NOVE.ST,Strax AB (publ)
+NOKI.ST,Nokia Corporation
+NODO.ST,Nordic Semiconductor ASA
+NN-B.ST,Nordnet AB (publ)
+NGQ.ST,NGEx Resources Inc.
+NET-B.ST,NetEnt AB (publ)
+ORX.ST,Orexo AB (publ)
+OPCO.ST,Trention AB (publ)
+STE-R.ST,Stora Enso Oyj
+STE-A.ST,Stora Enso Oyj
+SOBI.ST,Swedish Orphan Biovitrum AB
+SAVOS.ST,Savo-Solar Oyj
+OS.ST,Orasolv AB
+OEM-B.ST,OEM International AB (publ)
+ODD.ST,Odd Molly International AB (publ)
+LUCE.ST,Lucent Oil AB
+FOI-B.ST,Fenix Outdoor International AG
+AOI.ST,Africa Oil Corp
+OP-PREF.ST,Oscar Properties Holding AB (publ)
+GOIL-PREF.ST,Ginger Oil AB
+QLRO.ST,Qliro Group AB (publ)
+QUICK.ST,QuickCool AB
+QBNK.ST,QBNK Holding AB (publ)
+PAR.ST,PA Resources AB
+TREL-B.ST,Trelleborg AB
+TOBII.ST,Tobii AB (publ)
+TLSN.ST,Telia Company AB
+TEL2B.ST,Tele2 AB (publ)
+TEL2-B.ST,Tele2 AB (publ)
+UFLX-B.ST,Uniflex AB (publ)
+UNIB-SDB.ST,Kindred Group plc
+PFE.ST,Pfizer Inc.
+VITR.ST,Vitrolife AB (publ)
+VOLV-A.ST,AB Volvo (publ)
+ELV.ST,Elverket Vallentuna AB (publ)
+EOLU-B.ST,Eolus Vind AB
+FLNGO.ST,Flex LNG Ltd.
+VNIL-SDB.ST,Vostok New Ventures Ltd
+NEVI-B.ST,New Equity Venture International AB
+VVLO.ST,Voss Veksel- og Landmandsbank A
+VICP-B.ST,Victoria Park AB (publ)
+VERI.ST,Verisec AB (publ)
+VNV-SDB.ST,Vostok New Ventures Ltd
+NILS.ST,Nilsson Special Vehicles AB (publ)
+STVA-B.ST,Star Vault AB (publ)
+WESC.ST,WeSC AB (publ)
+WALL-B.ST,Wallenstam AB (publ)
+WISE.ST,WISE Group AB
+WILSO.ST,Wilson ASA
+NEWA-B.ST,New Wave Group AB (publ)
+WRLO.ST,Wentworth Resources Ltd
+XVIVO.ST,Xvivo Perfusion AB (publ)
+XINT.ST,Xintela AB (publ)
+XXLO.ST,XXL ASA
+XTRA.ST,Xtranet Gruppen i Stockholm AB (publ)
+XBRANE.ST,Xbrane Biopharma AB (publ)
+63649.ST,63649.ST
+OCYO.ST,Ocean Yield AS
+YILD-B.ST,Yield Life Science AB
+ZETA.ST,ZetaDisplay AB
+ZALO.ST,Zalaris ASA
+ZENZIP.ST,Zenergy AB
+ZENI.ST,Zenicor Medical Systems AB (publ)
+AAK.ST,AAK AB (publ.)
+AAP-B.ST,Arc Aroma Pure AB (publ)
+SWOL-B.ST,Swedol AB
+SEMC.ST,Semcon AB
+PROB.ST,Probi AB (publ)
+LOOM-B.ST,Loomis AB (publ)
+LATO-B.ST,Investment AB Latour (publ)
+INDT.ST,Indutrade AB (publ)
+ICA.ST,ICA Gruppen AB
+IAR-B.ST,IAR Systems Group AB (publ)
+GUNN.ST,Gunnebo AB
+GENI.ST,Generic Sweden AB
+CTT.ST,CTT Systems AB
+CATE.ST,Catena AB (publ)
+BOL.ST,Boliden AB (publ.)
+BEGR.ST,BE Group AB (publ)
+AXIS.ST,Axis AB (publ)
+ARCM.ST,Arcam AB (publ)
+ANOT.ST,Anoto Group AB (publ)
+ALFA.ST,Alfa Laval AB (publ)
+ACTI.ST,Active Biotech AB
+ABB.ST,ABB Ltd
+TRMO.ST,Transmode AB (publ)
+TRAN-B.ST,Transferator AB
+TEL2-A.ST,Tele2 AB (publ)
+TAGM-B.ST,TagMaster AB (publ)
+SYSR.ST,Systemair AB (publ)
+SWEC-B.ST,Sweco AB (publ)
+SWEC-A.ST,Sweco AB (publ)
+SVOL-B.ST,Svolder AB
+SSAB-B.ST,SSAB AB
+SSAB-A.ST,SSAB AB
+SOF-B.ST,Softronic AB
+SKF-B.ST,SKF AB
+SINT.ST,SinterCast AB (publ)
+SECU-B.ST,Securitas AB
+SEB-A.ST,Skandinaviska Enskilda Banken AB (publ)
+SEAB-B.ST,Skånska Energi AB
+RROS.ST,Rottneros AB (publ)
+RNBS.ST,RNB Retail and Brands AB (publ)
+PRCO-B.ST,Precio Fishbone AB (publ)
+PEAB-B.ST,Peab AB
+PCELL.ST,PowerCell Sweden AB (publ)
+NDA-SEK.ST,Nordea Bank AB (publ)
+NCC-A.ST,NCC AB
+NAXS.ST,NAXS AB (publ)
+MSON-A.ST,Midsona AB (publ)
+MSC-B.ST,MSC Group AB
+MPEN.ST,MedicPen AB (publ)
+MISE.ST,Misen Energy AB (publ)
+MIDW-A.ST,Midway Holding AB
+MELK.ST,Melker Schörling AB
+MEKO.ST,Mekonomen AB
+MCAP.ST,MedCap AB (publ)
+MAV.ST,Mavshack AB (publ)
+LIFCO-B.ST,Lifco AB
+IVISYS.ST,Ivisys AB (publ)
+INVE-B.ST,Investor AB
+INSP.ST,Insplorion AB
+IMMU.ST,Immunicum AB (publ)
+IFS-A.ST,"Industrial and Financial Systems, IFS AB (publ)"
+IFOX.ST,Interfox Resources AB
+HUFV-C.ST,Hufvudstaden AB (publ)
+HTRO.ST,Hexatronic Group AB (publ)
+HMS.ST,HMS Networks AB (publ)
+HMED.ST,Hansa Medical AB (publ)
+HMB.ST,H & M Hennes & Mauritz AB (publ)
+HIFA-B.ST,Hifab Group AB (publ)
+HEMF.ST,Hemfosa Fastigheter AB (publ)
+GRNG.ST,Gränges AB (publ)
+GHUS-B.ST,Götenehus Group AB (publ)
+GETI-B.ST,Getinge AB
+GENO.ST,Genovis AB (publ)
+FXI.ST,FX International AB (Publ)
+FPAR.ST,FastPartner AB (publ)
+EWRK.ST,eWork Group AB (publ)
+ENDO.ST,Endomines AB (publ)
+ELUX-A.ST,AB Electrolux (publ)
+ELTEL.ST,Eltel AB (publ)
+ELOS-B.ST,Elos Medtech AB (publ)
+ELN.ST,Ellen AB (publ)
+EKTA-B.ST,Elekta AB (publ)
+EFFN.ST,Effnetplattformen AB (publ)
+DOM.ST,Dometic Group AB (publ)
+DMYD-B.ST,Diamyd Medical AB (publ)
+DIGN.ST,Dignitana AB
+DIAH.ST,Diadrom Holding AB (publ)
+DEFL-B.ST,Deflamo AB
+CRAD-B.ST,C-Rad AB
+CORE.ST,Corem Property Group AB (publ)
+CONS-B.ST,Consilium AB (publ)
+CONF.ST,Confidence International AB
+COMH.ST,Com Hem Holding AB (publ)
+CLA-B.ST,Cloetta AB (publ)
+CI-B.ST,Cell Impact AB (publ)
+CCOR-B.ST,Concordia Maritime AB (publ)
+CBA.ST,CybAero AB
+CAT-A.ST,Catella AB (publ)
+CAST.ST,Castellum AB (publ)
+CAPIO.ST,Capio AB (publ)
+BRG-B.ST,Bergs Timber AB (publ)
+BRE2.ST,Bredband2 i Skandinavien AB (publ)
+BRAV.ST,Bravida Holding AB (publ)
+BORG.ST,Björn Borg AB (publ)
+BIOT.ST,Biotage AB
+BINV.ST,BioInvent International AB
+BILI-A.ST,Bilia AB
+BETS-B.ST,Betsson AB
+BAHN-B.ST,Bahnhof AB (publ)
+ATCO-B.ST,Atlas Copco AB
+ATCO-A.ST,Atlas Copco AB
+ASCO.ST,ABG Sundal Collier Holding ASA
+AQER.ST,Aqeri Holding AB (publ)
+ALIG.ST,Alimak Group AB (publ)
+AGIS.ST,Agellis Group AB
+SKIS-B.ST,SkiStar AB (publ)
+ARCOMA.ST,Arcoma AB
+ADVE.ST,Advenica AB (publ)
+ICTA-B.ST,Intellecta AB (publ)
+BWL.ST,Bringwell AB (publ)
+SPRINT.ST,Sprint Bioscience AB (publ)
+SPAG.ST,Spago Nanomedical AB (publ)
+NOVU.ST,Novus Group International AB
+AQ.ST,AQ Group AB (publ)
+KONT.ST,Kontigo Care Ab
+ECC.ST,Ecoclime Comfort Ceilings AB (publ)
+TROAX.ST,Troax Group AB (publ)
+SANION.ST,Saniona AB (publ)
+PETRO.ST,Petrogrand AB (publ)
+SEAL.ST,SealWacs AB (publ)
+PART.ST,PartnerTech AB (publ)
+ALZ.ST,Alzinova AB
+ME.ST,Modern Ekonomi Sverige Holding AB (publ)
+HEMF-PREF.ST,Hemfosa Fastigheter AB (publ)
+MAT.ST,Matse Holding AB (publ)
+HEBA-B.ST,HEBA Fastighets AB (publ)
+KARE.ST,Karessa Pharma Holding AB (publ)
+APTA.ST,Aptahem AB (publ)
+HIQ.ST,HiQ International AB (publ)
+ECO-B.ST,EcoRub AB
+MVIR-B.ST,Medivir AB (publ)
+AGES-B.ST,AGES Industri AB (publ)
+MAXK.ST,Maxkompetens Sverige AB (publ)
+MYFC.ST,myFC Holding AB
+LAGR-B.ST,Lagercrantz Group AB (publ)
+CLX.ST,CLX Communications AB (publ)
+RAIL.ST,Railcare Group AB (publ)
+OASM.ST,Oasmia Pharmaceutical AB (publ)
+MIR.ST,Miris Holding AB
+CASO.ST,Cassandra Oil AB (publ)
+BURE.ST,Bure Equity AB
+ADDT-B.ST,Addtech AB (publ.)
+SEZI.ST,Senzime AB
+SWED-A.ST,Swedbank AB (publ)
+POLY.ST,Polyplank AB (publ)
+INVE-A.ST,Investor AB
+PROF-B.ST,ProfilGruppen AB
+DORO.ST,Doro AB (publ)
+SHOT.ST,Scandic Hotels Group AB
+AMNO.ST,Amnode AB (publ)
+CBTT-B.ST,Christian Berner Tech Trade AB (publ)
+PLUN.ST,ProstaLund AB (publ)
+RESP.ST,Respiratorius AB
+HQ.ST,HQ AB (publ)
+PMED.ST,PEPTONIC medical AB (publ)
+VRG-B.ST,Venue Retail Group AB
+HOFI.ST,Hoist Finance AB (publ)
+EURI-B.ST,European Institute of Science AB
+SAFE.ST,Safe at Sea AB
+RAY-B.ST,RaySearch Laboratories AB (publ)
+CLAV.ST,Clavister Holding AB (publ.)
+LEX.ST,The Lexington Company AB (publ)
+TETY.ST,Tethys Oil AB (publ)
+FPAR-PREF.ST,FastPartner AB (publ)
+GABA.ST,Gabather AB (publ)
+PRIME.ST,Prime Living AB (publ)
+ENVI-B.ST,Envirologic AB (publ).
+CLS-B.ST,Clinical Laserthermia Systems AB (publ)
+PFAM.ST,Phone Family AB (publ)
+ORES.ST,Investment AB Öresund (publ)
+SLEEP.ST,Sleepo AB
+POLYG.ST,Polygiene AB (publ.)
+CAPAC.ST,Capacent Holding AB (publ)
+GENE.ST,Genesis IT AB (publ)
+MSAB-B.ST,Micro Systemation AB
+KAN.ST,Kancera AB
+MANG.ST,Mangold Fondkommission AB
+OPUS.ST,Opus Group AB (publ)
+DEDI.ST,Dedicare AB
+SAGA-A.ST,AB Sagax
+KLOV-B.ST,Klövern AB (publ)
+RATO-A.ST,Ratos AB
+AXON.ST,Axonkids AB
+CINN.ST,Cinnober Financial Technology AB (publ)
+PREV-B.ST,Prevas AB
+PALS-B.ST,Pallas Group AB (publ)
+SJR-B.ST,SJR In Scandinavia AB
+NTEK-B.ST,Novotek AB
+DENT.ST,Dentware Scandinavia AB (publ)
+HANZA.ST,Hanza Holding AB (publ)
+USE-B.ST,US Energy Group AB
+NUE.ST,Nuevolution AB (publ)
+BAYN.ST,Bayn Europe AB (publ)
+KLAR.ST,Klaria Pharma Holding AB
+SKF-A.ST,SKF AB
+OPTI.ST,OptiFreeze AB (publ)
+COMBI.ST,CombiGene AB (publ)
+MPOS.ST,Micropos Medical AB (publ)
+TOURN.ST,Tourn International AB (publ)
+TRI.ST,Tribona AB (publ)
+AROC.ST,Arocell AB (publ)
+RATO-B.ST,Ratos AB
+SF.ST,Stillfront Group AB (publ)
+NVP.ST,NeuroVive Pharmaceutical AB
+SCST.ST,Scandi Standard AB (publ)
+SEB-C.ST,Skandinaviska Enskilda Banken AB (publ)
+TRAN-A.ST,Transferator AB ser. A
+ATT.ST,Attendo AB (publ)
+IMPC.ST,Impact Coatings AB
+DGC.ST,DGC One AB
+LIDDS.ST,LIDDS AB (publ)
+SKMO.ST,Skåne-möllan AB (publ)
+DELARK.ST,Delarka Holding AB (publ)
+MULQ.ST,MultiQ International AB (publ)
+TCT.ST,TC TECH Sweden AB (publ)
+CAMX.ST,Camurus AB (publ)
+BOTX.ST,Botnia Exploration Holding AB (publ)
+OV.ST,Oncology Venture Sweden AB
+HOME-B.ST,HomeMaid AB (publ)
+MTG-A.ST,Modern Times Group Mtg AB
+SVIK.ST,Studsvik AB
+SPOR.ST,Sportamore AB (publ)
+ROOT.ST,Rootfruit Scandinavia AB (publ)
+EUCI.ST,Eurocine Vaccines AB
+AMBI.ST,Ambia Trading Group AB (publ)
+ORTI-B.ST,Ortivus AB (publ)
+ORE.ST,Orezone AB (publ)
+NANEXA.ST,Nanexa AB
+LAMM-B.ST,Lammhults Design Group AB (publ)
+RECI-B.ST,Recipharm AB (publ)
+DIOS.ST,Diös Fastigheter AB (publ)
+CHER-B.ST,Cherry AB (publ).
+BUFAB.ST,Bufab AB (publ)
+BRIG.ST,Brighter AB (publ)
+HELIO.ST,Heliospectra AB (publ)
+AXIC-A.ST,aXichem AB
+ALON-B.ST,Archelon AB (publ)
+SYNT.ST,Synthetic MR AB (publ)
+KLOV-A.ST,Klövern AB (publ)
+AMH2-B.ST,Amhult 2 Ab
+CANTA.ST,Cantargia AB
+GWS.ST,GWS Production AB (publ)
+ALTE.ST,Alteco Medical AB
+BIM.ST,BIMobject AB
+NFO.ST,NFO Drives AB (publ)
+SAGA-B.ST,AB Sagax
+ORTI-A.ST,Ortivus AB (publ)
+ORT-B.ST,Ortoma AB
+HUFV-A.ST,Hufvudstaden AB (publ)
+SAPIAB.ST,Saltängen Property Invest AB (publ)
+DEMI-B.ST,Delta Minerals AB (publ)
+SAS-PREF.ST,SAS AB (publ)
+SES.ST,Scandinavian Enviro Systems AB (publ)
+INWI.ST,Inwido AB
+BTS-B.ST,BTS Group AB (publ)
+CEFO-B.ST,Cefour Wine & Beverage Partihandel AB (publ)
+SAGA-PREF.ST,AB Sagax
+SBOK.ST,Scandbook Holding AB
+AKEL-PREF.ST,Akelius Residential Property AB (publ)
+CAPE.ST,Caperio Holding AB
+DRIL.ST,Drillcon AB
+AMAST-PREF.ST,Amasten Holding AB (publ)
+BOUL.ST,Boule Diagnostics AB (publ)
+PLED.ST,PledPharma AB
+COOR.ST,Coor Service Management Holding AB (publ)
+PHAL.ST,PharmaLundensis AB
+MODI.ST,Motion Display Scandinavia AB
+AVT-B.ST,AVTECH Sweden AB (publ)
+JLT.ST,JLT Mobile Computers AB (publ)
+MTG-B.ST,Modern Times Group Mtg AB
+HUM.ST,Humana AB
+WTG.ST,Wonderful Times Group AB
+HAV-B.ST,Havsfrun Investment AB (publ)
+NOBI.ST,Nobia AB (publ)
+LATF-B.ST,Latvian Forest Company AB (publ)
+STIL.ST,Stille AB
+GHP.ST,GHP Specialty Care AB (publ)
+NP3.ST,NP3 Fastigheter AB (publ)
+GOIL.ST,Petrotarg AB (publ)
+DOXA.ST,Doxa AB (publ)
+PARA.ST,Parans Solar Lighting AB (publ)
+RAST.ST,RAST.ST
+TEONE.ST,TargetEveryOne AB (publ)
+JOSA.ST,Josab International AB (publ)
+CSEC.ST,C Security Systems AB (Publ.)
+PCOM-B.ST,Precomp Solutions AB
+AXAO.ST,Axactor AB (publ)
+FOLLI.ST,Follicum AB (publ)
+NNH.ST,New Nordic Healthbrands AB (publ)
+EMP-B.ST,Empire AB (publ)
+EMOT.ST,Emotra AB (publ)
+THULE.ST,Thule Group AB
+ABSO.ST,Absolent Group AB (publ)
+BACTI-B.ST,Bactiguard Holding AB (publ)
+PB.ST,PromikBook AB (publ)
+AVEN.ST,Avensia AB (publ)
+WAYS.ST,Waystream Holding AB (Publ)
+AVEG-B.ST,Avega Group AB (publ)
+REDS.ST,Redsense Medical AB (publ)
+AXON-BTA.ST,Axonkids AB
+VIT-B.ST,Vitec Software Group AB
+NICO.ST,Nicoccino Holding AB (publ)
+WNT.ST,WntResearch AB
+MROX-B.ST,MediRox AB (publ)
+IS.ST,Image Systems AB
+ELEC.ST,Electra Gruppen AB
+IDL-B.ST,IDL Biotech AB (publ)
+FNMA-PREF.ST,Ferronordic Machines AB
+ACM.ST,A City Media AB (publ)
+IFS-B.ST,"Industrial and Financial Systems, IFS AB (publ)"
+GCOR.ST,Gaming Corps AB (publ)
+NOCH.ST,Clemondo Group AB (publ)
+SPIFFX.ST,SpiffX AB (publ)
+INTU.ST,Intuitive Aerial AB (publ)
+FOUT.ST,Fastout Int. AB (publ)
+KAPIAB.ST,Kallebäck Property Invest AB (publ)
+TIKS.ST,TiksPac AB (publ)
+HEGR.ST,Hedera Group AB (publ)
+DEX.ST,Dextech Medical AB (publ)
+ONG.ST,Oniva Online Group Europe AB (publ)
+BONG.ST,Bong AB (publ)
+GARO.ST,Garo Aktiebolag (publ)
+REJL-B.ST,Rejlers AB
+ECOM.ST,ECOMB AB
+ALM-PREF.ST,ALM Equity AB (publ)
+CTEC.ST,Fastilium Property Group AB
+RATO-PREF.ST,Ratos AB
+ENRO-PREF.ST,Eniro AB
+PREC.ST,Precise Biometrics AB
+BESQ.ST,Besqab AB (publ)
+NDX.ST,Nordax Group AB (publ)
+MOBI.ST,Mobile Loyalty Holding AB
+OBOYA-B.ST,Oboya Horticulture Industries AB
+ENEA.ST,Enea AB (publ)
+ABE.ST,Abelco AB (publ)
+JAYS.ST,Jays AB (publ)
+MIND.ST,Irisity AB (publ)
+FAG.ST,AB Fagerhult
+EURO.ST,Eurocon Consulting AB (publ)
+SWMA.ST,Swedish Match AB (publ)
+ABFAST-B.ST,Aktiebolaget Fastator (publ)
+DOME.ST,Dome Energy AB (publ)
+SERT.ST,Serstech AB
+VSEC.ST,Vindico Group AB (publ)
+CAMP.ST,Nordic Camping & Resort AB (publ)
+POOL-B.ST,Poolia AB (publ)
+SVOL-A.ST,Svolder AB
+NETI-B.ST,Net Insight AB (publ)
+MEAB-B.ST,Malmbergs Elektriska AB (publ)
+RLS.ST,Rubicon Life Science AB (Publ)
+TRAC-B.ST,AB Traction
+VIG.ST,Vigmed Holding AB (publ)
+MROX-A.ST,MediRox AB (publ)
+MACK-B.ST,Mackmyra Svensk Whisky AB (publ)
+BIOG-B.ST,BioGaia AB
+HUSQ-A.ST,Husqvarna AB (publ)
+SPEC.ST,SpectraCure AB (publ)
+DIST.ST,DistIT AB (publ)
+COLL.ST,Collector AB
+ARCT.ST,Arctic Gold AB (publ)
+SPIRA.ST,DalsSpira Mejeri AB
+IMMNOV.ST,Immunovia AB (publ)
+ORGC.ST,OrganoClick AB
+NEXAM.ST,Nexam Chemical Holding AB (publ)
+MSON-B.ST,Midsona AB (publ)
+CRED-A.ST,Creades AB
+VIVO.ST,Vivoline Medical AB
+EVO.ST,Evolution Gaming Group AB (publ)
+VICP-PREF.ST,Victoria Park AB (publ)
+ACRI.ST,Acrinova AB
+CLBIO.ST,Corline Biomedical AB (publ)
+DUST.ST,Dustin Group AB (publ)
+SDOS.ST,ScandiDos AB (publ)
+KENH.ST,Kentima Holding AB (publ)
+TRANS.ST,Transtema Group AB
+MEDR-B.ST,MediRätt AB (publ)
+SCIB.ST,SciBase Holding AB
+ALPH.ST,AlphaHelix Molecular Diagnostics AB (publ)
+IPL.ST,Insplanet AB (publ)
+CHAL-B.ST,Challenger Mobile AB (publ)
+SHEL-B.ST,Shelton Petroleum AB (publ)
+DURC-B.ST,Duroc AB (publ)
+IVSO.ST,INVISIO Communications AB (publ.)
+CEAB.ST,Community Entertainment Svenska AB (publ)
+WIFOG.ST,Wifog Holding AB (publ)
+HOVD.ST,Hövding Sverige AB (publ)
+CORE-PREF.ST,Corem Property Group AB (publ)
+TRUE-B.ST,True Heading AB
+WINT.ST,West International AB
+CEVI.ST,CellaVision AB (publ)
+ALM.ST,ALM Equity AB (publ)
+ELUX-B.ST,AB Electrolux (publ)
+HYCO.ST,Hybricon Bus Systems AB (Publ)
+PHI.ST,Phase Holographic Imaging PHI AB (publ)
+AHA.ST,ahaWorld AB (publ)
+NICA.ST,Nanologica AB (publ)
+ODEN.ST,Oden Control AB
+HAMLET.ST,Hamlet Pharma AB (publ)
+MRG.ST,Mr Green & Co AB (publ)
+EQL.ST,EQL Pharma AB (publ)
+DMAB-B.ST,DMAB-B.ST
+TWW.ST,Transcom WorldWide AB (publ)
+RTIM-B.ST,RTIM-B.ST
+MAG.ST,Magnolia Bostad AB
+AMAST.ST,Amasten Holding AB (publ)
+TOL.ST,Toleranzia AB
+PIL.ST,Pilum AB (publ)
+IDOGEN.ST,Idogen AB (publ)
+NOBINA.ST,Nobina AB
+LOVI.ST,Lovisagruvan AB (publ)
+AJA-B.ST,Byggmästare Anders J Ahlström Holding AB (publ)
+OP.ST,Oscar Properties Holding AB (publ)
+MIDW-B.ST,Midway Holding AB
+CAT-B.ST,Catella AB (publ)
+PROE-B.ST,Proffice AB (Publ)
+FABG.ST,Fabege AB (publ)
+IMINT.ST,IMINT Image Intelligence AB (publ)
+UTG.ST,Unlimited Travel Group UTG AB (publ)
+TORSAB.ST,Torslanda Property Investment AB (Publ)
+SGLD.ST,Stureguld Sverige AB (publ)
+NMGO.ST,Axactor AB (publ)
+GREAT.ST,Greater Than AB
+BETT.ST,Betting Promotion Sweden AB (publ)
+AUTO.ST,VA Automotive i Hässleholm AB (publ)
+GJAB.ST,Gullberg & Jansson AB (publ)
+PHLOG.ST,Pharmacolog i Uppsala AB (publ)
+RBASE.ST,Raybased AB (publ)
+A1M.ST,A1M Pharma AB (publ)
+KABE-B.ST,KABE AB (publ.)
+LLSW-B.ST,LightLab Sweden AB
+TRAD.ST,Tradedoubler AB
+LINKAB.ST,Link Prop Investment AB (publ)
+TOBIN-PREF.ST,Tobin Properties AB (publ)
+PREBON.ST,Prebona AB (publ)
+ABI.ST,AB Igrene (publ)
+BULTEN.ST,Bulten AB (publ)
+VICO.ST,Vicore Pharma Holding AB
+BALD-PREF.ST,Fastighets AB Balder (publ)
+ENZY.ST,Enzymatica AB
+SOLT.ST,SolTech Energy Sweden AB (publ)
+ACAN-B.ST,Acando AB (publ.)
+PRIC-B.ST,Pricer AB (publ)
+PLAZ-B.ST,Platzer Fastigheter Holding AB (publ)
+BRAIN.ST,BrainCool AB (publ)
+STEF-B.ST,Stendörren Fastigheter AB (publ)
+G5EN.ST,G5 Entertainment AB (publ)
+HEART.ST,Scandinavian Real Heart AB (Publ)
+LEO.ST,LeoVegas AB (publ)
+HPOL-B.ST,Hexpol AB (Publ)
+MINEST.ST,Minesto AB (publ)
+BONAS.ST,Bonäsudden Holding AB (publ)
+ALIF-B.ST,AddLife AB (publ)
+ANOD-B.ST,Addnode Group AB (publ)
+ADDV-B.ST,ADDvise Group AB (publ)
+AFGO.ST,AF Gruppen ASA
+AGORA-PREF.ST,A Group Of Retail Assets Sweden AB (publ)
+AGORA-B.ST,A Group Of Retail Assets Sweden AB (publ)
+TAGR.ST,Trigon Agri A/S
+DDM.ST,DDM Holding AG
+88867.ST,88867.ST
+SCA-B.ST,Svenska Cellulosa Aktiebolaget SCA (publ)
+SECT-B.ST,Sectra AB (publ)
+HOLM-B.ST,Holmen Aktiebolag (publ)
+HOLM-A.ST,Holmen Aktiebolag (publ)
+AKVAO.ST,AKVA Group ASA
+INDU-C.ST,Aktiebolaget Industrivärden
+ARP.ST,Arctic Paper S.A.
+REHA-B.ST,Aktiebolaget Fastator (publ)
+SDET.ST,SensoDetect Aktiebolag (publ)
+KLED.ST,Kungsleden Aktiebolag
+INDU-A.ST,Aktiebolaget Industrivärden
+63624.ST,63624.ST
+AKPSO.ST,Philly Shipyard ASA
+63625.ST,63625.ST
+ALIV.ST,ALIV.ST
+ALNX.ST,ALNX.ST
+ALLG-B.ST,Allgon AB (publ)
+ALIV-SDB.ST,"Autoliv, Inc."
+ATEL-A.ST,AllTele Allmänna Svenska Telefonaktiebolaget (publ)
+AMSCO.ST,American Shipping Company ASA
+AMNO-TR.ST,Amnode AB TR
+ANGL.ST,Angler Gaming plc
+AQUAO.ST,Aqualis ASA
+ARISE.ST,Arise AB (publ)
+BONO.ST,Bonheur ASA
+AZN.ST,AstraZeneca PLC
+NANOO.ST,Nordic Nanovector ASA
+MULTIO.ST,Multiconsult ASA
+NOMO.ST,Nordic Mining ASA
+ITXO.ST,Intex Resources ASA
+RENOO.ST,RenoNorden ASA
+SOFFO.ST,Solstad Offshore ASA
+EIOFO.ST,Eidesvik Offshore ASA
+GSFO.ST,Grieg Seafood ASA
+AUSSO.ST,Austevoll Seafood ASA
+LSGO.ST,Lerøy Seafood Group Asa
+HAVIO.ST,Havila Shipping ASA
+DATO.ST,Data Respons ASA
+OLTO.ST,Olav Thon Eiendomsselskap ASA
+THINO.ST,Thin Film Electronics ASA
+SALMO.ST,SalMar ASA
+WBULKO.ST,Bulk Invest ASA
+PSIO.ST,StrongPoint ASA
+FARO.ST,Farstad Shipping ASA
+EPRO.ST,Europris ASA
+PHOO.ST,PhotoCure ASA
+NORO.ST,Norwegian Energy Company AS
+HNBO.ST,Hafslund ASA
+GODO.ST,Goodtech ASA
+EKOO.ST,Ekornes ASA
+BRGO.ST,Borregaard ASA
+PROTCTO.ST,Protector Forsikring ASA
+PENO.ST,Panoro Energy ASA
+BLOO.ST,NRC Group ASA
+STORMO.ST,Storm Real Estate ASA
+VARDIAO.ST,Vardia Insurance Group ASA
+DOFO.ST,DOF ASA
+HEXO.ST,Hexagon Composites ASA
+ENTRAO.ST,Entra ASA
+CAM-B.ST,Consensus Asset Management AB B
+IOXO.ST,InterOil Exploration & Production ASA
+NELO.ST,NEL ASA
+NEXTO.ST,NEXT Biometrics Group ASA
+VEIO.ST,Veidekke ASA
+KOGO.ST,Kongsberg Gruppen ASA
+RECSOLO.ST,REC Solar ASA
+VISTINO.ST,Vistin Pharma ASA
+GROO.ST,Ganger Rolf ASA
+WWIO.ST,Wilh. Wilhelmsen Holding ASA
+KITO.ST,Kitron ASA
+KIDO.ST,Kid ASA
+TELIOO.ST,NextGenTel Holding ASA
+RISHO.ST,GC Rieber Shipping ASA
+HYARDO.ST,Havyard Group ASA
+SBOO.ST,Selvaag Bolig ASA
+KVAERO.ST,Kværner ASA
+PCIBO.ST,PCI Biotech Holding ASA
+BERGENO.ST,Bergen Group ASA
+BIONORO.ST,Bionor Pharma ASA
+ASETEKO.ST,Asetek A/S
+WWIBO.ST,Wilh. Wilhelmsen Holding ASA
+MCGO.ST,MultiClient Geophysical ASA
+BOUVETO.ST,Bouvet ASA
+SPUO.ST,Spectrum ASA
+BIRDO.ST,Birdstep Technology ASA
+ATCOA.ST,Atlas Copco AB
+ATLA-NOKO.ST,P/F Atlantic Petroleum
+ATRLJ-B.ST,Atrium Ljungberg AB (publ)
+71200.ST,71200.ST
+AUR.ST,Auriant Mining AB (publ)
+AVMO.ST,Avocet Mining plc
+AVANCEO.ST,Avance Gas Holding Ltd.
+AWDRO.ST,Awilco Drilling Plc
+AXIC-TR-A.ST,aXichem AB TR A
+IBT-B.ST,Infant Bacterial Therapeutics AB (publ)
+NDA.ST,NDA.ST
+BEO-SDB.ST,Beowulf Mining plc
+KARO-TR.ST,Karo Pharma AB TR
+BIOTECO.ST,Biotec Pharmacon ASA
+BIGG-B.ST,Biotech-IgG AB
+HBCO.ST,Hofseth BioCare ASA
+PXXS-SDB.ST,BlackPearl Resources Inc.
+BEF-SDB.ST,Black Earth Farming Limited
+JINO.ST,Jinhui Shipping & Transportation Ltd.
+SNIO.ST,Stolt-Nielsen Limited
+GOGLO.ST,Golden Ocean Group Limited
+NOFO.ST,Northern Offshore Ltd
+BWOO.ST,BW Offshore Limited
+HLNGO.ST,Höegh LNG Holdings Ltd.
+DBP-B.ST,Double Bond Pharmaceutical Int.
+BRIN-B.ST,Brinova Fastigheter AB (publ)
+OBAB.ST,Online Brands Nordic AB
+SNM.ST,ShaMaran Petroleum Corp
+SMF.ST,SEMAFO Inc.
+67272.ST,67272.ST
+CCC.ST,Cavotec SA
+CE.ST,Cortus Energy AB (publ)
+MIC-SDB.ST,Millicom International Cellular S.A.
+SCAB.ST,Svenska Cellulosa Aktiebolaget SCA (publ)
+CLS-TR-B.ST,Clinical Laserthermia Systems A
+CLS-BTA-B.ST,Clinical Laserthermia Systems A
+CLINE-B.ST,Cline Scientific AB
+CTM.ST,Catena Media p.l.c
+DESSCO.ST,Deep Sea Supply Plc
+CYBE.ST,Cybercom Group AB
+PDRO.ST,Petrolia SE
+SBXO.ST,SeaBird Exploration PLC
+DCAR-B.ST,D. Carnegie & Co AB (publ)
+LUC.ST,Lucara Diamond Corp.
+NAPAO.ST,Napatech A/S
+PCAT.ST,Photocat A/S
+63626.ST,63626.ST
+SEVDRO.ST,Sevan Drilling Limited
+EASY-B.ST,EasyFill AB B
+ELUXB.ST,AB Electrolux (publ)
+88833.ST,88833.ST
+VEMF-SDB.ST,Vostok Emerging Finance Ltd
+ENQ.ST,EnQuest PLC
+EOS.ST,EOS Russia
+ERIC-A.ST,Telefonaktiebolaget LM Ericsson (publ)
+NETG.ST,Net Gaming Europe AB (publ)
+EVERY-A.ST,Everysport Media Group AB ser.
+STER.ST,Stora Enso Oyj
+NXTMS.ST,Nexstim Plc
+NOKIA-SEK.ST,Nokia Corporation
+NFAB.ST,Nordic Flanges Group AB (publ)
+FOOT-PREF.ST,Footway Group AB (publ)
+81268.ST,81268.ST
+STWK.ST,Stockwik Förvaltning AB (publ)
+BAKKAO.ST,P/F Bakkafrost
+FROO.ST,Frontline Ltd.
+SLOTT-B.ST,Slottsviken Fastighetsaktiebola
+SLOTT-A.ST,Slottsviken Fastighetsaktiebola
+FUNCOMO.ST,Funcom N.V.
+NIOO.ST,Gaming Innovation Group Inc.
+OLDM.ST,Old Mutual plc
+GETIB.ST,Getinge AB
+63648.ST,63648.ST
+GPG-PREF.ST,Genova Property Group AB (publ)
+63635.ST,63635.ST
+RLS-TR.ST,RLS Global AB TR
+RLS-BTA.ST,RLS Global AB BTA
+LUG.ST,Lundin Gold Inc.
+GOGL-RO.ST,Golden Ocean Group Limited REG
+KOPY-BTA-1.ST,KOPY-BTA-1.ST
+SHBA.ST,Svenska Handelsbanken AB (publ)
+63631.ST,63631.ST
+HANC-PREF-A.ST,Hancap AB (publ)
+SHB-B.ST,Svenska Handelsbanken AB (publ)
+SHB-A.ST,Svenska Handelsbanken AB (publ)
+HEIM-PREF.ST,Heimstaden AB (publ)
+HTRO-BTA.ST,HTRO-BTA.ST
+SIVE-BTA.ST,Sivers IMA Holding AB BTA
+SIVE-TR.ST,Sivers IMA Holding AB TR
+HUBR-B.ST,hubbr AB (publ)
+HUSQB.ST,Husqvarna AB (publ)
+63632.ST,63632.ST
+IDEXO.ST,IDEX ASA
+IS-BTA.ST,IS-BTA.ST
+IMS.ST,Invent Medic Sweden AB
+IMNP.ST,"Immune Pharmaceuticals, Inc."
+ITAL-SDB.ST,Italeaf S.p.A.
+JOJK.ST,Jojka Communications AB (publ)
+KINV-A.ST,Kinnevik AB
+KINB.ST,KINB.ST
+K2A-PREF.ST,K2A Knaust & Andersson Fastigheter AB (Publ)
+89289.ST,89289.ST
+SIOFFO.ST,Siem Offshore Inc.
+NLAB.ST,Nordic Leisure AB (Publ)
+LUXO-SDB.ST,Luxonen SA
+LUMI-SDB.ST,Lundin Mining Corporation
+TAGM-BTA-B.ST,TagMaster AB BTA
+TILO.ST,Tanker Investments Ltd.
+MIR-BTA.ST,Miris Holding AB BTA
+DEMI-BTA-B.ST,Delta Minerals AB BTA B
+MTGB.ST,Modern Times Group Mtg AB
+MUNK1S.ST,Ahlstrom-Munksjö Oyj
+MYCR.ST,Mycronic AB (publ)
+NATTO.ST,NattoPharma ASA
+NAVAO.ST,Navamedic ASA
+NJOB.ST,NetJobs Group AB
+NIL-B.ST,Nilörngruppen AB
+NICO-BTA.ST,NICO-BTA.ST
+63637.ST,63637.ST
+OTSO.ST,Oceanteam ASA
+ODFO.ST,Odfjell SE
+88790.ST,88790.ST
+63640.ST,63640.ST
+75076.ST,75076.ST
+NORTHO.ST,North Energy ASA
+63642.ST,63642.ST
+63647.ST,63647.ST
+63634.ST,63634.ST
+71203.ST,71203.ST
+110075.ST,110075.ST
+PPG-PREFO.ST,Pioneer Property Group ASA Pref
+TTSO.ST,TTS Group ASA
+REACHO.ST,Reach Subsea ASA
+63644.ST,63644.ST
+ODFBO.ST,Odfjell SE
+88881.ST,88881.ST
+SRBANKO.ST,SpareBank 1 SR-Bank
+SCIO.ST,Scana Industrier ASA
+OASM-BTA.ST,OASM-BTA.ST
+ORT-TR-B.ST,Ortoma AB TR B
+ORT-BTA-B.ST,Ortoma AB BTA B
+PAPI.ST,Papilly AB (publ)
+PNDX-B.ST,Pandox AB (publ)
+VICP-A.ST,Victoria Park AB (publ)
+RAKPO.ST,RAK Petroleum plc
+PEXA-B.ST,PExA AB
+PEGRO-PREF.ST,Pegroco Invest AB (publ)
+PMED-BTA.ST,PEPTONIC Medical AB BTA
+PMED-TR.ST,PEPTONIC Medical AB TR
+TETY-IL.ST,Tethys Oil AB IL
+PIL-BTA.ST,Pilum AB (publ)
+PIL-TR.ST,Pilum AB TR
+PLED-BTA.ST,PledPharma AB BTA
+PLUN-BTA.ST,ProstaLund AB BTA
+VOLO-PREF.ST,Volati AB
+PRIME-PREF-B.ST,Prime Living AB (publ)
+RHOVAC.ST,RhoVac AB
+DEFL-TR-B.ST,Deflamo AB TR B
+TAGM-TR-B.ST,TagMaster AB TR B
+SAVOS-TR.ST,Savo-Solar Oyj TR
+MIR-TR.ST,Miris Holding AB TR
+WESC-TR.ST,WeSC AB TR
+PLED-TR.ST,PledPharma AB TR
+RXS-PREF.ST,RXS-PREF.ST
+SDOS-BTA.ST,ScandiDos AB BTA
+SCC-B.ST,SCC-B.ST
+SDIP-PREF.ST,Sdiptech AB (publ)
+SWEDA.ST,Swedbank AB (publ)
+SKAB.ST,Skanska AB (publ)
+SKFB.ST,SKF AB
+SNTC.ST,SNTC.ST
+SSABA.ST,SSAB AB
+STORY-B.ST,Storytel AB ser. B
+VSSAB-B.ST,Viking Supply Ships AB (publ)
+TAUR-B.ST,Taurus Energy AB
+TBDY.ST,TBDY.ST
+TIEN.ST,Tieto Oyj
+TRELB.ST,Trelleborg AB
+TWW-SDB-A.ST,TWW-SDB-A.ST
+VSD-B.ST,Vibrosense Dynamics AB
+VOLVB.ST,AB Volvo (publ)
+203.ST,203 Web Group AB (publ)
+WESC-BTA.ST,WeSC AB BTA 1
+TWW-SDB-B.ST,TWW-SDB-B.ST
+ADDV-A.ST,ADDvise Group AB (publ)
+SEBA.ST,Skandinaviska Enskilda Banken AB (publ)
+63641.ST,63641.ST
+COPP-B.ST,Copperstone Resources AB
+HOGK-PREF-A.ST,Aktiebolaget Hogkullen (Publ)
+INISS-B.ST,Inission AB (publ)
+INVEB.ST,Investor AB
+PLAY.ST,Future Gaming Group International AB
+SAS-NOKO.ST,SAS AB
+SAVOS-BTA.ST,Savo-Solar Oyj
+SECUB.ST,Securitas AB
+SEZI-BTA.ST,Senzime AB
+STAR-A.ST,Starbreeze AB (publ)
+STAR-B.ST,Starbreeze AB (publ)

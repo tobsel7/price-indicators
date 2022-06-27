@@ -1,0 +1,846 @@
+Ticker,Name
+ATLN.VX,Actelion Ltd
+ROG.VX,Roche Holding AG
+FHZN.SW,Flughafen Zürich AG
+AAPL.SW,Apple Inc.
+RO.SW,Roche Holding AG
+AMS.SW,ams AG
+ABBN.VX,ABB Ltd
+CSGN.VX,Credit Suisse Group AG
+VW-V.SW,Volkswagen Aktiengesellschaft
+DUFN.SW,Dufry AG
+BCGE.SW,Banque Cantonale de GenÃ¨ve SA
+VWS.SW,Vestas Wind Systems A/S
+OXDEX.SW,OXDEX.SW
+OXDB1.SW,OXDB1.SW
+OSR.SW,OSRAM Licht AG
+KU2.SW,KUKA Aktiengesellschaft
+HEN.SW,Henkel AG & Co. KGaA
+EVE.SW,Evolva Holding SA
+ZURN.VX,Zurich Insurance Group AG
+LONN.VX,Lonza Group Ltd
+GEBN.VX,Geberit AG
+UBSG.VX,UBS Group AG
+GIVN.VX,Givaudan SA
+USIN.SW,USIN.SW
+TEMN.SW,Temenos Group AG
+ROL.SW,Von Roll Holding AG
+MIKN.SW,Mikron Holding AG
+BALN.VX,Bâloise Holding AG
+ALLN.SW,Allreal Holding AG
+YPSN.SW,Ypsomed Holding AG
+VATN.SW,Valiant Holding AG
+VAHN.SW,Vaudoise Assurances Holding SA
+UBXN.SW,u-blox Holding AG
+SLOG.SW,SLOG.SW
+STMN.SW,Straumann Holding AG
+SOON.VX,Sonova Holding AG
+SMET.SW,Swmtl Holding AG in liquidation
+SLHN.VX,Swiss Life Holding AG
+SFZN.SW,Siegfried Holding AG
+SCHPE.SW,SCHPE.SW
+SCHP.VX,Schindler Holding AG
+SANN.SW,Santhera Pharmaceuticals Holding AG
+BAER.VX,Julius Baer Group Ltd.
+NIN.SW,"Nintendo Co., Ltd."
+JEN.SW,Jenoptik AG
+JFN.SW,Jungfraubahn Holding AG
+JKS.SW,"JinkoSolar Holding Co., Ltd."
+BCJ.SW,Banque Cantonale du Jura
+TOSH.SW,Toshiba Corporation
+JPM.SW,JPMorgan Chase & Co.
+GRKP.SW,Graubündner Kantonalbank
+SGKN.SW,St. Galler Kantonalbank AG
+BLKB.SW,Basellandschaftliche Kantonalbank
+OXKBC.SW,OXKBC.SW
+SDF.SW,K+S Aktiengesellschaft
+GMCR.SW,GMCR.SW
+SYNN.VX,Syngenta AG
+NESN.VX,Nestlé S.A.
+NOVN.VX,Novartis AG
+SREN.VX,Swiss Re Ltd
+GALN.VX,VIFOR PHARMA FINANZ AG
+CFR.VX,Compagnie Financière Richemont SA
+STL.SW,Statoil ASA
+OTI.SW,5ELEMENTS SA
+RY.SW,Royal Bank of Canada
+O2D.SW,Telefonica Dt H
+OXCON.SW,OXCON.SW
+POST.SW,Österreichische Post AG
+OXSY1.SW,OXSY1.SW
+OXDUE.SW,OXDUE.SW
+OXLXS.SW,OXLXS.SW
+OXCOP.SW,OXCOP.SW
+ORCL.SW,Oracle Corporation
+QCOM.SW,QUALCOMM Incorporated
+QIHU.SW,QIHU.SW
+QIA.SW,QIAGEN N.V.
+QSC.SW,QSC
+SGSN.VX,SGS SA
+SCMN.VX,Swisscom AG
+UHR.VX,The Swatch Group AG
+SCTY.SW,SolarCity
+PFE.SW,Pfizer Inc.
+MDLZ.SW,"Mondelez International, Inc."
+GOOGL.SW,Alphabet Inc.
+CL.SW,Colgate-Palmolive Company
+BHI.SW,Baker Hughes Incorporated
+VPB.SW,VPB.SW
+EPH.SW,Eastern Property Holdings Limited
+VALE.SW,Vale S.A.
+GSV.SW,Gold Standard Ventures Corp
+VFC.SW,V.F. Corporation
+VOE.SW,voestalpine
+VIB3.SW,Villeroy & Boch AG
+NEWN.SW,New Value AG
+VW.SW,Volkswagen Aktiengesellschaft
+VZ.SW,Verizon Communications Inc.
+DRW3.SW,Draegerwerk
+NEV.SW,New Venturetec AG
+KORS.SW,Michael Kors Holdings Limited
+VILN.SW,Villars Holding S.A.
+HEN3.SW,Henkel AG & Co. KGaA
+RWE3.SW,RWE Aktiengesellschaft
+PAH3.SW,Porsche Automobil Holding SE
+BCVN.SW,Banque Cantonale Vaudoise
+PWTN.SW,Panalpina World Transport (Holding) Ltd.
+SLW.SW,Wheaton Precious Metals Corp.
+WMN.SW,Walter Meier AG
+WBA.SW,"Walgreens Boots Alliance, Inc."
+DWNI.SW,Deutsche Wohnen SE
+WDI.SW,Wirecard AG
+OXGWI1.SW,OXGWI1.SW
+GWI1.SW,Gerry Weber International AG
+WKBN.SW,Banque Cantonale du Valais
+OXO1BC.SW,OXO1BC.SW
+O1BC.SW,XING AG
+XRX.SW,Xerox Corporation
+XOM.SW,Exxon Mobil Corporation
+XONE.SW,The ExOne Company
+YRI.SW,Yamana Gold Inc.
+YHOO.SW,Altaba Inc.
+YAR.SW,Yara International ASA
+YELP.SW,Yelp Inc.
+YY.SW,YY Inc.
+MY.SW,MY.SW
+YUM.SW,"Yum! Brands, Inc."
+YGE.SW,Yingli Green Energy Holding Company Limited
+ZWM.SW,Zwahlen & Mayr SA
+ZIL2.SW,ElringKlinger AG
+ZAG.SW,Zumtobel Group AG
+ZAL.SW,Zalando SE
+ZEHN.SW,Zehnder Group AG
+ZBH.SW,"Zimmer Biomet Holdings, Inc."
+GOLI.SW,Gold Fields Limited
+ZG.SW,Zuger Kantonalbank
+AFX.SW,Carl Zeiss Meditec AG
+OXAFX.SW,OXAFX.SW
+ZC.SW,Zodiac Aerospace
+ZMS.SW,ZMS.SW
+TIM.SW,ZEAL Network SE
+ZNGA.SW,Zynga Inc.
+ZUGN.SW,Zug Estates Holding AG
+ZUBN.SW,Züblin Immobilien Holding AG
+METN.SW,Metall Zug AG
+OXZO1.SW,OXZO1.SW
+ZO1.SW,zooplus
+ARL.SW,Aareal Bank AG
+AAM.SW,Anglo American plc
+AAD.SW,Amadeus FiRe AG
+AA.SW,ARCONICINC
+ABX.SW,Barrick Gold Corporation
+ABBV.SW,AbbVie Inc.
+ABBNE.SW,ABB LTD N 2. LINIE
+ABF.SW,Associated British Foods plc
+ABT.SW,Abbott Laboratories
+ANF.SW,Abercrombie & Fitch Co.
+ACUN.SW,Accu Holding AG
+ATLNE.SW,ACTELION N 2. Linie
+AC.SW,Accor SA
+ACA.SW,Credit Agricole
+AMD.SW,"Advanced Micro Devices, Inc."
+ADBE.SW,Adobe Systems Incorporated
+BABA.SW,Alibaba Group Holding Limited
+VJET.SW,Voxeljet AG
+TTM.SW,Tata Motors Limited
+DANG.SW,E-COMMERCE
+HQCL.SW,HQCL.SW
+BIDU.SW,"Baidu, Inc."
+ADXN.SW,Addex Therapeutics Ltd
+RESOL.SW,Renesola
+ADEN.VX,Adecco Group AG
+ADS.SW,Adidas AG
+TEVA.SW,Teva Pharmaceutical Industries Limited
+JASO.SW,"JA Solar Holdings Co., Ltd."
+ADENE.SW,Adecco Group AG
+NTES.SW,"NetEase, Inc."
+ADVN.SW,Adval Tech Holding AG
+TSL.SW,Trina Solar Limited
+AEVS.SW,Aevis Victoria SA
+AEM.SW,Agnico Eagle Mines Limited
+MTX.SW,MTU Aero Engines AG
+AGN.SW,AEGON N.V.
+AFGN.SW,ARBONIA AG
+AF.SW,Air France-KLM SA
+STLN.SW,Schmolz + Bickenbach AG
+IMPN.SW,Implenia AG
+BION.SW,BB Biotech AG
+TECN.SW,Tecan Group Ltd.
+SWTQ.SW,Schweiter Technologies AG
+SPSN.SW,Swiss Prime Site AG
+PM.SW,Phoenix Mecano AG
+LISN.SW,Chocoladefabriken Lindt & Sprüngli AG
+LIFE.SW,LifeWatch AG
+IPS.SW,Ipsos SA
+INRN.SW,Interroll Holding AG
+GBMN.SW,Goldbach Group AG
+GAV.SW,Carlo Gavazzi Holding AG
+GAM.SW,GAM Holding AG
+CYTN.SW,CYTN.SW
+BSLN.SW,Basilea Pharmaceutica AG
+BARN.SW,Barry Callebaut AG
+ALSN.SW,ALSO Holding AG
+DCN.SW,Datacolor AG
+CPGN.SW,Cham Paper Group Holding AG
+SAHN.SW,Schaffner Holding AG
+DESN.SW,Dottikon Es Holding AG
+ALPH.SW,Alpiq Holding AG
+MOBN.SW,Mobimo Holding AG
+SCHN.SW,Schindler Holding AG
+CLTN.SW,COLTENE Holding AG
+BIOEE.SW,BB Biotech AG
+ALPNE.SW,Alpine Select AG
+PSPN.SW,PSP Swiss Property AG
+LUKN.SW,Luzerner Kantonalbank AG
+EMSN.SW,EMS-Chemie Holding AG
+IFCN.SW,INFICON Holding AG
+STGN.SW,Starrag Group Holding AG
+ELMN.SW,Elma Electronic AG
+CALN.SW,Calida Holding AG
+SUN.SW,Sulzer Ltd
+MCHN.SW,MCH Group AG
+ORON.SW,ORIOR AG
+MBTN.SW,Meyer Burger Technology AG
+EMMN.SW,Emmi AG
+CASNE.SW,Castle Alternative Invest AG
+AGFB.SW,Agfa-Gevaert N.V.
+TIBN.SW,Bergbahnen Engelberg-Trübsee-Titlis AG
+CLXN.SW,CREALOGIX Holding AG
+HUBN.SW,Huber+Suhner AG
+VBSN.SW,IVF Hartmann Holding AG
+AGS.SW,ageas SA/NV
+ESUN.SW,Edisun Power Europe AG
+UHRN.SW,The Swatch Group AG
+BC.SW,Bank Cler AG
+GUR.SW,Gurit Holding AG
+BANB.SW,Bachem Holding AG
+CPHN.SW,CPH Chemie + Papier Holding AG
+RIEN.SW,Rieter Holding AG
+PEL.SW,PEL.SW
+BRKN.SW,Burkhalter Holding AG
+TOHN.SW,Tornos Holding AG
+BBN.SW,Bellevue Group AG
+PAXN.SW,Pax Anlage AG
+UHRNE.SW,SWATCH GROUP N 2. LINIE
+MASN.SW,MASN.SW
+CPEN.SW,Castle Private Equity AG
+ALPN.SW,Alpine Select AG
+EDHN.SW,Energiedienst Holding AG
+VET.SW,Vetropack Holding AG
+BEAN.SW,Belimo Holding AG
+REPI.SW,REPI.SW
+LLB.SW,Liechtensteinische Landesbank Aktiengesellschaft
+VONN.SW,Vontobel Holding AG
+TAMN.SW,Tamedia AG
+BAYN.SW,Bayer Aktiengesellschaft
+PEHN.SW,Private Equity Holding AG
+ALTN.SW,Altin AG
+LOHN.SW,Looser Holding AG
+MYRN.SW,Myriad Group AG
+BLIN.SW,BFW Liegenschaften AG
+IHSN.SW,IHSN.SW
+BCHN.SW,Burckhardt Compression Holding AG
+LISP.SW,Chocoladefabriken Lindt & Sprüngli AG
+BUCN.SW,Bucher Industries AG
+HELN.SW,Helvetia Holding AG
+ASCN.SW,Ascom Holding AG
+EEII.SW,EEII AG
+DAE.SW,Dätwyler Holding Inc.
+VLRT.SW,Valartis Group AG
+LINN.SW,Bank Linth LLB AG
+OFN.SW,Orell Füssli Holding AG
+FORN.SW,Forbo Holding AG
+REPP.SW,REPP.SW
+WIE.SW,Wienerberger AG
+COM.SW,COMMERZBANK I
+BVZN.SW,BVZ Holding AG
+CASN.SW,Castle Alternative Invest AG
+SHPNE.SW,SHPNE.SW
+SIN.SW,Siemens Aktiengesellschaft
+FORNE.SW,FORNE.SW
+STRN.SW,Schlatter Industries AG
+COTN.SW,Comet Holding AG
+KUNN.SW,KUONI N
+KARN.SW,Kardex AG
+GATE.SW,gategroup Holding AG
+VZN.SW,VZ Holding AG
+HUE.SW,Hügli Holding AG
+WARN.SW,Warteck Invest AG
+KOMN.SW,Komax Holding AG
+VALN.SW,Valora Holding AG
+AIXA.SW,Aixtron SE
+AI.SW,"Air Liquide, société anonyme"
+AIRN.SW,Airopack Technology Group AG
+DAL.SW,"Delta Air Lines, Inc."
+AIG.SW,"American International Group, Inc."
+AIRE.SW,Airesis SA
+AIR.SW,Airbus SE
+AKZ.SW,Akzo Nobel N.V.
+ALU.SW,ALU.SW
+ALO.SW,Alstom SA
+MO.SW,"Altria Group, Inc."
+ALV.SW,Allianz SE
+AOX.SW,alstria
+ALXN.SW,"Alexion Pharmaceuticals, Inc."
+AMGN.SW,Amgen Inc.
+PAA.SW,Pan American Silver Corp.
+BATS.SW,Brit Amer Tobacco
+AXP.SW,American Express Company
+BAC.SW,Bank of America Corporation
+AMZN.SW,"Amazon.com, Inc."
+ANDR.SW,Andritz AG
+LLY.SW,Eli Lilly and Company
+SLB.SW,Schlumberger Limited
+AU.SW,AngloGold Ashanti Limited
+APGN.SW,APG|SGA SA
+MT.SW,ArcelorMittal
+SAZ.SW,STADA Arzneimittel Aktiengesellschaft
+ARYN.VX,ARYZTA AG
+ARIA.SW,"ARIAD Pharmaceuticals, Inc."
+ADM.SW,Archer-Daniels-Midland Company
+CADN.SW,Sociedad Comercial del Plata S.A.
+ARM.SW,ARM.SW
+UA.SW,Under Armour
+DIC.SW,DIC ASSET
+ASM.SW,Avino Silver & Gold Mines Ltd.
+ASML.SW,ASML Holding N.V.
+AZN.SW,AstraZeneca PLC
+ASG.SW,Assicurazioni Generali S.p.A.
+SBO.SW,Schoeller-Bleckmann Oilfield Equipment Aktiengesellschaft
+EBS.SW,Erste Group Bank AG
+VER.SW,Verbund
+OMV.SW,OMV Aktiengesellschaft
+BWO.SW,BUWOG AG
+IIA.SW,Immofinanz AG
+RBI.SW,Raiffeisen Bank International AG
+RHI.SW,RHI AG
+ROS.SW,Rosenbauer International AG
+ATS.SW,AT & S Austria Technologie & Systemtechnik Aktiengesellschaft
+MMK.SW,Mayr-Melnhof Karton AG
+CWI.SW,conwert ImmoInv
+O2C.SW,Petro Welt Technologies AG
+T.SW,AT&T
+TKA.SW,Telekom Austria Aktiengesellschaft
+LNZ.SW,Lenzing
+CS.SW,AXA SA
+SPR.SW,Axel Springer SE
+BPDG.SW,Banque Profil de Gestion SA
+BA.SW,The Boeing Company
+BALNE.SW,BALOISE N 2. LINIE
+BAX.SW,Baxter International Inc.
+BB.SW,BlackBerry Limited
+BBDB.SW,Bombardier Inc.
+BBY.SW,"Best Buy Co., Inc."
+BC8.SW,Bechtle AG
+BDX.SW,"Becton, Dickinson and Company"
+BDT.SW,Bertrandt Aktiengesellschaft
+DBAN.SW,Deutsche Beteiligungs AG
+PROX.SW,Proximus
+BEKN.SW,Berner Kantonalbank AG
+BPOST.SW,bpost SA/NV
+BEI.SW,Beiersdorf
+OXBEI.SW,OXBEI.SW
+BELL.SW,Bell Food Group AG
+BLT.SW,BHP Billiton plc
+BHP.SW,BHP Billiton AU
+HEB.SW,HEB.SW
+OXGBF.SW,OXGBF.SW
+GBF.SW,Bilfinger SE
+BIIB.SW,Biogen Inc.
+BIO3.SW,Biotest Aktiengesellschaft
+SGMO.SW,"Sangamo Therapeutics, Inc."
+SBS.SW,STRATEC Biomed
+BKW.SW,BKW AG
+CBA.SW,Commonwealth Bank of Australia
+RBS.SW,The Royal Bank of Scotland Group plc
+BLK.SW,"BlackRock, Inc."
+BLD.SW,Ballard Power Systems Inc.
+BX.SW,BX.SW
+BMY.SW,Bristol-Myers Squibb Company
+BMPS.SW,BMPS.SW
+OXBMW.SW,OXBMW.SW
+BMW3.SW,Bayerische Motoren Werke Aktiengesellschaft
+BMW.SW,BMW I
+BNR.SW,Brenntag AG
+BNP.SW,BNP Paribas SA
+OXBNP.SW,OXBNP.SW
+BOBNN.SW,Bobst Group SA
+BVB.SW,Borussia Dortmund GmbH & Co. Kommanditgesellschaft auf Aktien
+BOSS.SW,Hugo Boss AG
+EN.SW,Bouygues SA
+DB1.SW,Deutsche Boerse
+BOSN.SW,Bossard Holding AG
+BP.SW,BP p.l.c.
+BSKP.SW,Basler Kantonalbank
+BTO.SW,B2Gold Corp.
+BVN.SW,BVN.SW
+BYW6.SW,BayWa Aktiengesellschaft
+CPENE.SW,CASTLE PRIVATE N 2. LINIE
+CAI.SW,Canon Inc.
+CARLB.SW,Carlsberg A/S
+CAP.SW,Capgemini SE
+PTK.SW,PTK.SW
+CCO.SW,Cameco Corporation
+CDI.SW,Christian Dior SE
+CDE.SW,"Coeur Mining, Inc."
+CMBN.SW,Cembra Money Bank AG
+SCAB.SW,Svenska Cellulosa Aktiebolaget SCA (publ)
+CWC.SW,CEWE Stiftung & Co. KGaA
+UN.SW,Unilever N.V.
+CELG.SW,Celgene Corporation
+CEV.SW,CENTROTEC Sustainable AG
+CERN.SW,Cerner Corporation
+CFT.SW,Compagnie Financière Tradition SA
+CGG.SW,CGGT
+LEON.SW,Leonteq AG
+HREN.SW,Romande Energie Holding SA
+EFGN.SW,EFG International AG
+DOKA.SW,dormakaba Holding AG
+CHD.SW,"Church & Dwight Co., Inc."
+SFPF1.SW,SFPF1.SW
+WIHN.SW,WISeKey International Holding AG
+LOGN.SW,Logitech International S.A.
+PLAN.SW,Plazza AG
+KNIN.VX,Kuehne + Nagel International AG
+PEDU.SW,Perrot Duval Holding S.A.
+SIK.VX,Sika AG
+PRFN.SW,Perfect Holding SA
+GMI.SW,Groupe Minoteries SA
+30318277.SW,30318277.SW
+SYNNE.SW,SYNGENTA N 2. Linie
+PUBN.SW,PUBN.SW
+UBSNE.SW,UBSNE.SW
+HBMN.SW,HBM Healthcare Investments AG
+SRCG.SW,Sunrise Communications Group AG
+OERL.SW,OC Oerlikon Corporation AG
+PGHN.SW,Partners Group Holding AG
+CICN.SW,Cicor Technologies Ltd.
+DOW.SW,The Dow Chemical Company
+SIAT1.SW,SIAT1.SW
+CVX.SW,Chevron
+NBEN.SW,nebag ag
+SCHNE.SW,SCHNE.SW
+SREA1.SW,UBS SW SWISSREAL ANR
+RSPF1.SW,RSPF1.SW
+SQN.SW,Swissquote Group Holding Ltd
+SGSNE.SW,SGS SA
+HBLN.SW,Hypothekarbank Lenzburg AG
+C.SW,Citigroup Inc.
+CIE.SW,Compagnie Internationale pour la Communication
+CSCO.SW,"Cisco Systems, Inc."
+CLN.VX,Clariant AG
+CMCSA.SW,Comcast Corporation
+CNC.SW,CNOOC Limited
+SEV.SW,SUEZ SA
+CRM.SW,"Salesforce.com, inc."
+CSIQ.SW,Canadian Solar Inc.
+EVD.SW,CTS Eventim
+CTSH.SW,Cognizant Technology Solutions Corporation
+OXEVD.SW,OXEVD.SW
+DAN.SW,Danone
+DAI.SW,Daimler AG
+DHR.SW,Danaher Corporation
+DSY.SW,Dassault Systèmes SE
+DBK.SW,Deutsche Bank Aktiengesellschaft
+DDD.SW,3D Systems Corporation
+DD.SW,E. I. du Pont de Nemours and Company
+CONT.SW,Continental Aktiengesellschaft
+HD.SW,"The Home Depot, Inc."
+OXSAP.SW,OXSAP.SW
+COMPG.SW,CompuGroup Medical Societas Europaea
+OXNOEJ.SW,OXNOEJ.SW
+PUM.SW,PUMA
+TLX.SW,Talanx Aktiengesellschaft
+TEG.SW,TAG Immobil
+NEMA.SW,Nemetschek SE
+MEO.SW,Ceconomy AG
+DGC.SW,Detour Gold Corporation
+DG.SW,VINCI SA
+DIS.SW,The Walt Disney Company
+COLOB.SW,Coloplast A/S
+NZYMB.SW,Novozymes A/S
+DKSH.SW,DKSH Holding Ltd.
+PNDORA.SW,Pandora A/S
+NOVOB.SW,Novo Nordisk A/S
+GIL.SW,DMG Mori Aktiengesellschaft
+PMOX.SW,DO Deu Office
+DPW.SW,Deutsche Post
+DRI.SW,Drillisch Aktiengesellschaft
+HDD.SW,Heidelberger Druckmaschinen Aktiengesellschaft
+DSM.SW,Koninklijke DSM N.V.
+OXLHA.SW,OXLHA.SW
+DTE.SW,Deutsche Telekom AG
+LHA.SW,Deutsche Lufthansa Aktiengesellschaft
+DUFN.VX,Dufry AG
+RDSA.SW,Royal Dutch Shell plc
+DUE.SW,Dürr Aktiengesellschaft
+EBAY.SW,eBay Inc.
+EDP.SW,"EDP - Energias de Portugal, S.A."
+RLD.SW,Edmond de Rothschild (Suisse) S.A.
+EDR.SW,Endeavour Silver Corp.
+EW.SW,Edwards Lifesciences Corporation
+EDF.SW,Electricité de France S.A.
+EI.SW,Essilor Intl
+SNE.SW,Schneider Electric S.E.
+LPK.SW,LPKF Laser & Electr
+GE.SW,General Electric Company
+ELD.SW,Eldorado Gold Corporation
+EMR.SW,Emerson Electric Co.
+EMC.SW,EMC
+FCEL.SW,"FuelCell Energy, Inc."
+NUS.SW,"Nu Skin Enterprises, Inc."
+EOAN.SW,E.ON SE
+EO.SW,Faurecia S.A.
+ERF.SW,Eurofins Scientific SE
+ERICB.SW,Telefonaktiebolaget LM Ericsson (publ)
+ESRX.SW,Express Scripts Holding Company
+GET.SW,Groupe Eurotunnel SE
+DEQ.SW,Deutsche Euroshop
+EVT.SW,Evotec AG
+EVK.SW,Evonik Industries AG
+HLEE.SW,Highlight Event and Entertainment AG
+EXPE.SW,"Expedia, Inc."
+FB.SW,"Facebook, Inc."
+WFC.SW,Wells Fargo & Company
+FCX.SW,Freeport-McMoRan Inc.
+FDX.SW,FedEx Corporation
+FEYE.SW,"FireEye, Inc."
+RACE.SW,Ferrari N.V.
+FTON.SW,Feintool International Holding AG
+FFI.SW,Formulafirst Limited
+FMS.SW,First Majestic Silver Corp.
+NOKIA.SW,Nokia Corporation
+FME.SW,Fresenius Medical C
+FNV.SW,Franco-Nevada Corporation
+FNTN.SW,freenet AG
+FVI.SW,Fortuna Silver Mines Inc.
+WFM.SW,"Whole Foods Market, Inc."
+F.SW,Ford Motor Company
+FPE3.SW,Fuchs Petrolub SE
+FP.SW,Total
+MC.SW,LVMH Moët Hennessy Louis Vuitton S.E.
+ML.SW,Michelin
+MMB.SW,Lagardère SCA
+OXFME.SW,OXFME.SW
+KER.SW,Kering S.A.
+FR.SW,Valeo SA
+GOE.SW,Groupe Gorgé SA
+LOCAL.SW,Solocal Group S.A.
+RI.SW,Pernod Ricard SA
+FRA.SW,Fraport AG
+KN.SW,Natixis S.A.
+UBI.SW,Ubisoft Entertainment SA
+ENGI.SW,ENGIE SA
+POM.SW,Compagnie Plastic Omnium SA
+VIE.SW,Veolia Environnement S.A.
+ING.SW,Ingenico Group - GCS
+SAF.SW,Safran SA
+FRE.SW,Fresenius
+FSLR.SW,"First Solar, Inc."
+GFMN.SW,LUMX FUND N
+GAMEE.SW,GAM Holding AG
+GFJ.SW,GFJ.SW
+MRW.SW,Wm Morrison Supermarkets PLC
+TCG.SW,Thomas Cook Group plc
+SRP.SW,Serco Group plc
+RGSE.SW,RGSE.SW
+OXG1A.SW,OXG1A.SW
+G1A.SW,GEA Group Aktiengesellschaft
+GIS.SW,"General Mills, Inc."
+GEBNE.SW,GEBERIT N 2. LINIE
+GMT.SW,Gemalto N.V.
+OXGXI.SW,OXGXI.SW
+GLE.SW,Societe Generale Group
+HTM.SW,HTM.SW
+GM.SW,General Motors Company
+GXI.SW,Gerresheimer
+FI-N.SW,Georg Fischer AG
+GFK.SW,Gfk
+GILD.SW,"Gilead Sciences, Inc."
+GLJ.SW,Grenke AG
+SBB.SW,Sabina Gold & Silver Corp.
+GLUU.SW,Glu Mobile Inc.
+GSK.SW,GlaxoSmithKline plc
+GLW.SW,Corning Incorporated
+GLKBN.SW,Glarner Kantonalbank
+GMM.SW,Grammer
+GPRO.SW,"GoPro, Inc."
+GT.SW,The Goodyear Tire & Rubber Company
+KG.SW,Kinross Gold Corporation
+G.SW,Goldcorp Inc.
+GOB.SW,Compagnie de Saint-Gobain S.A.
+GS.SW,"The Goldman Sachs Group, Inc."
+PGM.SW,Premier Gold Mines Limited
+GPR.SW,Great Panther
+HAL.SW,Halliburton Company
+HAB.SW,Hamborner REIT AG
+HOG.SW,"Harley-Davidson, Inc."
+HNR1.SW,Hannover Rück SE
+HBMNE.SW,HBM N 2. LINIE
+HBH3.SW,Hornbach Holding AG & Co. KGaA
+KHC.SW,The Kraft Heinz Company
+OXHEN3.SW,OXHEN3.SW
+OXHEI.SW,OXHEI.SW
+HL.SW,Hecla Mining Company
+HEID.SW,HeidelbergCement
+HEI.SW,Heineken N.V.
+HMB.SW,H & M Hennes & Mauritz AB (publ)
+HHFA.SW,Hamburger Hafen und Logistik Aktiengesellschaft
+HIAG.SW,HIAG Immobilien Holding AG
+LEN.SW,Lenovo Group Limited
+CHT.SW,China Mobile Limited
+SOONE.SW,SONOVA N 2. LINIE
+ISN.SW,Intershop Holding AG
+OXKD8.SW,OXKD8.SW
+HOCN.SW,Hochdorf Holding AG
+TTI.SW,Tom Tailor Holding AG
+MOZN.SW,mobilezone holding ag
+ONVO.SW,"Organovo Holdings, Inc."
+SLT.SW,Schaltbau Holding AG
+INH.SW,INDUS Hldg
+HPQ.SW,HP Inc.
+HYG.SW,Hydrogenics
+NHY.SW,Norsk Hydro ASA
+IMG.SW,IAMGOLD Corporation
+IBM.SW,International Business Machines Corporation
+MDT.SW,Medtronic
+IFX.SW,Infineon Technolog
+SHLTN.SW,SHL Telemedicine Ltd.
+LEG.SW,LEG Immobilien AG
+P1Z.SW,Patrizia Immobilien AG
+IMB.SW,Imperial Brands plc
+IONS.SW,"Ionis Pharmaceuticals, Inc."
+IPH.SW,Innate Pharma S.A.
+IRBT.SW,iRobot Corporation
+ISP.SW,Intesa Sanpaolo S.p.A.
+ISRG.SW,"Intuitive Surgical, Inc."
+TIT.SW,Telecom Italia S.p.A.
+NWRN.SW,Newron Pharmaceuticals S.p.A.
+SPM.SW,Saipem
+UCG.SW,UniCredit S.p.A.
+SKIN.SW,Cassiopea S.p.A.
+PRP.SW,Prada S.p.A
+ENI.SW,Eni S.p.A.
+IT.SW,ITALCEMENTI
+ENEL.SW,Enel SpA
+JCP.SW,"J. C. Penney Company, Inc."
+OXJEN.SW,OXJEN.SW
+JNJ.SW,Johnson & Johnson
+SOFB.SW,SoftBank Group Corp.
+SONC.SW,Sony Corporation
+MAELI.SW,Panasonic Corporation
+SHA.SW,Sharp Corporation
+TOYMO.SW,Toyota Motor Corporation
+JUNGH.SW,Jungheinrich Aktiengesellschaft
+KNDI.SW,"Kandi Technologies Group, Inc."
+KBC.SW,Kontron
+TKBP.SW,Thurgauer Kantonalbank
+KCO.SW,Klöckner & Co SE
+KGX.SW,KION GROUP AG
+KPO.SW,Koninklijke KPN N.V.
+KO.SW,The Coca-Cola Company
+KRN.SW,Krones AG
+OXSDFG.SW,OXSDFG.SW
+KUD.SW,Kudelski SA
+KWS.SW,KWS Saat SE
+LXS.SW,LANXESS Aktiengesellschaft
+LVS.SW,Las Vegas Sands Corp.
+LMN.SW,lastminute.com N.V.
+LHN.VX,LafargeHolcim Ltd
+LEO.SW,LEONI AG
+LECN.SW,Leclanché SA
+LEHN.SW,LEM Holding SA
+OXLING.SW,OXLING.SW
+LLOY.SW,Lloyds Banking Group plc
+LMT.SW,Lockheed Martin Corporation
+LNKD.SW,LNKD.SW
+COPN.SW,Cosmo Pharmaceuticals N.V.
+SFQ.SW,Saf-Holland S.A.
+RTL.SW,RTL Group SA
+MAN.SW,MAN SE
+MCD.SW,McDonald's Corporation
+MCP.SW,MCP.SW
+NCM.SW,Newcrest Mining Limited
+NEM.SW,Newmont Mining Corporation
+MLP.SW,MLP AG
+MMM.SW,3M Company
+TSLA.SW,"Tesla, Inc."
+MOLN.SW,Molecular Partners AG
+MOR.SW,Morphosys
+PMI.SW,Philip Morris International Inc.
+MS.SW,Morgan Stanley
+MRK.SW,"Merck & Co., Inc."
+MSFT.SW,Microsoft Corporation
+MUV2.SW,Muenchener Rueckver
+MU.SW,"Micron Technology, Inc."
+MYL1.SW,Mylan N.V.
+SNBN.SW,Swiss National Bank
+NDA.SW,Aurubis
+NDX1.SW,Nordex SE
+NDASEK.SW,Nordea Bank AB (publ)
+NESNE.SW,NESNE.SW
+WAC.SW,Wacker Neuson SE
+NFLX.SW,"Netflix, Inc."
+NKE.SW,"NIKE, Inc."
+NIHN.SW,Norinvest Holding SA
+WIN.SW,Diebold Nixdorf AG
+PHI.SW,Koninklijke Philips N.V.
+INO.SW,ING Group
+TMO.SW,TomTom N.V.
+RDN.SW,Randstad Holding NV
+PN6.SW,PostNL N.V.
+SBM.SW,SBM Offshore N.V.
+NOEJ.SW,NORMA Group
+TEL.SW,Telenor ASA
+NOVNEE.SW,NOVARTIS N 2. LINIE
+NVDA.SW,NVIDIA Corporation
+ODHN.SW,Orascom Development Holding AG
+OR.SW,L'Oréal S.A.
+ORA.SW,Orange S.A.
+ORMP.SW,Oramed Pharmaceuticals Inc.
+OXDTE.SW,OXDTE.SW
+OXADS.SW,OXADS.SW
+OXDPW.SW,OXDPW.SW
+OXMRK.SW,OXMRK.SW
+OXRWE.SW,OXRWE.SW
+OXDBK.SW,OXDBK.SW
+OXFNTN.SW,OXFNTN.SW
+OXEOAN.SW,OXEOAN.SW
+OXFIE.SW,OXFIE.SW
+UNP.SW,Union Pacific Corporation
+UPS.SW,"United Parcel Service, Inc."
+PCLN.SW,The Priceline Group Inc.
+PEP.SW,"Pepsico, Inc."
+WPL.SW,Woodside Petroleum Ltd
+UG.SW,Peugeot S.A.
+PEAN.SW,Peach Property Group AG
+PFV.SW,Pfeiffer Vacuum Technology AG
+PG.SW,The Procter & Gamble Company
+VRTX.SW,Vertex Pharmaceuticals Incorporated
+REGN.SW,"Regeneron Pharmaceuticals, Inc."
+VRX.SW,"Valeant Pharmaceuticals International, Inc."
+PLUG.SW,Plug Power Inc.
+PSEC.SW,Prospect Capital Corporation
+PSM.SW,ProSiebenSat.1 Media SE
+PSAN.SW,PSI Software AG
+PUB.SW,Publicis Groupe S.A.
+PYPL.SW,"PayPal Holdings, Inc."
+RAA.SW,RATIONAL Aktiengesellschaft
+RB.SW,Reckitt Benckiser Group plc
+RCO.SW,Rémy Cointreau SA
+RHK.SW,Rhön-Klinikum Aktiengesellschaft
+RHM.SW,Rheinmetall AG
+RIO.SW,Rio Tinto Limited
+RIOP.SW,Rio Tinto plc
+RIGN.SW,Transocean Ltd.
+RNO.SW,Renault SA
+RSTI.SW,Rofin-Sinar Technologies Inc.
+RUS.SW,ENR Russia Invest SA
+RWE.SW,RWE I
+SAX.SW,Ströer SE & Co. KGaA
+SNDK.SW,SNDK.SW
+SBUX.SW,Starbucks Corporation
+SCZ.SW,SCZ.SW
+SCR.SW,SCOR SE
+TFS.SW,Thermo Fisher Scientific Inc.
+SFPN.SW,Swiss Finance & Property Investment AG
+SFSN.SW,SFS Group AG
+SGL.SW,SGL Carbon SE
+SW1.SW,SHW AG
+SSO.SW,SSR Mining Inc.
+SIX2.SW,Sixt SE
+SVM.SW,Silvercorp Metals Inc.
+SW.SW,"Sierra Wireless, Inc."
+S92.SW,SMA Solar Technology AG
+SOW.SW,Software Aktiengesellschaft
+SWVK.SW,SolarWorld Aktiengesellschaft
+SPLS.SW,"Staples, Inc."
+SRT3.SW,Sartorius
+SYK.SW,Stryker Corporation
+CAS.SW,Capital Stage AG
+SZU.SW,Südzucker AG
+SUR.SW,Surteco SE
+SU.SW,Suncor Energy Inc.
+SPWR.SW,SunPower Corporation
+SWEDA.SW,Swedbank AB (publ)
+UHRE.SW,The Swatch Group AG
+SY1.SW,Symrise AG
+SYNNEE.SW,SYNNEE.SW
+SZG.SW,Salzgitter Aktiengesellschaft
+THO.SW,Tahoe Resources Inc.
+TTK.SW,TAKKT AG
+TXN.SW,Texas Instruments Incorporated
+TK.SW,ThyssenKrupp AG
+TWX.SW,Time Warner Inc.
+TLSN.SW,Telia Company AB
+TMUS.SW,"T-Mobile US, Inc."
+TRV.SW,TRV.SW
+TRIP.SW,"TripAdvisor, Inc."
+TSCO.SW,Tesco PLC
+TUI1.SW,TUI AG
+TWTR.SW,"Twitter, Inc."
+UIS.SW,Unisys Corporation
+UL.SW,Unibail-Rodamco SE
+UNH.SW,UnitedHealth Group Incorporated
+UTDI.SW,United Internet
+GRPN.SW,"Groupon, Inc."
+UTX.SW,United Technologies Corporation
+VLA.SW,Valneva SE
+VK.SW,Vallourec SA
+VCH.SW,Charles Vögele Holding AG
+VIV.SW,Vivendi SA
+V.SW,Visa Inc.
+VNA.SW,Vonovia
+VOS.SW,Vossloh AG
+VOD.SW,Vodafone Group Plc
+WCH.SW,Wacker Chemie AG
+WMT.SW,"Wal-Mart Stores, Inc."
+WYNN.SW,"Wynn Resorts, Limited"
+AUTN.SW,Autoneum Holding AG
+BAP.SW,Groupe Baumgartner Holding S.A.
+BARC.SW,Barclays PLC
+BAS.SW,BASF SE
+B5A.SW,Bauer
+COK.SW,Cancom SE
+CA.SW,Carrefour SA
+CAT.SW,Caterpillar Inc.
+COP.SW,ConocoPhillips
+CON.SW,Conzzeta AG
+DE.SW,Deere & Company
+DEZ.SW,DEUTZ Aktiengesellschaft
+ENPH.SW,"Enphase Energy, Inc."
+FIE.SW,Fielmann AG
+HOT.SW,HOCHTIEF Aktiengesellschaft
+INVN.SW,"InvenSense, Inc."
+LIN.SW,Linde Aktiengesellschaft
+M5Z.SW,Manz AG
+MA.SW,Mastercard Incorporated
+MER.SW,Merck
+PARG.SW,Pargesa Holding SA
+SPCE.SW,Spice Private Equity AG
+SAN.SW,Sanofi
+SAP.SW,SAP SE
+SPEX.SW,SPEX.SW
+SPLK.SW,Splunk Inc.
+COMD.SW,comdirect bank Aktiengesellschaft
+INTC.SW,Intel Corporation
