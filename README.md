@@ -3,13 +3,6 @@ This project is split up into two, in principal, separate applications:
 - charts
 - analysis
 
-
-# Storage:
-All data is persisted in the folder *persisted_data*. It is split up into file formats, although for the purpose of this project, mainly the *.feather* type is used to minimize the needed storage. Files of the type *.csv* and *.xls* files are stored in *persisted_data/sheets*.
-
-A few preprocesed data sets are available via this link:
-https://u.pcloud.link/publink/show?code=kZDdJLVZP91Xe0vdAI5AtxQB69I4whcdBUL7
-
 ## charts
 The charts application is used to **download, process, store price chart data and calculate technical indicators**. With the implemented command line interface, various data sets are generated.
 
@@ -20,7 +13,7 @@ It is recommended to open the whole project (folder price-indicators) in a **mod
 The application is started by running the file *charts/main.py* using a **Python 3** interpreter. 
 
 ### Option 2:
-The **PYTHONPATH is configured** to be the project directory. This way, the program can be start using the folling commands. Note that here my real path is used. Change it to the location of the project on your machine.
+The **PYTHONPATH is configured** to be the project directory. This way, the program can be started using the following commands. Note that here an example path is used. Change it to the location of the project on your machine.
 
 export PYTHONPATH=/home/tobias/PycharmProjects/price-indicators
 
@@ -79,6 +72,12 @@ The analysis folder is a **collections of interactive python worksheets**. Using
 
 ## How to run:
 Open the worksheets using jupyter notebook. 
+
+# Storage:
+All data is persisted in the folder *persisted_data*. It is split up into file formats, although for the purpose of this project, mainly the *.feather* type is used to minimize the needed storage. Files of the type *.csv* and *.xls* files are stored in *persisted_data/sheets*.
+
+A few preprocesed data sets are available via this link:
+https://u.pcloud.link/publink/show?code=kZDdJLVZP91Xe0vdAI5AtxQB69I4whcdBUL7
 
 # Error Handling
 If errors arise, it is most likely due to missing libraries (numpy, pandas, PyTorch, sklearn, seaborn, matplotlib, sci-kit etc.) or data sets.
